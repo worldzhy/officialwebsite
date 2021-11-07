@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const StyledRightPanel = styled.div`
+  margin-top: 44rem;
   flex: 1;
   max-height: 100%;
   overflow-y: auto;
