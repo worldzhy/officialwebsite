@@ -1,23 +1,31 @@
 import React, { useContext } from "react";
 import styled from "@emotion/styled";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import DataContext from "../../contexts/DataContext";
+import CompanyLogo from "../Icons/CompanyLogo";
 
 const StyledHeader = styled.header`
-  padding: 30px 72px;
+  font-size: 18rem;
+  padding: 30rem 72rem;
   & > div,
   & > nav {
     z-index: 10;
   }
   .header-left {
-    & > img {
-      width: 44px;
+    .company-name {
+      margin-top: 12rem;
+      margin-left: 6rem;
+      display: block;
+      line-height: 21rem;
+      font-size: 18rem;
+      font-family: Arial;
+      font-weight: bold;
     }
   }
   .nav-item {
-    margin-right: 20px;
+    margin-right: 20rem;
     position: relative;
-    line-height: 20px;
+    line-height: 20rem;
     &:not(last-of-type) {
       margin-right: 70px;
     }
@@ -26,18 +34,18 @@ const StyledHeader = styled.header`
       transition: all ease-out 0.3s;
       position: absolute;
       background: white;
-      width: 4px;
+      width: 4rem;
       left: 50%;
-      height: 4px;
+      height: 4rem;
       border-radius: 50%;
     }
     &.inactive::after {
-      bottom: -20px;
+      bottom: -20rem;
       visibility: hidden;
       opacity: 0;
     }
     &.active::after {
-      bottom: -8px;
+      bottom: -8rem;
       opacity: 1;
       visibility: visible;
     }
@@ -46,23 +54,31 @@ const StyledHeader = styled.header`
 
 const Header = () => {
   const {
-    headers: { logo, name, items },
+    headers: { name, items },
   } = useContext(DataContext);
 
   const { pathname } = useLocation();
+  const history = useHistory();
 
+  const handleLogoClicked = () => {
+    history.push("/home");
+  };
   return (
     <StyledHeader
       className={"flex text-white space-between w-full text-lg font-bold"}
     >
-      <div className={"flex flex-1 aligns-center header-left"}>
-        <img className={""} src={logo} alt="company_logo" />
-        <span className={"uppercase self-center"}>{name}</span>
+      <div
+        className={"flex flex-1 aligns-center header-left"}
+        onClick={handleLogoClicked}
+      >
+        <CompanyLogo width={"44rem"} height={"37rem"} />
+        <span className={"uppercase  company-name"}>{name}</span>
       </div>
       <nav className={""}>
         {items.map(({ label, path }) => {
           return (
             <Link
+              key={path}
               className={`nav-item ${
                 pathname === path ? "active" : "inactive"
               }`}

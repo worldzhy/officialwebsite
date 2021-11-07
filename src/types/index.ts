@@ -1,3 +1,13 @@
+import {
+  Attributes,
+  DetailedHTMLProps,
+  HTMLAttributes,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  ReactHTML,
+} from "react";
+import { ReactJSXLibraryManagedAttributes } from "@emotion/react/types/jsx-namespace";
+
 export type AppLayout = {
   headers: HeaderType;
   contents: ContentsType;
@@ -18,7 +28,7 @@ interface HeaderItemProps {
 type ContentsType = {
   home: HomeContentType;
   cases: CaseContentType;
-  contact?: ContactContentProps;
+  contact: ContactContentProps;
 };
 
 interface HomeContentProps {
@@ -51,14 +61,25 @@ interface ContactContentProps {
   title: string;
   subTitle: string;
   companyInfo: CompanyInfoProps;
+  form: Record<string, FormFieldProps>;
+}
+
+export interface FormFieldProps {
+  component?: keyof ReactHTML;
+  label: string;
+  inputProps: DetailedHTMLProps<
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >;
 }
 
 type Company = {
   image: string;
-  text: string;
+  city: string;
+  country: string;
 };
 
-interface CompanyInfoProps {
+export interface CompanyInfoProps {
   summary: string;
   list: Array<Company>;
 }

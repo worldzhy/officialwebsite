@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import Close from "../../../../components/Icons/Close";
 
 interface LeftPanelProps {
   onClose: () => void;
@@ -7,21 +8,23 @@ interface LeftPanelProps {
 
 const StyledLeftPanel = styled.div`
   flex: 0;
-  min-width: 90px;
+  margin-left: 170rem;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   button {
-    width: 32px;
-    height: 32px;
-    margin-bottom: 50px;
+    width: 17rem;
+    height: 17rem;
+    position: fixed;
+    left: 150rem;
+    bottom: 100rem;
   }
 `;
 const LeftPanel: React.FC<LeftPanelProps> = ({ onClose }) => {
   return (
     <StyledLeftPanel>
       <button onClick={onClose}>
-        <img src={"/image/close.png"} alt="" />
+        <Close />
       </button>
     </StyledLeftPanel>
   );

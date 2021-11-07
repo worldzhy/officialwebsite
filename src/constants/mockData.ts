@@ -1,0 +1,383 @@
+import { AppLayout } from "../types";
+
+const mockData: AppLayout = {
+  headers: {
+    logo: "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/logo-white.png",
+    name: "inceptionpad",
+    items: [
+      { label: "home", path: "/home" },
+      { label: "case", path: "/case" },
+      { label: "contact", path: "/contact" },
+    ],
+  },
+  contents: {
+    contact: {
+      form: {
+        name: {
+          label: "What's your name?",
+          inputProps: { placeholder: "E.g. John Smith" },
+        },
+        email: {
+          label: "Email Address",
+          inputProps: { placeholder: "E.g. j.smith@hotmail.com" },
+        },
+        phone: {
+          label: "Phone",
+          inputProps: {
+            placeholder: "Your preferred mobile phone or telephone number",
+          },
+        },
+        desc: {
+          label: "What's your project?",
+          inputProps: {
+            placeholder: "Tell us about your project or any bold ideas",
+          },
+        },
+      },
+      title: "Send Inquiry",
+      subTitle:
+        "Please fill the form below, so we will get the right people to look after your inquiry",
+      companyInfo: {
+        summary: "We are located in Baltimore Maryland and Chengdu China",
+        list: [
+          {
+            city: "Baltimore Maryland",
+            country: "US",
+            image:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/contact-1212.png",
+          },
+          {
+            city: "Chengdu",
+            country: "China",
+            image:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/contact-1213.png",
+          },
+        ],
+      },
+    },
+    home: [
+      {
+        text: "We Build Enterprise-grade Digital Products at a Pace and Cost Fit For Startups",
+        position: "center",
+        video: {
+          current:
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-00.mp4",
+          transition:
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-01.mp4",
+        },
+      },
+      {
+        text: "Our agile process begins with An highly efficient design process",
+        position: "left",
+        video: {
+          current:
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-01.mp4",
+          transition:
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-02.mp4",
+        },
+      },
+      {
+        text: "Our agile process begins with An highly efficient design process",
+        position: "left",
+        video: {
+          current:
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-02.mp4",
+          transition:
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-03.mp4",
+        },
+      },
+      {
+        text: "Our agile process begins with An highly efficient design process",
+        position: "left",
+        video: {
+          current:
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-03-03.mp4",
+        },
+      },
+    ],
+    cases: [
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#0559AF",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-171346.png",
+        id: "1",
+        tags: ["Big Data", "AI"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#DDA71B",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181212.png",
+        id: "2",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#F2F2F2",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181213.png",
+        id: "3",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#56F58D",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181214.png",
+        id: "4",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#FF6C62",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "5",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "grey",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-171346.png",
+        id: "6",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#56F58D",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-171346.png",
+        id: "7",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#FF6C62",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-171346.png",
+        id: "8",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "grey",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "9",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#56F58D",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "10",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#FF6C62",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "11",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "grey",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "12",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#FF6C62",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "14",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "grey",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "15",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#56F58D",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "16",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#FF6C62",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "17",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "grey",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "18",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#56F58D",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "19",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "#FF6C62",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "20",
+        tags: ["Big Data"],
+      },
+      {
+        title: "TitanHouse",
+        description:
+          "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
+          "Rapid implementation of functions" +
+          "Start from the business value proposition, not requirement sheets",
+        primaryColor: "grey",
+        image:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
+        thumbImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        id: "21",
+        tags: ["Big Data"],
+      },
+    ],
+  },
+};
+export default mockData;

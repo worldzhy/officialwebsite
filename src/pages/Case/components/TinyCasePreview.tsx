@@ -11,10 +11,11 @@ const StyledCaseWrapper = styled.div`
   display: flex;
   flex-direction: column;
   flex: 0 1 auto;
-  padding: 0 0 27px 24px;
+  padding: 0 0 27rem 24rem;
   .title {
-    font-size: 20px;
-    line-height: 30px;
+    margin: 7rem 0;
+    font-size: 20rem;
+    line-height: 30rem;
     font-weight: 500;
   }
   img {
@@ -32,7 +33,7 @@ const TinyCasePreview: React.FC<TinyCasePreviewProps> = ({
       onClick={onClick}
       className={"tiny-preview-wrapper lg:w-1/3 md:w-1/2"}
     >
-      <img src={thumbImage} alt={`${title}'s thumb image`} />
+      <img src={thumbImage} alt="" />
       <p className={"title truncate"}>{title}</p>
       <CaseTags tags={tags} />
     </StyledCaseWrapper>
