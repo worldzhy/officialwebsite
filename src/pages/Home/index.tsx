@@ -87,7 +87,15 @@ const Home = () => {
 
   const bind = useGesture(
     {
-      onWheelStart: async ({ delta: [_, y] }) => {
+      onWheelEnd: ({ delta: [, y] }) => {
+        /**
+         * direction is up
+         */
+        if (y < 0 && current > 0) {
+          setCurrent(current - 1);
+        }
+      },
+      onWheel: async ({ delta: [, y] }) => {
         if (canTransition) return;
         if (y > 0) {
           /**
@@ -98,18 +106,11 @@ const Home = () => {
               setCanTransition(() => current < home.length - 1)
             );
           }
-        } else {
-          /**
-           * direction is up
-           */
-          setCurrent((prev) => {
-            return prev > 0 ? prev - 1 : 0;
-          });
         }
       },
     },
     {
-      wheel: { axis: "y" },
+      wheel: { axis: "y", threshold: 1000 },
     }
   );
 
@@ -144,7 +145,7 @@ const Home = () => {
                 preload={"auto"}
                 muted
                 loop
-                autoPlay
+                autoPlay={current === i && !canTransition}
                 className={"loop-video"}
                 disablePictureInPicture
                 onCanPlay={handleCanPlay}
@@ -154,20 +155,20 @@ const Home = () => {
                 }}
                 src={currentVideo}
               />
-              {transition && (
-                <video
-                  autoPlay
-                  preload={"auto"}
-                  onEnded={handleEnded}
-                  className={"transition-video"}
-                  disablePictureInPicture
-                  style={{
-                    zIndex: current === i ? 1 : -1,
-                    visibility: canTransition ? "visible" : "hidden",
-                  }}
-                  src={transition}
-                />
-              )}
+
+              <video
+                muted
+                autoPlay={current === i && canTransition}
+                preload={"auto"}
+                onEnded={handleEnded}
+                className={"transition-video"}
+                disablePictureInPicture
+                style={{
+                  zIndex: current === i ? 1 : -1,
+                  visibility: canTransition ? "visible" : "hidden",
+                }}
+                src={transition}
+              />
 
               <motion.div
                 ref={textWrapperRef}
