@@ -25,7 +25,7 @@ const StyledHeader = styled.header`
   .nav-item {
     margin-right: 20rem;
     position: relative;
-    line-height: 20rem;
+    line-height: 37rem;
     &:not(last-of-type) {
       margin-right: 70px;
     }
