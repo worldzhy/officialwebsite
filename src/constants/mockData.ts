@@ -55,46 +55,116 @@ const mockData: AppLayout = {
         ],
       },
     },
-    home: [
-      {
-        text: "We Build Enterprise-grade Digital Products at a Pace and Cost Fit For Startups",
-        position: "center",
-        video: {
-          current:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-00.mp4",
-          transition:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-01.mp4",
+    home: {
+      videos: [
+        {
+          text: "We Build Enterprise-grade Digital Products at a Pace and Cost Fit For Startups",
+          position: "center",
+          video: {
+            current:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-00.mp4",
+            transition:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-01.mp4",
+          },
         },
-      },
-      {
-        text: "Our agile process begins with An highly efficient design process",
-        position: "left",
-        video: {
-          current:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-01.mp4",
-          transition:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-02.mp4",
+        {
+          text: "Our agile process begins with An highly efficient design process",
+          position: "left",
+          video: {
+            current:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-01.mp4",
+            transition:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-02.mp4",
+            reverse:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-01_reverse.mp4",
+          },
         },
-      },
-      {
-        text: "Our agile process begins with An highly efficient design process",
-        position: "left",
-        video: {
-          current:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-02.mp4",
-          transition:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-03.mp4",
+        {
+          text: "Our agile process begins with An highly efficient design process",
+          position: "left",
+          video: {
+            current:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-02.mp4",
+            transition:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-03.mp4",
+            reverse:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-02_reverse.mp4",
+          },
         },
-      },
-      {
-        text: "Our agile process begins with An highly efficient design process",
-        position: "left",
-        video: {
-          current:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-03-03.mp4",
+        {
+          text: "Our agile process begins with An highly efficient design process",
+          position: "left",
+          video: {
+            current:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-03-03.mp4",
+            reverse:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-03_reverse.mp4",
+          },
         },
-      },
-    ],
+      ],
+      carousels: [
+        {
+          name: "Bill Kapner",
+          avatar: "http://localhost:8000/avatar.png",
+          title: "Founder and Chairman",
+          companyName: "TitanHouse Inc",
+          brandingColor: "#00FFFF",
+          backgroundImage: "http://localhost:8000/background.png",
+          description:
+            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+        },
+        {
+          name: "Bill Kapner",
+          avatar: "http://localhost:8000/avatar.png",
+          title: "Founder and Chairman",
+          companyName: "TitanHouse Inc",
+          brandingColor: "#00FFFF",
+          backgroundImage: "http://localhost:8000/background.png",
+          description:
+            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+        },
+        {
+          name: "Bill Kapner",
+          avatar: "http://localhost:8000/avatar.png",
+          title: "Founder and Chairman",
+          companyName: "TitanHouse Inc",
+          brandingColor: "blue",
+          backgroundImage: "http://localhost:8000/background.png",
+          description:
+            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+        },
+        {
+          name: "Bill Kapner",
+          avatar: "http://localhost:8000/avatar.png",
+          title: "Founder and Chairman",
+          companyName: "TitanHouse Inc",
+          brandingColor: "grey",
+          backgroundImage: "http://localhost:8000/background.png",
+          description:
+            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+        },
+        {
+          name: "Bill Kapner",
+          avatar: "http://localhost:8000/avatar.png",
+          title: "Founder and Chairman",
+          companyName: "TitanHouse Inc",
+          brandingColor: "red",
+          backgroundImage: "http://localhost:8000/background.png",
+          description:
+            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+        },
+        {
+          name: "Bill Kapner",
+          avatar: "http://localhost:8000/avatar.png",
+          title: "Founder and Chairman",
+          companyName: "TitanHouse Inc",
+          backgroundImage: "http://localhost:8000/background.png",
+          brandingColor: "green",
+          description:
+            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+        },
+      ],
+    },
     cases: [
       {
         title: "TitanHouse",

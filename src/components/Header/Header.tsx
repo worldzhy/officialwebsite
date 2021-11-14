@@ -7,11 +7,15 @@ import CompanyLogo from "../Icons/CompanyLogo";
 const StyledHeader = styled.header`
   font-size: 18rem;
   padding: 30rem 72rem;
+  & > nav {
+    padding-top: 4rem;
+  }
   & > div,
   & > nav {
     z-index: 10;
   }
   .header-left {
+    cursor: pointer;
     .company-name {
       margin-top: 12rem;
       margin-left: 6rem;
@@ -25,6 +29,7 @@ const StyledHeader = styled.header`
   .nav-item {
     margin-right: 20rem;
     position: relative;
+    margin-top: -1rem;
     line-height: 37rem;
     &:not(last-of-type) {
       margin-right: 70px;

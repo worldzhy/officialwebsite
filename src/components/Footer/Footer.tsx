@@ -4,15 +4,14 @@ import Mouse from "../Icons/Mouse";
 const StyledFooterWrapper = styled.footer`
   position: absolute;
   bottom: 0;
-  height: 90rem;
-  left: 50%;
-  color: white;
+  left: 0;
   right: 0;
+  height: 90rem;
+  color: white;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50rem;
 `;
 const Footer = () => {
   return (

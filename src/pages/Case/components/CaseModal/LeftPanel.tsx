@@ -17,7 +17,7 @@ const StyledLeftPanel = styled.div`
     height: 17rem;
     position: fixed;
     left: 150rem;
-    bottom: 100rem;
+    bottom: 98rem;
   }
 `;
 const LeftPanel: React.FC<LeftPanelProps> = ({ onClose }) => {

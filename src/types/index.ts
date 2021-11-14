@@ -31,16 +31,31 @@ type ContentsType = {
   contact: ContactContentProps;
 };
 
-interface HomeContentProps {
+interface HomeVideoProps {
   text: string;
   position: string;
   video: VideoProps;
 }
-type HomeContentType = Array<HomeContentProps>;
+
+export interface CarouselItemProps {
+  avatar: string;
+  name: string;
+  title: string;
+  companyName: string;
+  brandingColor: string;
+  backgroundImage: string;
+  description: string;
+}
+
+type HomeContentType = {
+  videos: Array<HomeVideoProps>;
+  carousels: Array<CarouselItemProps>;
+};
 
 interface VideoProps {
   current: string;
   transition?: string;
+  reverse?: string;
 }
 
 export type CaseContentType = Array<CaseProps>;
