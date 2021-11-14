@@ -1,10 +1,75 @@
 import styled from "@emotion/styled";
-import React, { ReactEventHandler, useContext, useRef, useState } from "react";
+import React, {
+  ReactEventHandler,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useGesture } from "@use-gesture/react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useHistory } from "react-router-dom";
 import DataContext from "../../contexts/DataContext";
 import { enterAnimation } from "../../constants/animation";
 import LoadingContext from "../../contexts/LoadingContext";
+import Carousel from "./components/Carousel";
+
+const StyledItemWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  & > * {
+    z-index: 1;
+  }
+  img {
+    width: 97rem;
+    height: 97rem;
+    border-radius: 50%;
+  }
+  .name {
+    margin-top: 4rem;
+    font-size: 32rem;
+    line-height: 48rem;
+    font-weight: 500;
+  }
+  .info-wrapper {
+    margin-top: 7rem;
+    font-size: 18rem;
+    line-height: 21rem;
+    .title {
+      font-family: Arial;
+      opacity: 0.5;
+    }
+    .company-name {
+      margin-left: 26rem;
+      font-family: Lora;
+      font-weight: bold;
+      opacity: 0.5;
+    }
+  }
+  .description {
+    width: 788rem;
+    margin-top: 25rem;
+    font-size: 18rem;
+    line-height: 40rem;
+    font-weight: 300;
+    height: 196rem;
+  }
+  button {
+    width: 163rem;
+    height: 40rem;
+    border: 2px solid #ffffff;
+    font-size: 16rem;
+    line-height: 24rem;
+  }
+`;
 
 const StyledContainer = styled(motion.div)`
   background: black;
@@ -41,6 +106,9 @@ const StyledContainer = styled(motion.div)`
   }
   .position-center {
     justify-content: center;
+    & .text {
+      width: 980rem;
+    }
   }
   .text {
     width: 720rem;
@@ -53,74 +121,75 @@ const StyledContainer = styled(motion.div)`
 `;
 const Home = () => {
   const textWrapperRef = useRef<HTMLDivElement>(null);
+  const transitionRef = useRef<HTMLVideoElement>(null);
+  const reverseRef = useRef<HTMLVideoElement>(null);
+  const [carouselVisible, setCarouselVisible] = useState(false);
+  const history = useHistory();
   const [canTransition, setCanTransition] = useState(false);
+  const [shouldReverse, setShouldReverse] = useState(false);
   const {
-    contents: { home },
+    contents: {
+      home: { videos, carousels },
+    },
   } = useContext(DataContext);
   const { dispatchVisible, dispatchProgress, visible } =
     useContext(LoadingContext);
   const [current, setCurrent] = useState(0);
 
-  const playVideo = (
-    isTransition: boolean,
-    target: number,
-    callback?: () => void,
-    errorCallback?: () => void
-  ): void => {
-    const video = document.querySelectorAll(
-      isTransition ? ".transition-video" : ".loop-video"
-    ) as unknown as HTMLVideoElement[];
-    video[target].currentTime = 0;
-    video[target]
-      ?.play()
-      .then(() => {
-        if (callback) {
-          callback();
-        }
-      })
-      .catch(() => {
-        if (errorCallback) {
-          errorCallback();
-        }
-      });
+  const handler = ({ delta: [, y] }: any) => {
+    if (canTransition || shouldReverse || carouselVisible) return;
+    if (y > 0) {
+      if (current < videos.length - 1) {
+        const video = document.querySelectorAll(".transition-video")[
+          current
+        ] as unknown as HTMLVideoElement;
+        video.currentTime = 0;
+        video.play().then(() => {
+          setCanTransition(true);
+        });
+      } else {
+        setCarouselVisible(true);
+      }
+    }
+    if (y < 0) {
+      if (current > 0) {
+        const video = document.querySelectorAll(".reverse-video")[
+          current
+        ] as unknown as HTMLVideoElement;
+        video.currentTime = 0;
+        video.play().then(() => {
+          setShouldReverse(true);
+        });
+      }
+    }
   };
 
   const bind = useGesture(
     {
+      onWheel: handler,
+      onWheelStart: handler,
       onWheelEnd: ({ delta: [, y] }) => {
-        /**
-         * direction is up
-         */
-        if (y < 0 && current > 0) {
-          setCurrent(current - 1);
-        }
-      },
-      onWheel: async ({ delta: [, y] }) => {
-        if (canTransition) return;
-        if (y > 0) {
-          /**
-           * direction is down
-           */
-          if (current < home.length - 1) {
-            playVideo(current < home.length - 1, current, () =>
-              setCanTransition(() => current < home.length - 1)
-            );
-          }
+        if (y < 0 && carouselVisible) {
+          setCarouselVisible(false);
         }
       },
     },
     {
-      wheel: { axis: "y", threshold: 1000 },
+      wheel: { axis: "y" },
     }
   );
 
   const handleEnded = () => {
-    if (canTransition) {
-      playVideo(false, current + 1, () => {
-        setCanTransition(false);
-        setCurrent((prev) => prev + 1);
-      });
-    }
+    const next = canTransition ? current + 1 : current - 1;
+    const video = document.querySelectorAll(".loop-video")[
+      next
+    ] as unknown as HTMLVideoElement;
+    video.currentTime = 0;
+    video.play().then(() => {
+      setShouldReverse(false);
+      setCanTransition(false);
+      setCurrent(next);
+    });
   };
 
   const handleCanPlay: ReactEventHandler = () => {
@@ -130,34 +199,51 @@ const Home = () => {
     }
   };
 
+  const textAnimation = useMemo(() => {
+    if (canTransition) {
+      return { transform: "translateY(-200rem)", opacity: 0 };
+    }
+    if (shouldReverse) {
+      return { transform: "translateY(200rem)", opacity: 0 };
+    }
+    return { opacity: 1 };
+  }, [canTransition, shouldReverse]);
+
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <StyledContainer {...bind()} {...enterAnimation}>
-      {home.map(
+      {videos.map(
         (
-          { video: { transition, current: currentVideo }, text, position },
+          {
+            video: { transition, current: currentVideo, reverse },
+            text,
+            position,
+          },
           i
         ) => {
           return (
             <div key={currentVideo}>
               <video
-                preload={"auto"}
                 muted
                 loop
-                autoPlay={current === i && !canTransition}
+                key={"loop"}
+                preload={"auto"}
+                autoPlay={(current === i && !canTransition) || !shouldReverse}
                 className={"loop-video"}
                 disablePictureInPicture
                 onCanPlay={handleCanPlay}
                 style={{
                   zIndex: current === i ? 1 : -1,
-                  visibility: canTransition ? "hidden" : "visible",
+                  visibility:
+                    canTransition || shouldReverse ? "hidden" : "visible",
                 }}
                 src={currentVideo}
               />
-
               <video
                 muted
+                key={"transition"}
+                ref={transitionRef}
                 autoPlay={current === i && canTransition}
                 preload={"auto"}
                 onEnded={handleEnded}
@@ -169,18 +255,28 @@ const Home = () => {
                 }}
                 src={transition}
               />
+              <video
+                muted
+                key={"reverse"}
+                ref={reverseRef}
+                autoPlay={current === i && shouldReverse}
+                preload={"auto"}
+                onEnded={handleEnded}
+                className={"reverse-video"}
+                disablePictureInPicture
+                style={{
+                  zIndex: current === i ? 1 : -1,
+                  visibility: shouldReverse ? "visible" : "hidden",
+                }}
+                src={reverse}
+              />
 
               <motion.div
                 ref={textWrapperRef}
                 className={`text-wrapper position-${position}`}
               >
                 <motion.span
-                  initial={{ translateY: "0%", opacity: 0 }}
-                  animate={{
-                    translateY:
-                      canTransition && current === i ? "-200px" : "0%",
-                    opacity: canTransition ? 0 : 1,
-                  }}
+                  animate={current === i ? textAnimation : { opacity: 0 }}
                   transition={{ ease: "easeIn", duration: 0.5 }}
                   style={{
                     zIndex: current === i ? 2 : -1,
@@ -195,6 +291,48 @@ const Home = () => {
           );
         }
       )}
+      <AnimatePresence initial={false}>
+        {carouselVisible && (
+          <Carousel autoPlay={false}>
+            {carousels.map(
+              (
+                {
+                  name,
+                  avatar,
+                  companyName,
+                  title,
+                  description,
+                  brandingColor,
+                  backgroundImage,
+                },
+                i
+              ) => (
+                <StyledItemWrapper
+                  key={i}
+                  style={{ backgroundImage: `url(${backgroundImage})` }}
+                >
+                  <img src={avatar} alt={""} />
+                  <h3 className={"name"}>{name}</h3>
+                  <p className={"info-wrapper"}>
+                    <span className={"title"}>{title}</span>
+
+                    <span
+                      className={"company-name"}
+                      style={{ color: brandingColor || "white" }}
+                    >
+                      {companyName}
+                    </span>
+                  </p>
+                  <p className={"description"}>{description}</p>
+                  <button onClick={() => history.push("/case")}>
+                    Read Case Study
+                  </button>
+                </StyledItemWrapper>
+              )
+            )}
+          </Carousel>
+        )}
+      </AnimatePresence>
     </StyledContainer>
   );
 };

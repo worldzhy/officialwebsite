@@ -133,7 +133,7 @@ const Case = () => {
                 style={{
                   visibility: current === i ? "visible" : "hidden",
                   opacity: current === i ? 1 : 0,
-                  transition: "all ease-in-out 1s 2s",
+                  transition: "all ease-in .5s 1s",
                 }}
                 className={
                   "bg-white text-black link-btn hover:shadow-lg hover:bg-gray-100"
@@ -148,7 +148,7 @@ const Case = () => {
                   visibility: current === i ? "visible" : "hidden",
                   opacity: current === i ? 1 : 0,
                   transform: current === i ? "scale(1)" : "scale(0.9)",
-                  transition: "all ease-in .2s 2s",
+                  transition: "all ease-in .5s 1s",
                   color: "white",
                 }}
               >
