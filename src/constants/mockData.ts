@@ -5,16 +5,16 @@ const mockData: AppLayout = {
     logo: "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/logo-white.png",
     name: "inceptionpad",
     items: [
-      { label: "home", path: "/home" },
-      { label: "case", path: "/case" },
-      { label: "contact", path: "/contact" },
+      { label: "What We Do", path: "/home" },
+      { label: "Case Study", path: "/case" },
+      { label: "Contact Us", path: "/contact" },
     ],
   },
   contents: {
     contact: {
       form: {
         name: {
-          label: "What's your name?",
+          label: "Your Name",
           inputProps: { placeholder: "E.g. John Smith" },
         },
         email: {
@@ -22,9 +22,9 @@ const mockData: AppLayout = {
           inputProps: { placeholder: "E.g. j.smith@hotmail.com" },
         },
         phone: {
-          label: "Phone",
+          label: "Mobile Phone",
           inputProps: {
-            placeholder: "Your preferred mobile phone or telephone number",
+            placeholder: "Your preferred mobile phone number",
           },
         },
         desc: {
@@ -58,7 +58,8 @@ const mockData: AppLayout = {
     home: {
       videos: [
         {
-          text: "We Build Enterprise-grade Digital Products at a Pace and Cost Fit For Startups",
+          //text: "We Build Enterprise-grade Digital Products at a Pace and Cost Fit For Startups",
+          text: "Handcrafting Digital Innovation",
           position: "center",
           video: {
             current:
@@ -68,7 +69,8 @@ const mockData: AppLayout = {
           },
         },
         {
-          text: "Our agile process begins with An highly efficient design process",
+          //text: "Our agile process begins with An highly efficient design process",
+          text: "Develop your MVP in weeks with our highly EFFICIENT design and development process.",
           position: "left",
           video: {
             current:
@@ -80,7 +82,8 @@ const mockData: AppLayout = {
           },
         },
         {
-          text: "Our agile process begins with An highly efficient design process",
+          //text: "Our agile process begins with An highly efficient design process",
+          text: "Enjoy the QUALITY of building with enterprise-grade micro-services and validated open source packages.",
           position: "left",
           video: {
             current:
@@ -92,7 +95,8 @@ const mockData: AppLayout = {
           },
         },
         {
-          text: "Our agile process begins with An highly efficient design process",
+          //text: "Our agile process begins with An highly efficient design process",
+          text:"Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
           position: "left",
           video: {
             current:
@@ -200,7 +204,7 @@ const mockData: AppLayout = {
           "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
-        primaryColor: "#F2F2F2",
+        primaryColor: "grey",
         image:
           "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
         thumbImage:
