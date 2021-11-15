@@ -9,8 +9,7 @@ import React, {
   ReactElement,
   useCallback,
 } from "react";
-import { AnimatePresence, motion, useViewportScroll } from "framer-motion";
-import { useGesture, useWheel } from "@use-gesture/react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const StyledNavigator = styled.div`
   width: 100%;
