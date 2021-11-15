@@ -23,6 +23,7 @@ const StyledItemWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
   & > * {
@@ -82,6 +83,7 @@ const StyledContainer = styled(motion.div)`
     left: 0;
     right: 0;
     z-index: -1;
+    overflow: hidden;
   }
   video {
     transition: all ease 16ms;
