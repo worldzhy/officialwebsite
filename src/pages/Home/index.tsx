@@ -108,6 +108,7 @@ const StyledContainer = styled(motion.div)`
     justify-content: center;
     & .text {
       width: 980rem;
+      text-align: center;
     }
   }
   .text {
