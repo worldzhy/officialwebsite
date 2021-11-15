@@ -96,7 +96,7 @@ const mockData: AppLayout = {
         },
         {
           // text: "Our agile process begins with An highly efficient design process",
-          text:"Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
+          text: "Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
           position: "left",
           video: {
             current:
