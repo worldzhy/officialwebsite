@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import React, {
   ReactEventHandler,
+  useCallback,
   useContext,
   useMemo,
   useRef,
@@ -20,9 +21,10 @@ const StyledItemWrapper = styled.div`
   flex-direction: column;
   color: white;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
+  padding-top: 156rem;
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
@@ -202,14 +204,30 @@ const Home = () => {
     }
   };
 
+  const textTransition = (index: number, length: number) => {
+    if (!shouldReverse)
+      return {
+        ease: "easeIn",
+        duration: 0.3,
+        delay: index * 0.15,
+      };
+    return {
+      ease: "easeIn",
+      duration: 0.3,
+      delay: (length - index) * 0.2,
+    };
+  };
+
   const textAnimation = useMemo(() => {
     if (canTransition) {
-      return { transform: "translateY(-200rem)", opacity: 0 };
+      // return { transform: "translateY(-100rem)", opacity: 0 };
+      return { y: -50, opacity: 0 };
     }
     if (shouldReverse) {
-      return { transform: "translateY(200rem)", opacity: 0 };
+      // return { transform: "translateY(100rem)", opacity: 0 };
+      return { y: 50, opacity: 0 };
     }
-    return { opacity: 1 };
+    return { opacity: 1, y: 0 };
   }, [canTransition, shouldReverse]);
 
   return (
@@ -220,7 +238,7 @@ const Home = () => {
         (
           {
             video: { transition, current: currentVideo, reverse },
-            text,
+            texts,
             position,
           },
           i
@@ -278,17 +296,31 @@ const Home = () => {
                 ref={textWrapperRef}
                 className={`text-wrapper position-${position}`}
               >
-                <motion.span
-                  animate={current === i ? textAnimation : { opacity: 0 }}
-                  transition={{ ease: "easeIn", duration: 0.5 }}
+                <motion.ul
+                  // animate={current === i ? textAnimation : { opacity: 0 }}
+                  // transition={{ ease: "easeIn", duration: 0.5 }}
                   style={{
                     zIndex: current === i ? 2 : -1,
                     visibility: current === i ? "visible" : "hidden",
                   }}
-                  className={"text"}
                 >
-                  {text}
-                </motion.span>
+                  {texts.map((text, index) => {
+                    return (
+                      <motion.li
+                        transition={textTransition(index, texts.length)}
+                        animate={
+                          current === i
+                            ? {
+                                ...textAnimation,
+                              }
+                            : { opacity: 0, y: 50 }
+                        }
+                      >
+                        <span className={"text"}>{text}</span>
+                      </motion.li>
+                    );
+                  })}
+                </motion.ul>
               </motion.div>
             </div>
           );

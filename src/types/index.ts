@@ -32,7 +32,7 @@ type ContentsType = {
 };
 
 interface HomeVideoProps {
-  text: string;
+  texts: Array<string>;
   position: string;
   video: VideoProps;
 }
