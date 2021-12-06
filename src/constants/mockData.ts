@@ -58,8 +58,8 @@ const mockData: AppLayout = {
     home: {
       videos: [
         {
-          // text: "We Build Enterprise-grade Digital Products at a Pace and Cost Fit For Startups",
-          text: "Handcrafting Digital Innovation",
+          texts: ["Handcrafting Digital Innovation"],
+          // text: "Handcrafting Digital Innovation",
           position: "center",
           video: {
             current:
@@ -69,8 +69,13 @@ const mockData: AppLayout = {
           },
         },
         {
-          // text: "Our agile process begins with An highly efficient design process",
-          text: "Develop your MVP in weeks with our highly EFFICIENT design and development process.",
+          texts: [
+            "Develop your MVP in",
+            "weeks with our highly",
+            "EFFICIENT design and",
+            "development process.",
+          ],
+          // text: "Develop your MVP in weeks with our highly EFFICIENT design and development process.",
           position: "left",
           video: {
             current:
@@ -82,8 +87,14 @@ const mockData: AppLayout = {
           },
         },
         {
-          // text: "Our agile process begins with An highly efficient design process",
-          text: "Enjoy the QUALITY of building with enterprise-grade micro-services and validated open source packages.",
+          texts: [
+            "Enjoy the QUALITY of",
+            "building with enterprise-",
+            "grade micro-services and",
+            "validated open source",
+            "packages.",
+          ],
+          // text: "Enjoy the QUALITY of building with enterprise-grade micro-services and validated open source packages.",
           position: "left",
           video: {
             current:
@@ -95,8 +106,13 @@ const mockData: AppLayout = {
           },
         },
         {
-          // text: "Our agile process begins with An highly efficient design process",
-          text: "Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
+          texts: [
+            "Get peace of mind with a",
+            "partner that has a proven",
+            "track record of",
+            "RELIABILTY and SECURITY.",
+          ],
+          // text: "Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
           position: "left",
           video: {
             current:
