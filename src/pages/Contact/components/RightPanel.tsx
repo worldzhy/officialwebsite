@@ -17,9 +17,11 @@ const StyledRightPanel = styled.div`
       display: flex;
       flex-direction: column;
       margin-bottom: 50rem;
+      font-family: Arial;
       label {
         font-size: 14rem;
         line-height: 16rem;
+        font-weight: 700;
       }
       input {
         font-size: 18rem;
