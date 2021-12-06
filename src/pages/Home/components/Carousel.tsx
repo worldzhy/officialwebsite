@@ -190,6 +190,15 @@ const MotionBox = styled(motion.div)`
     background-color: black;
     opacity: 0.8;
     mix-blend-mode: normal;
+    background-position-x: 293rem;
+    img {
+      position: relative;
+      top: 331rem;
+      left: 291rem;
+      width: 66rem;
+      height: 65rem;
+      //opacity: 0.1;
+    }
   }
 `;
 
@@ -227,9 +236,14 @@ export const CarouselItem: FunctionComponent<CarouselItemProps> = (props) => {
       exit={"exit"}
     >
       <div className={"header-mask"} />
-
       {children}
-      <div className={"mask"} />
+      <div className={"mask"}>
+        <img
+          src={"/image/carousel_mask_bg.png"}
+          className={"mask-image"}
+          alt={""}
+        />
+      </div>
     </MotionBox>
   );
 };
