@@ -118,7 +118,7 @@ const StyledContainer = styled(motion.div)`
   .text {
     width: 720rem;
     color: white;
-    font-size: 56rem;
+    font-size: 48rem;
     line-height: 64rem;
     font-weight: 500;
     text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.25);
