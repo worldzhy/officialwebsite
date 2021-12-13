@@ -51,7 +51,7 @@ const LocationList: FunctionComponent<CompanyInfoProps> = ({
             <img src={image} alt="" />
             <p>
               <span className={"city"}>{city}</span>
-              <span className={"divider"}>·</span>
+              <span className={"divider"}> · </span>
               <span className={"country"}>{country}</span>
             </p>
           </div>

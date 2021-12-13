@@ -28,7 +28,7 @@ const mockData: AppLayout = {
           },
         },
         desc: {
-          label: "What's your project?",
+          label: "Your ideas",
           inputProps: {
             placeholder: "Tell us about your project or any bold ideas",
           },
@@ -36,13 +36,13 @@ const mockData: AppLayout = {
       },
       title: "Send Inquiry",
       subTitle:
-        "Please fill the form below, so we will get the right people to look after your inquiry",
+        "Please fill out the form on the right so that we can be prepared before contacting you",
       companyInfo: {
-        summary: "We are located in Baltimore Maryland and Chengdu China",
+        summary: "We are located in Baltimore, USA and Chengdu, China",
         list: [
           {
-            city: "Baltimore Maryland",
-            country: "US",
+            city: "Baltimore",
+            country: "USA",
             image:
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/contact-1212.png",
           },
