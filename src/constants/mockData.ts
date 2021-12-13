@@ -71,8 +71,8 @@ const mockData: AppLayout = {
         {
           texts: [
             "Develop your MVP in weeks",
-            "with our highly EFFICIENT",
-            "design and development process",
+            "with our EFFICIENT design",
+            "and development process",
           ],
           // text: "Develop your MVP in weeks with our highly EFFICIENT design and development process.",
           position: "left",
