@@ -5,8 +5,8 @@ import DataContext from "../../contexts/DataContext";
 import CompanyLogo from "../Icons/CompanyLogo";
 
 const StyledHeader = styled.header`
-  font-size: 18rem;
-  padding: 30rem 72rem;
+  font-size: 16rem;
+  padding: 20rem 72rem;
   & > nav {
     padding-top: 4rem;
   }
@@ -21,7 +21,7 @@ const StyledHeader = styled.header`
       margin-left: 6rem;
       display: block;
       line-height: 21rem;
-      font-size: 18rem;
+      font-size: 16rem;
       font-family: Arial;
       font-weight: bold;
     }
