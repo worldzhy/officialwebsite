@@ -25,6 +25,7 @@ const StyledRightPanel = styled.div`
       }
       input {
         font-size: 18rem;
+        opacity: 0.3;
         line-height: 20rem;
         background-color: transparent;
         padding-top: 8rem;
