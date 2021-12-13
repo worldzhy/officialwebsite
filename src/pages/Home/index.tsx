@@ -118,6 +118,7 @@ const StyledContainer = styled(motion.div)`
   .text {
     width: 720rem;
     color: white;
+    font-family: Prompt;
     font-size: 48rem;
     line-height: 64rem;
     font-weight: 500;
