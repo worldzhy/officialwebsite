@@ -70,10 +70,9 @@ const mockData: AppLayout = {
         },
         {
           texts: [
-            "Develop your MVP in",
-            "weeks with our highly",
-            "EFFICIENT design and",
-            "development process.",
+            "Develop your MVP in weeks",
+            "with our highly EFFICIENT",
+            "design and development process",
           ],
           // text: "Develop your MVP in weeks with our highly EFFICIENT design and development process.",
           position: "left",
@@ -88,11 +87,9 @@ const mockData: AppLayout = {
         },
         {
           texts: [
-            "Enjoy the QUALITY of",
-            "building with enterprise-",
-            "grade micro-services and",
-            "validated open source",
-            "packages.",
+            "Enjoy the QUALITY of building",
+            "with enterprise-grade micro-services",
+            "and validated open source packages",
           ],
           // text: "Enjoy the QUALITY of building with enterprise-grade micro-services and validated open source packages.",
           position: "left",
@@ -107,10 +104,9 @@ const mockData: AppLayout = {
         },
         {
           texts: [
-            "Get peace of mind with a",
-            "partner that has a proven",
-            "track record of",
-            "RELIABILTY and SECURITY.",
+            "Get peace of mind with a partner",
+            "that has a proven track record",
+            "of RELIABILTY and SECURITY",
           ],
           // text: "Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
           position: "left",
