@@ -6,6 +6,7 @@ const LocationListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   .summary {
+    font-family: Prompt;
     font-weight: 300;
     font-size: 14rem;
     line-height: 21rem;
@@ -20,6 +21,7 @@ const LocationListWrapper = styled.div`
       max-width: 50%;
     }
     p {
+      font-family: Prompt;
       font-weight: 300;
       font-size: 14rem;
       line-height: 21rem;
@@ -49,7 +51,7 @@ const LocationList: FunctionComponent<CompanyInfoProps> = ({
             <img src={image} alt="" />
             <p>
               <span className={"city"}>{city}</span>
-              <span className={"divider"}>·</span>
+              <span className={"divider"}> · </span>
               <span className={"country"}>{country}</span>
             </p>
           </div>

@@ -26,6 +26,7 @@ const StyledContainer = styled(motion.div)`
   justify-content: space-between;
   align-items: flex-start;
   .left-panel {
+    font-family: Prompt;
     flex: 0 1 494rem;
     display: flex;
     flex-direction: column;

@@ -13,12 +13,14 @@ const StyledLeftPanel = styled.div`
   padding-top: 100rem;
   padding-bottom: 90rem;
   h2 {
+    font-family: Prompt;
     font-size: 56rem;
     line-height: 64rem;
     font-weight: 500;
     margin-bottom: 8rem;
   }
   .sub-title {
+    font-family: Prompt;
     font-weight: 300;
     font-size: 18rem;
     line-height: 27rem;

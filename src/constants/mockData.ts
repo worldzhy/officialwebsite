@@ -28,7 +28,7 @@ const mockData: AppLayout = {
           },
         },
         desc: {
-          label: "What's your project?",
+          label: "Your ideas",
           inputProps: {
             placeholder: "Tell us about your project or any bold ideas",
           },
@@ -36,13 +36,13 @@ const mockData: AppLayout = {
       },
       title: "Send Inquiry",
       subTitle:
-        "Please fill the form below, so we will get the right people to look after your inquiry",
+        "Please fill out the form on the right so that we can be prepared before contacting you",
       companyInfo: {
-        summary: "We are located in Baltimore Maryland and Chengdu China",
+        summary: "We are located in Baltimore, USA and Chengdu, China",
         list: [
           {
-            city: "Baltimore Maryland",
-            country: "US",
+            city: "Baltimore",
+            country: "USA",
             image:
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/contact-1212.png",
           },
@@ -70,10 +70,9 @@ const mockData: AppLayout = {
         },
         {
           texts: [
-            "Develop your MVP in",
-            "weeks with our highly",
-            "EFFICIENT design and",
-            "development process.",
+            "Develop your MVP in weeks",
+            "with our EFFICIENT design",
+            "and development process",
           ],
           // text: "Develop your MVP in weeks with our highly EFFICIENT design and development process.",
           position: "left",
@@ -88,11 +87,9 @@ const mockData: AppLayout = {
         },
         {
           texts: [
-            "Enjoy the QUALITY of",
-            "building with enterprise-",
-            "grade micro-services and",
-            "validated open source",
-            "packages.",
+            "Enjoy the QUALITY of building",
+            "with enterprise-grade micro-services",
+            "and validated open source packages",
           ],
           // text: "Enjoy the QUALITY of building with enterprise-grade micro-services and validated open source packages.",
           position: "left",
@@ -107,10 +104,9 @@ const mockData: AppLayout = {
         },
         {
           texts: [
-            "Get peace of mind with a",
-            "partner that has a proven",
-            "track record of",
-            "RELIABILTY and SECURITY.",
+            "Get peace of mind with a partner",
+            "that has a proven track record",
+            "of RELIABILTY and SECURITY",
           ],
           // text: "Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
           position: "left",
