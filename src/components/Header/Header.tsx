@@ -69,7 +69,7 @@ const Header = () => {
   };
   return (
     <StyledHeader
-      className={"flex text-white space-between w-full text-lg"}
+      className={"flex text-white space-between w-full text-lg font-bold"}
     >
       <div
         className={"flex flex-1 aligns-center header-left"}
