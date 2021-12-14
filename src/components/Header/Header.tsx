@@ -68,8 +68,7 @@ const Header = () => {
     history.push("/home");
   };
   return (
-    <StyledHeader
-      className={"flex text-white space-between w-full text-lg"}
+    <StyledHeader className={"flex text-white space-between w-full text-lg"}
     >
       <div
         className={"flex flex-1 aligns-center header-left"}
