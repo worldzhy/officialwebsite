@@ -5,7 +5,7 @@ import DataContext from "../../contexts/DataContext";
 import CompanyLogo from "../Icons/CompanyLogo";
 
 const StyledHeader = styled.header`
-  font-size: 16rem;
+  font-size: 15rem;
   padding: 20rem 72rem;
   & > nav {
     padding-top: 4rem;
@@ -23,7 +23,6 @@ const StyledHeader = styled.header`
       line-height: 21rem;
       font-size: 16rem;
       font-family: Arial;
-      font-weight: bold;
     }
   }
   .nav-item {
@@ -70,7 +69,7 @@ const Header = () => {
   };
   return (
     <StyledHeader
-      className={"flex text-white space-between w-full text-lg font-bold"}
+      className={"flex text-white space-between w-full text-lg"}
     >
       <div
         className={"flex flex-1 aligns-center header-left"}
