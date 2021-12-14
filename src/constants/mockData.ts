@@ -122,72 +122,36 @@ const mockData: AppLayout = {
         {
           name: "Bill Kapner",
           avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1.png",
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-avatar.png",
           title: "Founder and Chairman",
           companyName: "TitanHouse Inc",
-          brandingColor: "#00FFFF",
+          brandingColor: "#FFD700",
           backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1-bg.png",
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-bg.png",
           description:
             "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
         },
         {
-          name: "Bill Kapner",
+          name: "Chris Nickerson",
           avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1.png",
-          title: "Founder and Chairman",
-          companyName: "TitanHouse Inc",
-          brandingColor: "#00FFFF",
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/chris-nickerson-avatar.jpeg",
+          title: "CEO, Managing Partner",
+          companyName: "Pinpoint LLC",
+          brandingColor: "#A2CD5A",
           backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1-bg.png",
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-bg.png",
           description:
             "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
         },
         {
-          name: "Bill Kapner",
+          name: "Thomas Wear",
           avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1.png",
-          title: "Founder and Chairman",
-          companyName: "TitanHouse Inc",
-          brandingColor: "blue",
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/thomas-wear-avatar.jpeg",
+          title: "Partner and Strategy Officer",
+          companyName: "Atmosphere Inc",
+          brandingColor: "#20B2AA",
           backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1-bg.png",
-          description:
-            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
-        },
-        {
-          name: "Bill Kapner",
-          avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1.png",
-          title: "Founder and Chairman",
-          companyName: "TitanHouse Inc",
-          brandingColor: "grey",
-          backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1-bg.png",
-          description:
-            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
-        },
-        {
-          name: "Bill Kapner",
-          avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1.png",
-          title: "Founder and Chairman",
-          companyName: "TitanHouse Inc",
-          brandingColor: "red",
-          backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1-bg.png",
-          description:
-            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
-        },
-        {
-          name: "Bill Kapner",
-          avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1.png",
-          title: "Founder and Chairman",
-          companyName: "TitanHouse Inc",
-          backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/feedback-1-bg.png",
-          brandingColor: "green",
+            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-bg.png",
           description:
             "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
         },
