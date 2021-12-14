@@ -69,14 +69,14 @@ const Header = () => {
   };
   return (
     <StyledHeader
-      className={"flex text-white space-between w-full text-lg"}
+      className={"flex text-white space-between w-full text-lg font-bold"}
     >
       <div
         className={"flex flex-1 aligns-center header-left"}
         onClick={handleLogoClicked}
       >
-        <CompanyLogo width={"44rem"} height={"37rem"} />
-        <span className={"uppercase  company-name"}>{name}</span>
+        <CompanyLogo width={"36rem"} height={"36rem"} />
+        <span className={"company-name"}>{name}</span>
       </div>
       <nav className={""}>
         {items.map(({ label, path }) => {

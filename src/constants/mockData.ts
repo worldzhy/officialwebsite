@@ -3,7 +3,7 @@ import { AppLayout } from "../types";
 const mockData: AppLayout = {
   headers: {
     logo: "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/logo-white.png",
-    name: "inceptionpad",
+    name: "InceptionPad",
     items: [
       { label: "What We Do", path: "/home" },
       { label: "Case Study", path: "/case" },
