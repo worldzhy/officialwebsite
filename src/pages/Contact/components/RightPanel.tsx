@@ -47,6 +47,7 @@ const StyledRightPanel = styled.div`
     .submit-btn {
       width: 88rem;
       height: 40rem;
+      font-family: Prompt-Regular;
       font-size: 16rem;
       line-height: 24rem;
       background-color: white;
