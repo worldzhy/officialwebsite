@@ -60,9 +60,8 @@ const mockData: AppLayout = {
         {
           texts: {
             heading: ["Handcrafting Digital Innovation"],
-            subtitle: ["test sub title"],
+            subtitle: ["We develop enterprise-grade web and mobile apps"],
           },
-          // text: "Handcrafting Digital Innovation",
           position: "center",
           video: {
             current:
@@ -79,7 +78,6 @@ const mockData: AppLayout = {
               "and development process",
             ],
           },
-          // text: "Develop your MVP in weeks with our highly EFFICIENT design and development process.",
           position: "left",
           video: {
             current:
@@ -98,7 +96,6 @@ const mockData: AppLayout = {
               "and validated open source packages",
             ],
           },
-          // text: "Enjoy the QUALITY of building with enterprise-grade micro-services and validated open source packages.",
           position: "left",
           video: {
             current:
