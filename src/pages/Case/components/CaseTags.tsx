@@ -11,11 +11,11 @@ const StyledTagsWrapper = styled.p`
   margin-bottom: 16rem;
   & > span {
     &:not(:last-of-type) {
-      margin-right: 12rem;
+      margin-right: 10rem;
     }
     display: inline-block;
-    padding-left: 15rem;
-    padding-right: 15rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
     height: 26rem;
     line-height: 26rem;
     text-align: center;
