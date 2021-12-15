@@ -38,9 +38,11 @@ const StyledItemWrapper = styled.div`
   }
   .name {
     margin-top: 4rem;
+    font-family: Prompt;
+    font-style: normal;
+    font-weight: normal;
     font-size: 32rem;
     line-height: 48rem;
-    font-weight: 500;
   }
   .info-wrapper {
     margin-top: 7rem;
@@ -60,16 +62,20 @@ const StyledItemWrapper = styled.div`
   .description {
     width: 788rem;
     margin-top: 25rem;
-    font-size: 18rem;
     font-family: Prompt;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18rem;
     line-height: 40rem;
-    font-weight: 300;
     height: 196rem;
   }
   button {
     width: 163rem;
     height: 40rem;
     border: 2px solid #ffffff;
+    font-family: Prompt;
+    font-style: normal;
+    font-weight: normal;
     font-size: 16rem;
     line-height: 24rem;
   }
