@@ -39,8 +39,7 @@ const StyledItemWrapper = styled.div`
   .name {
     margin-top: 4rem;
     font-family: Prompt;
-    font-style: normal;
-    font-weight: normal;
+    font-weight: regular;
     font-size: 32rem;
     line-height: 48rem;
   }
@@ -63,7 +62,6 @@ const StyledItemWrapper = styled.div`
     width: 788rem;
     margin-top: 25rem;
     font-family: Prompt;
-    font-style: normal;
     font-weight: light;
     font-size: 18rem;
     line-height: 40rem;
@@ -74,8 +72,7 @@ const StyledItemWrapper = styled.div`
     height: 40rem;
     border: 2px solid #ffffff;
     font-family: Prompt;
-    font-style: normal;
-    font-weight: normal;
+    font-weight: regular;
     font-size: 16rem;
     line-height: 24rem;
   }
