@@ -14,7 +14,7 @@ const StyledContainer = styled(motion.div)`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: black;
+  background-color: #6b7280;
 `;
 
 const Contact: FunctionComponent = () => {
