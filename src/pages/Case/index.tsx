@@ -44,6 +44,7 @@ const StyledContainer = styled(motion.div)`
     .desc-wrapper {
       margin-bottom: 75rem;
       flex: 0 0 160rem;
+      font-family: Prompt-Light;
       font-size: 18rem;
       line-height: 32rem;
       overflow: hidden;
