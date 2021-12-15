@@ -58,7 +58,10 @@ const mockData: AppLayout = {
     home: {
       videos: [
         {
-          texts: ["Handcrafting Digital Innovation"],
+          texts: {
+            heading: ["Handcrafting Digital Innovation"],
+            subtitle: ["test sub title"],
+          },
           // text: "Handcrafting Digital Innovation",
           position: "center",
           video: {
@@ -69,11 +72,13 @@ const mockData: AppLayout = {
           },
         },
         {
-          texts: [
-            "Develop your MVP in weeks",
-            "with our EFFICIENT design",
-            "and development process",
-          ],
+          texts: {
+            heading: [
+              "Develop your MVP inweeks",
+              "with our EFFICIENT design",
+              "and development process",
+            ],
+          },
           // text: "Develop your MVP in weeks with our highly EFFICIENT design and development process.",
           position: "left",
           video: {
@@ -86,11 +91,13 @@ const mockData: AppLayout = {
           },
         },
         {
-          texts: [
-            "Enjoy the QUALITY of building",
-            "with enterprise-grade micro-services",
-            "and validated open source packages",
-          ],
+          texts: {
+            heading: [
+              "Enjoy the QUALITY ofbuilding",
+              "with enterprise-grade micro-services",
+              "and validated open source packages",
+            ],
+          },
           // text: "Enjoy the QUALITY of building with enterprise-grade micro-services and validated open source packages.",
           position: "left",
           video: {
@@ -103,11 +110,13 @@ const mockData: AppLayout = {
           },
         },
         {
-          texts: [
-            "Get peace of mind with a partner",
-            "that has a proven track record",
-            "of RELIABILTY and SECURITY",
-          ],
+          texts: {
+            heading: [
+              "Get peace of mind with apartner",
+              "that has a proven track record",
+              "of RELIABILTY and SECURITY",
+            ],
+          },
           // text: "Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
           position: "left",
           video: {

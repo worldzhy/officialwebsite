@@ -4,8 +4,7 @@ import Mouse from "../Icons/Mouse";
 const StyledFooterWrapper = styled.footer`
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  width: 200rem;
   height: 90rem;
   color: white;
   z-index: 10;

@@ -31,8 +31,13 @@ type ContentsType = {
   contact: ContactContentProps;
 };
 
+type TextType = {
+  heading: Array<string>;
+  subtitle?: Array<string>;
+};
+
 interface HomeVideoProps {
-  texts: Array<string>;
+  texts: TextType;
   position: string;
   video: VideoProps;
 }

@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React, {
   ReactEventHandler,
-  useCallback,
   useContext,
   useMemo,
   useRef,
@@ -116,7 +115,8 @@ const StyledContainer = styled(motion.div)`
       text-align: center;
     }
   }
-  .text {
+  .heading,
+  .subtitle {
     width: 720rem;
     color: white;
     font-family: Prompt;
@@ -124,6 +124,9 @@ const StyledContainer = styled(motion.div)`
     line-height: 64rem;
     font-weight: 500;
     text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.25);
+  }
+  .subtitle {
+    font-size: 40rem;
   }
 `;
 const Home = () => {
@@ -306,10 +309,11 @@ const Home = () => {
                     visibility: current === i ? "visible" : "hidden",
                   }}
                 >
-                  {texts.map((text, index) => {
+                  {texts.heading.map((text, index) => {
                     return (
                       <motion.li
-                        transition={textTransition(index, texts.length)}
+                        key={`${currentVideo}-heading-${index}`}
+                        transition={textTransition(index, texts.heading.length)}
                         animate={
                           current === i
                             ? {
@@ -318,7 +322,28 @@ const Home = () => {
                             : { opacity: 0, y: 50 }
                         }
                       >
-                        <span className={"text"}>{text}</span>
+                        <span className={"heading"}>{text}</span>
+                      </motion.li>
+                    );
+                  })}
+                  {texts.subtitle?.map((text, index) => {
+                    return (
+                      <motion.li
+                        className={"text-center"}
+                        key={`${currentVideo}-sub-title-${index}`}
+                        transition={textTransition(
+                          texts.heading.length + index + 1,
+                          texts.heading.length + (texts.subtitle?.length || 0)
+                        )}
+                        animate={
+                          current === i
+                            ? {
+                                ...textAnimation,
+                              }
+                            : { opacity: 0, y: 50 }
+                        }
+                      >
+                        <span className={"subtitle"}>{text}</span>
                       </motion.li>
                     );
                   })}

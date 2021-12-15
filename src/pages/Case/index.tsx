@@ -136,6 +136,7 @@ const Case = () => {
                   visibility: current === i ? "visible" : "hidden",
                   opacity: current === i ? 1 : 0,
                   transition: "all ease-in .5s 1s",
+                  color: primaryColor,
                 }}
                 className={
                   "bg-white text-black link-btn hover:shadow-lg hover:bg-gray-100"
