@@ -9,7 +9,6 @@ const StyledRightPanel = styled.div`
   width: 400rem;
   overflow-y: auto;
   padding-top: 100rem;
-  padding-bottom: 90rem;
   form {
     display: flex;
     flex-direction: column;

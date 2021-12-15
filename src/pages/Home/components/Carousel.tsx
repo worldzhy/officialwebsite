@@ -164,6 +164,7 @@ interface IndicatorProps
 interface CarouselItemProps {
   prefixCls: string;
   active: boolean;
+  direction: number;
 }
 const MotionBox = styled(motion.div)`
   position: absolute;
@@ -197,7 +198,6 @@ const MotionBox = styled(motion.div)`
       left: 291rem;
       width: 66rem;
       height: 65rem;
-      //opacity: 0.1;
     }
   }
 `;
@@ -205,7 +205,7 @@ const MotionBox = styled(motion.div)`
 const variants = {
   enter: (direction: number) => {
     return {
-      x: direction < 0 ? 500 : -500,
+      x: direction > 0 ? 500 : -500,
       opacity: 0,
       scale: 0.8,
     };
@@ -227,13 +227,22 @@ const variants = {
 };
 
 export const CarouselItem: FunctionComponent<CarouselItemProps> = (props) => {
-  const { children } = props;
+  const { children, direction } = props;
   return (
     <MotionBox
+      custom={direction}
       variants={variants}
       initial={"enter"}
       animate={"center"}
       exit={"exit"}
+      transition={{
+        // timing func, 描述中间值如何变化
+        type: "spring",
+        // 动画时长， 单位 s
+        duration: 0.5,
+        // 弹簧的弹性系数，回弹效果
+        stiffness: 100,
+      }}
     >
       <div className={"header-mask"} />
       {children}
@@ -353,13 +362,14 @@ const Carousel = forwardRef<
       className={`${prefixCls}item-wrapper`}
       ref={wrapperRef}
     >
-      <AnimatePresence initial={false} custom={direction}>
+      <AnimatePresence initial={false}>
         {
           [...children].map((child, index) => (
             <CarouselItem
               key={index}
               prefixCls={prefixCls}
               active={current % children.length === index}
+              direction={direction}
             >
               {child}
             </CarouselItem>

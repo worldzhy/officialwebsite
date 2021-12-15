@@ -38,6 +38,8 @@ const ProgressWrapper = styled(motion.div)`
   width: 248rem;
   height: 13rem;
   border: 1px solid white;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.2);
   .filling {
     background-color: white;
     height: 100%;

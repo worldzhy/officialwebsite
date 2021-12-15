@@ -15,7 +15,6 @@ const StyledHeader = styled.header`
     z-index: 10;
   }
   .header-left {
-    cursor: pointer;
     .company-name {
       margin-top: 12rem;
       margin-left: 6rem;
@@ -69,12 +68,14 @@ const Header = () => {
   };
   return (
     <StyledHeader className={"flex text-white space-between w-full text-lg"}>
-      <div
-        className={"flex flex-1 aligns-center header-left"}
-        onClick={handleLogoClicked}
-      >
-        <CompanyLogo width={"36rem"} height={"36rem"} />
-        <span className={"company-name"}>{name}</span>
+      <div className={"flex-1 flex header-left"}>
+        <div
+          className={"flex flex-initial aligns-center cursor-pointer"}
+          onClick={handleLogoClicked}
+        >
+          <CompanyLogo width={"36rem"} height={"36rem"} />
+          <span className={"company-name"}>{name}</span>
+        </div>
       </div>
       <nav className={""}>
         {items.map(({ label, path }) => {
