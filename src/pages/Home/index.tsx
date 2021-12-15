@@ -38,8 +38,7 @@ const StyledItemWrapper = styled.div`
   }
   .name {
     margin-top: 4rem;
-    font-family: Prompt;
-    font-weight: regular;
+    font-family: Prompt-Regular;
     font-size: 32rem;
     line-height: 48rem;
   }
@@ -61,8 +60,7 @@ const StyledItemWrapper = styled.div`
   .description {
     width: 788rem;
     margin-top: 25rem;
-    font-family: Prompt;
-    font-weight: light;
+    font-family: Prompt-Light;
     font-size: 18rem;
     line-height: 40rem;
     height: 196rem;
@@ -71,8 +69,7 @@ const StyledItemWrapper = styled.div`
     width: 163rem;
     height: 40rem;
     border: 2px solid #ffffff;
-    font-family: Prompt;
-    font-weight: regular;
+    font-family: Prompt-Regular;
     font-size: 16rem;
     line-height: 24rem;
   }
