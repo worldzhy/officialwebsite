@@ -126,7 +126,8 @@ const StyledContainer = styled(motion.div)`
     text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.25);
   }
   .subtitle {
-    font-size: 40rem;
+    ont-family: Prompt-Light;
+    font-size: 30rem;
   }
 `;
 const Home = () => {
