@@ -23,8 +23,8 @@ const StyledNavigator = styled.div`
     width: 20rem;
     height: 20rem;
     cursor: pointer;
-    opacity: 0.5;
-    transition: all ease-in 0.2s;
+    opacity: 0.6;
+    transition: all 1s ease;
     &:hover {
       opacity: 1;
     }
@@ -35,7 +35,7 @@ const StyledNavigator = styled.div`
     border-top: 1rem solid white;
     border-left: 1rem solid white;
     &:hover {
-      transform: rotate(-45deg) scale(1.2);
+      transform: rotate(-45deg) scale(1.5);
     }
   }
   .navigator-arrow-right {
@@ -43,7 +43,7 @@ const StyledNavigator = styled.div`
     border-top: 1rem solid white;
     border-right: 1rem solid white;
     &:hover {
-      transform: rotate(45deg) scale(1.2);
+      transform: rotate(45deg) scale(1.5);
     }
   }
 `;
