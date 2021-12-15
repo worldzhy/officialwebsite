@@ -6,8 +6,7 @@ const LocationListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   .summary {
-    font-family: Prompt;
-    font-weight: 300;
+    font-family: Prompt-Light;
     font-size: 14rem;
     line-height: 21rem;
     max-width: 100%;
@@ -21,8 +20,7 @@ const LocationListWrapper = styled.div`
       max-width: 50%;
     }
     p {
-      font-family: Prompt;
-      font-weight: 300;
+      font-family: Prompt-Light;
       font-size: 14rem;
       line-height: 21rem;
     }
@@ -33,7 +31,7 @@ const LocationListWrapper = styled.div`
       margin: 0 2rem;
     }
     .country {
-      font-weight: 500;
+      font-family: Prompt-Regular;
     }
   }
 `;
