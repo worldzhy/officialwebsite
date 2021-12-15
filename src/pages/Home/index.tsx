@@ -64,7 +64,7 @@ const StyledItemWrapper = styled.div`
     margin-top: 25rem;
     font-family: Prompt;
     font-style: normal;
-    font-weight: normal;
+    font-weight: light;
     font-size: 18rem;
     line-height: 40rem;
     height: 196rem;
