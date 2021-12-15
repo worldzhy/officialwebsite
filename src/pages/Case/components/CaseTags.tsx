@@ -22,6 +22,7 @@ const StyledTagsWrapper = styled.p`
     background: rgba(245, 245, 245, 0.2);
     mix-blend-mode: normal;
     border-radius: 1rem;
+    font-family: Prompt-Regular;
     font-size: 14rem;
   }
 `;

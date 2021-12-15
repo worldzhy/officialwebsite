@@ -14,6 +14,7 @@ const StyledCaseWrapper = styled.div`
   padding: 0 0 27rem 24rem;
   .title {
     margin: 7rem 0;
+    font-family: Prompt-Regular;
     font-size: 20rem;
     line-height: 30rem;
     font-weight: 500;
