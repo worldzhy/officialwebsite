@@ -51,7 +51,7 @@ const StyledRightPanel = styled.div`
       font-size: 16rem;
       line-height: 24rem;
       background-color: white;
-      color: black;
+      color: #6b7280;
     }
   }
 `;
