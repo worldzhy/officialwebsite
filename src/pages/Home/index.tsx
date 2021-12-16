@@ -64,14 +64,6 @@ const StyledItemWrapper = styled.div`
     line-height: 40rem;
     height: 196rem;
   }
-  button {
-    width: 163rem;
-    height: 40rem;
-    border: 2px solid #ffffff;
-    font-family: Prompt-Regular;
-    font-size: 16rem;
-    line-height: 24rem;
-  }
 `;
 
 const StyledContainer = styled(motion.div)`
@@ -128,6 +120,19 @@ const StyledContainer = styled(motion.div)`
   .subtitle {
     font-family: Prompt-Light;
     font-size: 24rem;
+  }
+  .navigate-case-button {
+    position: absolute;
+    top: 557rem;
+    left: 639rem;
+    z-index: 10;
+    color: white;
+    width: 163rem;
+    height: 40rem;
+    border: 2px solid #ffffff;
+    font-family: Prompt-Regular;
+    font-size: 16rem;
+    line-height: 24rem;
   }
 `;
 const Home = () => {
@@ -356,8 +361,19 @@ const Home = () => {
       )}
       <AnimatePresence initial={false}>
         {carouselVisible && (
-          <Carousel autoPlay={false}>
-            {carousels.map(
+          <Carousel
+            autoPlay={false}
+            styles={{ backgroundImage: carousels.backgroundImage }}
+            extraComponent={
+              <button
+                className={"navigate-case-button"}
+                onClick={() => history.push("/case")}
+              >
+                Read Case Study
+              </button>
+            }
+          >
+            {carousels.contents.map(
               (
                 {
                   name,
@@ -366,14 +382,10 @@ const Home = () => {
                   title,
                   description,
                   brandingColor,
-                  backgroundImage,
                 },
                 i
               ) => (
-                <StyledItemWrapper
-                  key={i}
-                  style={{ backgroundImage: `url(${backgroundImage})` }}
-                >
+                <StyledItemWrapper key={i}>
                   <img src={avatar} alt={""} />
                   <h3 className={"name"}>{name}</h3>
                   <p className={"info-wrapper"}>
@@ -387,9 +399,6 @@ const Home = () => {
                     </span>
                   </p>
                   <p className={"description"}>{description}</p>
-                  <button onClick={() => history.push("/case")}>
-                    Read Case Study
-                  </button>
                 </StyledItemWrapper>
               )
             )}

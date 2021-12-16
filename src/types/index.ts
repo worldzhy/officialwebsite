@@ -48,13 +48,15 @@ export interface CarouselItemProps {
   title: string;
   companyName: string;
   brandingColor: string;
-  backgroundImage: string;
   description: string;
 }
 
 type HomeContentType = {
   videos: Array<HomeVideoProps>;
-  carousels: Array<CarouselItemProps>;
+  carousels: {
+    backgroundImage: string;
+    contents: Array<CarouselItemProps>;
+  };
 };
 
 interface VideoProps {
