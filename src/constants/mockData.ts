@@ -124,44 +124,42 @@ const mockData: AppLayout = {
           },
         },
       ],
-      carousels: [
-        {
-          name: "Bill Kapner",
-          avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-avatar.png",
-          title: "Founder and Chairman",
-          companyName: "TitanHouse Inc",
-          brandingColor: "#FFD700",
-          backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-bg.png",
-          description:
-            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
-        },
-        {
-          name: "Chris Nickerson",
-          avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/chris-nickerson-avatar.jpeg",
-          title: "CEO, Managing Partner",
-          companyName: "Pinpoint LLC",
-          brandingColor: "#A2CD5A",
-          backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-bg.png",
-          description:
-            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
-        },
-        {
-          name: "Thomas Wear",
-          avatar:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/thomas-wear-avatar.jpeg",
-          title: "Partner and Strategy Officer",
-          companyName: "Atmosphere Inc",
-          brandingColor: "#20B2AA",
-          backgroundImage:
-            "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-bg.png",
-          description:
-            "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
-        },
-      ],
+      carousels: {
+        backgroundImage:
+          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-bg.png",
+        contents: [
+          {
+            name: "Bill Kapner",
+            avatar:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-avatar.png",
+            title: "Founder and Chairman",
+            companyName: "TitanHouse Inc",
+            brandingColor: "#FFD700",
+            description:
+              "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+          },
+          {
+            name: "Chris Nickerson",
+            avatar:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/chris-nickerson-avatar.jpeg",
+            title: "CEO, Managing Partner",
+            companyName: "Pinpoint LLC",
+            brandingColor: "#A2CD5A",
+            description:
+              "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+          },
+          {
+            name: "Thomas Wear",
+            avatar:
+              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/thomas-wear-avatar.jpeg",
+            title: "Partner and Strategy Officer",
+            companyName: "Atmosphere Inc",
+            brandingColor: "#20B2AA",
+            description:
+              "I have worked with many development firms in the past.  InceptionPad is clearly a cut above the rest.  Henry and the rest of the talented team are super responsive and always help me find the most efficient way to implement my business vision.",
+          },
+        ],
+      },
     },
     cases: [
       {

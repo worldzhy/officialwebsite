@@ -8,8 +8,15 @@ import React, {
   useState,
   ReactElement,
   useCallback,
+  useMemo,
 } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  animate,
+  AnimatePresence,
+  motion,
+  useAnimation,
+  useMotionValue,
+} from "framer-motion";
 
 const StyledNavigator = styled.div`
   width: 100%;
@@ -48,17 +55,40 @@ const StyledNavigator = styled.div`
   }
 `;
 
-const StyledCarouselWrapper = styled(motion.div)`
+const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
   position: absolute;
   top: 0;
   width: 100%;
   height: 100%;
   background-color: black;
+  background-image: ${({ bg }) => `url(${bg})`};
+  background-repeat: no-repeat;
+  background-size: cover;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 104rem;
+    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+    width: 100%;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: black;
+    opacity: 0.8;
+    mix-blend-mode: normal;
+    background-position-x: 293rem;
+  }
   .carousel-items-wrapper {
     display: flex;
     align-items: center;
@@ -133,6 +163,7 @@ interface CarouselProps {
   children: ReactElement[];
   indicatorPosition: Position;
   styles: CSSProperties;
+  extraComponent: ReactElement;
   showIndicator?: boolean;
   infinite: boolean;
   delay: number;
@@ -175,22 +206,12 @@ const MotionBox = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
-  .header-mask {
-    position: absolute;
-    top: 0;
-    height: 104rem;
-    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
-    width: 100%;
-  }
   .mask {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: black;
-    opacity: 0.8;
-    mix-blend-mode: normal;
     background-position-x: 293rem;
     img {
       position: relative;
@@ -203,46 +224,47 @@ const MotionBox = styled(motion.div)`
 `;
 
 const variants = {
-  enter: (direction: number) => {
-    return {
-      x: direction > 0 ? 500 : -500,
-      opacity: 0,
-      scale: 0.8,
-    };
+  enter: {
+    opacity: 0,
   },
-  center: {
+  center: (active: boolean) => ({
     zIndex: 1,
     x: 0,
-    opacity: 1,
-    scale: 1,
-  },
-  exit: (direction: number) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 500 : -500,
-      opacity: 0,
-      scale: 0.8,
-    };
+    opacity: active ? 1 : 0,
+  }),
+  exit: {
+    opacity: 0,
   },
 };
 
 export const CarouselItem: FunctionComponent<CarouselItemProps> = (props) => {
-  const { children, direction } = props;
+  const { children, direction, active } = props;
+  const x = useMotionValue(0);
+  React.useEffect(() => {
+    if (active) {
+      animate(x, [direction > 0 ? 100 : -100, 0], {
+        type: "tween",
+        duration: 0.3,
+      });
+    } else {
+      animate(x, [0, direction > 0 ? -500 : 500], {
+        type: "tween",
+        duration: 0.3,
+      });
+    }
+  }, [active, direction, x]);
   return (
     <MotionBox
-      custom={direction}
       variants={variants}
+      custom={active}
       initial={"enter"}
       animate={"center"}
       exit={"exit"}
       transition={{
-        // timing func, 描述中间值如何变化
-        type: "spring",
-        // 动画时长， 单位 s
-        duration: 0.5,
-        // 弹簧的弹性系数，回弹效果
-        stiffness: 100,
+        type: "tween",
+        duration: 0.3,
       }}
+      style={{ x }}
     >
       <div className={"header-mask"} />
       {children}
@@ -303,6 +325,8 @@ const Carousel = forwardRef<
     delay = 3000,
     autoPlay: autoPlayProps = true,
     prefixCls = "",
+    styles,
+    extraComponent,
   } = props;
 
   const [autoPlay, setAutoPlay] = useState(autoPlayProps);
@@ -356,27 +380,28 @@ const Carousel = forwardRef<
 
   return (
     <StyledCarouselWrapper
-      initial={{ y: "100%", opacity: 0, scale: 0.6 }}
-      exit={{ y: "100%", opacity: 0, scale: 0.6 }}
+      initial={{ y: "100%", opacity: 0, scale: 0 }}
+      exit={{ y: "100%", opacity: 0, scale: 0 }}
       animate={{ y: 0, opacity: 1, scale: 1 }}
+      transition={{ type: "tween", duration: 0.5 }}
+      bg={styles?.backgroundImage}
       className={`${prefixCls}item-wrapper`}
       ref={wrapperRef}
     >
-      <AnimatePresence initial={false}>
-        {
-          [...children].map((child, index) => (
-            <CarouselItem
-              key={index}
-              prefixCls={prefixCls}
-              active={current % children.length === index}
-              direction={direction}
-            >
-              {child}
-            </CarouselItem>
-          ))[current % children.length]
-        }
-      </AnimatePresence>
+      {/* <AnimatePresence exitBeforeEnter initial={false}> */}
+      {[...children].map((child, index) => (
+        <CarouselItem
+          key={index}
+          prefixCls={prefixCls}
+          active={current % children.length === index}
+          direction={direction}
+        >
+          {child}
+        </CarouselItem>
+      ))}
+      {/* </AnimatePresence> */}
       {showNavigator && <CarouselNavigator onPrev={onPrev} onNext={onNext} />}
+      {extraComponent}
       {showIndicator && (
         <CarouselIndicator
           prefixCls={prefixCls}
