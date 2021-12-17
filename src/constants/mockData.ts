@@ -91,7 +91,7 @@ const mockData: AppLayout = {
         {
           texts: {
             heading: [
-              "Enjoy the QUALITY ofbuilding",
+              "Enjoy the QUALITY of building",
               "with enterprise-grade micro-services",
               "and validated open source packages",
             ],
@@ -109,7 +109,7 @@ const mockData: AppLayout = {
         {
           texts: {
             heading: [
-              "Get peace of mind with apartner",
+              "Get peace of mind with a partner",
               "that has a proven track record",
               "of RELIABILTY and SECURITY",
             ],
