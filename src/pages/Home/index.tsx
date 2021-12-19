@@ -13,6 +13,7 @@ import DataContext from "../../contexts/DataContext";
 import { enterAnimation } from "../../constants/animation";
 import LoadingContext from "../../contexts/LoadingContext";
 import Carousel from "./components/Carousel";
+import GlobalContext from "../../contexts/GlobalContext";
 
 const StyledItemWrapper = styled.div`
   flex: 1;
@@ -139,7 +140,10 @@ const Home = () => {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const transitionRef = useRef<HTMLVideoElement>(null);
   const reverseRef = useRef<HTMLVideoElement>(null);
-  const [carouselVisible, setCarouselVisible] = useState(false);
+  const {
+    state: { carouselVisible },
+    dispatch,
+  } = useContext(GlobalContext);
   const history = useHistory();
   const [canTransition, setCanTransition] = useState(false);
   const [shouldReverse, setShouldReverse] = useState(false);
@@ -164,7 +168,7 @@ const Home = () => {
           setCanTransition(true);
         });
       } else {
-        setCarouselVisible(true);
+        dispatch({ carouselVisible: true });
       }
     }
     if (y < 0) {
@@ -186,7 +190,7 @@ const Home = () => {
       onWheelStart: handler,
       onWheelEnd: ({ delta: [, y] }) => {
         if (y < 0 && carouselVisible) {
-          setCarouselVisible(false);
+          dispatch({ carouselVisible: false });
         }
       },
     },
@@ -211,7 +215,7 @@ const Home = () => {
   const handleCanPlay: ReactEventHandler = () => {
     if (visible) {
       dispatchProgress(100);
-      dispatchVisible(false, 1000);
+      dispatchVisible(false, 500);
     }
   };
 

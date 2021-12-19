@@ -8,15 +8,10 @@ import React, {
   useState,
   ReactElement,
   useCallback,
-  useMemo,
+  useContext,
 } from "react";
-import {
-  animate,
-  AnimatePresence,
-  motion,
-  useAnimation,
-  useMotionValue,
-} from "framer-motion";
+import { animate, motion, useMotionValue } from "framer-motion";
+import GlobalContext, { FooterIconEnum } from "../../../contexts/GlobalContext";
 
 const StyledNavigator = styled.div`
   width: 100%;
@@ -102,6 +97,7 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     display: flex;
     width: 100%;
     position: absolute;
+    margin-left: 24rem;
   }
 
   .indicator-wrapper.bottom {
@@ -243,12 +239,12 @@ export const CarouselItem: FunctionComponent<CarouselItemProps> = (props) => {
   React.useEffect(() => {
     if (active) {
       animate(x, [direction > 0 ? 100 : -100, 0], {
-        type: "tween",
+        type: "spring",
         duration: 0.3,
       });
     } else {
-      animate(x, [0, direction > 0 ? -500 : 500], {
-        type: "tween",
+      animate(x, [0, direction > 0 ? -400 : 400], {
+        type: "spring",
         duration: 0.3,
       });
     }
@@ -270,7 +266,7 @@ export const CarouselItem: FunctionComponent<CarouselItemProps> = (props) => {
       {children}
       <div className={"mask"}>
         <img
-          src={"/image/carousel_mask_bg.png"}
+          src={"/images/carousel_mask_bg.png"}
           className={"mask-image"}
           alt={""}
         />
@@ -329,6 +325,7 @@ const Carousel = forwardRef<
     extraComponent,
   } = props;
 
+  const { dispatch, state } = useContext(GlobalContext);
   const [autoPlay, setAutoPlay] = useState(autoPlayProps);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [[current, direction], setCurrent] = React.useState([0, 0]);
@@ -347,6 +344,13 @@ const Carousel = forwardRef<
       setCurrent(([prev]) => [prev + 1, 1]);
     }
   }, [children.length, current, infinite]);
+
+  React.useEffect(() => {
+    dispatch({ footerIconName: FooterIconEnum.Triangle });
+    return () => {
+      dispatch({ footerIconName: FooterIconEnum.Default });
+    };
+  }, [dispatch]);
 
   React.useEffect(() => {
     if (autoPlay) {

@@ -61,17 +61,17 @@ const RightPanel = () => {
     },
   } = useContext(DataContext);
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    // e.preventDefault();
+    // e.stopPropagation();
   };
   return (
     <StyledRightPanel className={"form-wrapper"}>
-      <form>
+      <form action={"#"}>
         {Object.entries(form).map(([key, props]) => (
           <FormField key={key} {...props} name={key} />
         ))}
 
-        <button className={"submit-btn"} onClick={handleSubmit}>
+        <button className={"submit-btn"} type={"submit"} onClick={handleSubmit}>
           Send
         </button>
       </form>
