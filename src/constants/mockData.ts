@@ -15,16 +15,21 @@ const mockData: AppLayout = {
       form: {
         name: {
           label: "Your Name",
-          inputProps: { placeholder: "E.g. John Smith" },
+          inputProps: { placeholder: "E.g. John Smith", required: true },
         },
         email: {
           label: "Email Address",
-          inputProps: { placeholder: "E.g. j.smith@hotmail.com" },
+          inputProps: {
+            placeholder: "E.g. j.smith@hotmail.com",
+            type: "email",
+            required: true,
+          },
         },
         phone: {
           label: "Mobile Phone",
           inputProps: {
             placeholder: "Your preferred mobile phone number",
+            type: "tel",
           },
         },
         desc: {

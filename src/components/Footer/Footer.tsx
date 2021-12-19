@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import React from "react";
 import Mouse from "../Icons/Mouse";
 
 const StyledFooterWrapper = styled.footer`

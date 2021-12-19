@@ -8,6 +8,16 @@ import routesConfig, { RouteType } from "./routes";
 import LoadingContext from "./contexts/LoadingContext";
 import Loading from "./components/Loading/Loading";
 import mockData from "./constants/mockData";
+import GlobalContext, {
+  FooterIconEnum,
+  GlobalContextDispatcherType,
+  GlobalContextStateType,
+} from "./contexts/GlobalContext";
+
+const defaultGlobalContext: GlobalContextStateType = {
+  footerIconName: FooterIconEnum.Default,
+  carouselVisible: false,
+};
 
 function RouteWithSubRoutes(route: RouteType) {
   return (
@@ -25,10 +35,16 @@ function RouteWithSubRoutes(route: RouteType) {
 }
 
 function App() {
+  const [globalState, setGlobalState] =
+    useState<GlobalContextStateType>(defaultGlobalContext);
+
   const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
   const timer = useRef<NodeJS.Timer>();
 
+  const globalStateDispatcher: GlobalContextDispatcherType = (newState) => {
+    setGlobalState((prevState) => ({ ...prevState, ...newState }));
+  };
   const resizeHandler = () => {
     const designWidth = 1440;
 
@@ -71,24 +87,28 @@ function App() {
     <LoadingContext.Provider
       value={{ dispatchProgress, dispatchVisible, visible }}
     >
-      <BrowserRouter>
-        <DataContext.Provider value={mockData as AppLayout}>
-          <Loading progress={progress} visible={visible}>
-            <Layout>
-              <AnimatePresence exitBeforeEnter initial={false}>
-                <Switch
-                  location={window.location as any}
-                  key={window.location.pathname}
-                >
-                  {routesConfig.map(({ ...rest }) => (
-                    <RouteWithSubRoutes key={rest.path as string} {...rest} />
-                  ))}
-                </Switch>
-              </AnimatePresence>
-            </Layout>
-          </Loading>
-        </DataContext.Provider>
-      </BrowserRouter>
+      <GlobalContext.Provider
+        value={{ state: globalState, dispatch: globalStateDispatcher }}
+      >
+        <BrowserRouter>
+          <DataContext.Provider value={mockData as AppLayout}>
+            <Loading progress={progress} visible={visible}>
+              <Layout>
+                <AnimatePresence exitBeforeEnter initial={false}>
+                  <Switch
+                    location={window.location as any}
+                    key={window.location.pathname}
+                  >
+                    {routesConfig.map(({ ...rest }) => (
+                      <RouteWithSubRoutes key={rest.path as string} {...rest} />
+                    ))}
+                  </Switch>
+                </AnimatePresence>
+              </Layout>
+            </Loading>
+          </DataContext.Provider>
+        </BrowserRouter>
+      </GlobalContext.Provider>
     </LoadingContext.Provider>
   );
 }
