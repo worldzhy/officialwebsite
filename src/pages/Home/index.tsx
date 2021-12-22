@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import React, {
   ReactEventHandler,
   useContext,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -141,7 +142,7 @@ const Home = () => {
   const transitionRef = useRef<HTMLVideoElement>(null);
   const reverseRef = useRef<HTMLVideoElement>(null);
   const {
-    state: { carouselVisible },
+    state: { carouselVisible, shouldResetHomePage },
     dispatch,
   } = useContext(GlobalContext);
   const history = useHistory();
@@ -156,6 +157,14 @@ const Home = () => {
     useContext(LoadingContext);
   const [current, setCurrent] = useState(0);
 
+  useEffect(() => {
+    if (!carouselVisible && shouldResetHomePage) {
+      setCurrent(0);
+      setCanTransition(false);
+      dispatch({ shouldResetHomePage: false });
+    }
+  }, [carouselVisible, dispatch, shouldResetHomePage]);
+
   const handler = ({ delta: [, y] }: any) => {
     if (canTransition || shouldReverse || carouselVisible) return;
     if (y > 0) {
@@ -163,6 +172,7 @@ const Home = () => {
         const video = document.querySelectorAll(".transition-video")[
           current
         ] as unknown as HTMLVideoElement;
+        if (!video) return;
         video.currentTime = 0;
         video.play().then(() => {
           setCanTransition(true);
@@ -176,6 +186,7 @@ const Home = () => {
         const video = document.querySelectorAll(".reverse-video")[
           current
         ] as unknown as HTMLVideoElement;
+        if (!video) return;
         video.currentTime = 0;
         video.play().then(() => {
           setShouldReverse(true);
@@ -204,6 +215,7 @@ const Home = () => {
     const video = document.querySelectorAll(".loop-video")[
       next
     ] as unknown as HTMLVideoElement;
+    if (!video) return;
     video.currentTime = 0;
     video.play().then(() => {
       setShouldReverse(false);
