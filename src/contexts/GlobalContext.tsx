@@ -8,6 +8,8 @@ export enum FooterIconEnum {
 export type GlobalContextStateType = {
   footerIconName: FooterIconEnum;
   carouselVisible: boolean;
+  shouldResetHomePage: boolean;
+  shouldResetCasePage: boolean;
 };
 
 export type GlobalContextDispatcherType<S = Partial<GlobalContextStateType>> = (

@@ -66,7 +66,12 @@ const RightPanel = () => {
   };
   return (
     <StyledRightPanel className={"form-wrapper"}>
-      <form action={"#"}>
+      <form
+        method={"post"}
+        action={
+          "https://0jkklwjmsh.execute-api.us-east-1.amazonaws.com/inceptionpad-official-site"
+        }
+      >
         {Object.entries(form).map(([key, props]) => (
           <FormField key={key} {...props} name={key} />
         ))}

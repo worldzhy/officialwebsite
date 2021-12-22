@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import lottie from "lottie-web";
 import styled from "@emotion/styled";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import animationData from "../../animations/footer_button.json";
 import GlobalContext, { FooterIconEnum } from "../../contexts/GlobalContext";
 
@@ -20,6 +21,23 @@ const Mouse = () => {
     dispatch,
   } = useContext(GlobalContext);
   const ref = useRef<HTMLDivElement>(null);
+  const { pathname } = useLocation();
+
+  const handleTriangleClicked = () => {
+    console.log(
+      {
+        carouselVisible: false,
+        shouldResetHomePage: pathname === "/home",
+        shouldResetCasePage: pathname === "/case",
+      },
+      pathname
+    );
+    dispatch({
+      carouselVisible: false,
+      shouldResetHomePage: pathname === "/home",
+      shouldResetCasePage: pathname === "/case",
+    });
+  };
   useEffect(() => {
     if (!ref.current) return;
     if (footerIconName === FooterIconEnum.Default) {
@@ -34,11 +52,7 @@ const Mouse = () => {
   }, [ref, footerIconName]);
   if (footerIconName === FooterIconEnum.Triangle)
     return (
-      <StyledTriangle
-        onClick={() => {
-          dispatch({ carouselVisible: false });
-        }}
-      >
+      <StyledTriangle onClick={handleTriangleClicked}>
         <svg
           width="46"
           height="41"

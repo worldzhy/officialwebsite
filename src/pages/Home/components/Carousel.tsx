@@ -10,14 +10,19 @@ import React, {
   useCallback,
   useContext,
 } from "react";
-import { animate, motion, useMotionValue } from "framer-motion";
+import {
+  animate,
+  AnimatePresence,
+  motion,
+  useMotionValue,
+} from "framer-motion";
 import GlobalContext, { FooterIconEnum } from "../../../contexts/GlobalContext";
 
 const StyledNavigator = styled.div`
   width: 100%;
-  height: 20rem;
+  height: 60rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   padding: 0 72rem;
   z-index: 10;
@@ -101,7 +106,7 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
   }
 
   .indicator-wrapper.bottom {
-    bottom: 90rem;
+    bottom: 160rem;
     align-items: center;
     justify-content: center;
   }
@@ -325,7 +330,7 @@ const Carousel = forwardRef<
     extraComponent,
   } = props;
 
-  const { dispatch, state } = useContext(GlobalContext);
+  const { dispatch } = useContext(GlobalContext);
   const [autoPlay, setAutoPlay] = useState(autoPlayProps);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [[current, direction], setCurrent] = React.useState([0, 0]);
@@ -392,18 +397,18 @@ const Carousel = forwardRef<
       className={`${prefixCls}item-wrapper`}
       ref={wrapperRef}
     >
-      {/* <AnimatePresence exitBeforeEnter initial={false}> */}
-      {[...children].map((child, index) => (
-        <CarouselItem
-          key={index}
-          prefixCls={prefixCls}
-          active={current % children.length === index}
-          direction={direction}
-        >
-          {child}
-        </CarouselItem>
-      ))}
-      {/* </AnimatePresence> */}
+      <AnimatePresence exitBeforeEnter initial={false}>
+        {[...children].map((child, index) => (
+          <CarouselItem
+            key={index}
+            prefixCls={prefixCls}
+            active={current % children.length === index}
+            direction={direction}
+          >
+            {child}
+          </CarouselItem>
+        ))}
+      </AnimatePresence>
       {showNavigator && <CarouselNavigator onPrev={onPrev} onNext={onNext} />}
       {extraComponent}
       {showIndicator && (

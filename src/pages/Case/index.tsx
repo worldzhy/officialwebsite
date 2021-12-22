@@ -1,10 +1,4 @@
-import React, {
-  createElement,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ISlideConfig, PageSlides, SlideParallaxType } from "react-page-slides";
 import styled from "@emotion/styled";
@@ -17,6 +11,7 @@ import CaseModal from "./components/CaseModal/CaseModal";
 import { enterAnimation } from "../../constants/animation";
 import LoadingContext from "../../contexts/LoadingContext";
 import Category from "../../components/Icons/Category";
+import GlobalContext, { FooterIconEnum } from "../../contexts/GlobalContext";
 
 const StyledContainer = styled(motion.div)`
   display: flex;
@@ -85,6 +80,10 @@ const Case = () => {
   const {
     contents: { cases },
   } = useContext(DataContext);
+  const {
+    state: { shouldResetCasePage },
+    dispatch,
+  } = useContext(GlobalContext);
   const { visible, dispatchVisible, dispatchProgress } =
     useContext(LoadingContext);
   const [current, setCurrent] = useState(0);
@@ -95,7 +94,20 @@ const Case = () => {
   };
 
   const [enableScroll, setEnableScroll] = useState<boolean>(true);
+
   useEffect(() => {
+    if (shouldResetCasePage) {
+      setCurrent(0);
+      dispatch({ shouldResetCasePage: false });
+    }
+  }, [dispatch, shouldResetCasePage]);
+
+  useEffect(() => {
+    if (current === cases.length - 1) {
+      dispatch({ footerIconName: FooterIconEnum.Triangle });
+    } else {
+      dispatch({ footerIconName: FooterIconEnum.Default });
+    }
     const meta = document.querySelector("meta[name=theme-color]");
     if (meta) {
       meta.setAttribute("content", cases[current].primaryColor);
@@ -105,7 +117,7 @@ const Case = () => {
         meta.setAttribute("content", "#000000");
       }
     };
-  }, [cases, current]);
+  }, [cases, current, dispatch]);
   useEffect(() => {
     if (visible) {
       dispatchProgress(100);
@@ -133,9 +145,6 @@ const Case = () => {
               </p>
               <button
                 style={{
-                  visibility: current === i ? "visible" : "hidden",
-                  opacity: current === i ? 1 : 0,
-                  transition: "all ease-in .5s 1s",
                   color: primaryColor,
                 }}
                 className={
@@ -144,17 +153,7 @@ const Case = () => {
               >
                 View Case Study
               </button>
-              <button
-                onClick={handleModalOpen}
-                className={"modal-trigger"}
-                style={{
-                  visibility: current === i ? "visible" : "hidden",
-                  opacity: current === i ? 1 : 0,
-                  transform: current === i ? "scale(1)" : "scale(0.9)",
-                  transition: "all ease-in .5s 1s",
-                  color: "white",
-                }}
-              >
+              <button onClick={handleModalOpen} className={"modal-trigger"}>
                 <Category />
               </button>
             </div>
@@ -190,7 +189,7 @@ const Case = () => {
     >
       {enableScroll && (
         <PageSlides
-          enableAutoScroll={enableScroll}
+          enableAutoScroll={!shouldResetCasePage}
           currentSlideIndex={current}
           transitionSpeed={1000}
           slides={slides}

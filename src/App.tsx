@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { AppLayout } from "./types";
@@ -17,6 +17,8 @@ import GlobalContext, {
 const defaultGlobalContext: GlobalContextStateType = {
   footerIconName: FooterIconEnum.Default,
   carouselVisible: false,
+  shouldResetCasePage: false,
+  shouldResetHomePage: false,
 };
 
 function RouteWithSubRoutes(route: RouteType) {
@@ -42,9 +44,12 @@ function App() {
   const [progress, setProgress] = useState(0);
   const timer = useRef<NodeJS.Timer>();
 
-  const globalStateDispatcher: GlobalContextDispatcherType = (newState) => {
-    setGlobalState((prevState) => ({ ...prevState, ...newState }));
-  };
+  const globalStateDispatcher: GlobalContextDispatcherType = useCallback(
+    (newState) => {
+      setGlobalState((prevState) => ({ ...prevState, ...newState }));
+    },
+    [setGlobalState]
+  );
   const resizeHandler = () => {
     const designWidth = 1440;
 
