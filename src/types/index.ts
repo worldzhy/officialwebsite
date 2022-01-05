@@ -1,12 +1,9 @@
 import {
-  Attributes,
   DetailedHTMLProps,
-  HTMLAttributes,
-  HTMLInputTypeAttribute,
   InputHTMLAttributes,
+  ReactElement,
   ReactHTML,
 } from "react";
-import { ReactJSXLibraryManagedAttributes } from "@emotion/react/types/jsx-namespace";
 
 export type AppLayout = {
   headers: HeaderType;
@@ -79,11 +76,18 @@ export interface CaseProps {
   thumbImage: string;
 }
 
+export enum FormSubmitResult {
+  Default = "Default",
+  Success = "Success",
+  Failed = "Failed",
+}
+
 interface ContactContentProps {
   title: string;
   subTitle: string;
   companyInfo: CompanyInfoProps;
   form: Record<string, FormFieldProps>;
+  resultTips: Omit<Record<FormSubmitResult, string>, "Default">;
 }
 
 export interface FormFieldProps {
