@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { MouseEventHandler, useContext } from "react";
+import { FormEventHandler, useContext, useState } from "react";
 import DataContext from "../../../contexts/DataContext";
 import FormField from "./FormField";
+import { FormSubmitResult } from "../../../types";
 
-const StyledRightPanel = styled.div`
+const StyledFormWrapper = styled.div`
   margin-left: 190rem;
   margin-top: 95rem;
   width: 400rem;
@@ -54,33 +55,61 @@ const StyledRightPanel = styled.div`
     }
   }
 `;
+
+const StyledResultView = styled.div`
+  font-size: 30rem;
+  flex: 1;
+  margin: 200rem 20rem 0 20rem;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+`;
 const RightPanel = () => {
   const {
     contents: {
-      contact: { form },
+      contact: { form, resultTips },
     },
   } = useContext(DataContext);
-  const handleSubmit: MouseEventHandler<HTMLButtonElement> = (e) => {
-    // e.preventDefault();
-    // e.stopPropagation();
-  };
-  return (
-    <StyledRightPanel className={"form-wrapper"}>
-      <form
-        method={"post"}
-        action={
-          "https://0jkklwjmsh.execute-api.us-east-1.amazonaws.com/inceptionpad-official-site"
-        }
-      >
-        {Object.entries(form).map(([key, props]) => (
-          <FormField key={key} {...props} name={key} />
-        ))}
+  const [result, setResult] = useState<FormSubmitResult>(
+    FormSubmitResult.Default
+  );
 
-        <button className={"submit-btn"} type={"submit"} onClick={handleSubmit}>
-          Send
-        </button>
-      </form>
-    </StyledRightPanel>
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    try {
+      await fetch(
+        "https://0jkklwjmsh.execute-api.us-east-1.amazonaws.com/inceptionpad-official-site",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          redirect: "follow", // manual, *follow, error
+          referrerPolicy: "no-referrer",
+          body: formData,
+        }
+      );
+      setResult(FormSubmitResult.Success);
+    } catch {
+      setResult(FormSubmitResult.Failed);
+    }
+  };
+  return result === FormSubmitResult.Default ? (
+    <StyledFormWrapper className={"form-wrapper"}>
+      {
+        <form onSubmit={handleSubmit}>
+          {Object.entries(form).map(([key, props]) => (
+            <FormField key={key} {...props} name={key} />
+          ))}
+
+          <button className={"submit-btn"} type={"submit"}>
+            Send
+          </button>
+        </form>
+      }
+    </StyledFormWrapper>
+  ) : (
+    <StyledResultView>{resultTips[result]}</StyledResultView>
   );
 };
 

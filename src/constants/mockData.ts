@@ -12,6 +12,10 @@ const mockData: AppLayout = {
   },
   contents: {
     contact: {
+      resultTips: {
+        Success: "Congratulations! Submit Success",
+        Failed: "Oops! Submit Failed",
+      },
       form: {
         name: {
           label: "Your Name",
