@@ -82,7 +82,7 @@ const mockData: AppLayout = {
         {
           texts: {
             heading: [
-              "Develop your MVP inweeks",
+              "Develop your MVP in weeks",
               "with our EFFICIENT design",
               "and development process",
             ],
