@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useContext, useEffect } from "react";
+import { FC, useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useHistory, useLocation } from "react-router-dom";
 import DataContext from "../../contexts/DataContext";
@@ -46,7 +46,7 @@ const ProgressWrapper = styled(motion.div)`
   }
 `;
 
-const Progress: React.FC<LoadingProps> = ({ progress }) => {
+const Progress: FC<LoadingProps> = ({ progress }) => {
   return (
     <ProgressWrapper>
       <motion.div
@@ -61,7 +61,7 @@ const Progress: React.FC<LoadingProps> = ({ progress }) => {
   );
 };
 
-const Loading: React.FC<LoadingProps> = ({ children, progress, visible }) => {
+const Loading: FC<LoadingProps> = ({ children, progress, visible }) => {
   const {
     headers: { logo },
   } = useContext(DataContext);

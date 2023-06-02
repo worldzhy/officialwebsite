@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styled from "@emotion/styled";
 import Close from "../../../../components/Icons/Close";
 
@@ -20,7 +20,7 @@ const StyledLeftPanel = styled.div`
     bottom: 98rem;
   }
 `;
-const LeftPanel: React.FC<LeftPanelProps> = ({ onClose }) => {
+const LeftPanel: FC<LeftPanelProps> = ({ onClose }) => {
   return (
     <StyledLeftPanel>
       <button onClick={onClose}>

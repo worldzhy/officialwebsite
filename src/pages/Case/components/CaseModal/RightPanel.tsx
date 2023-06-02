@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styled from "@emotion/styled";
 
 const StyledRightPanel = styled.div`
@@ -11,7 +11,7 @@ const StyledRightPanel = styled.div`
   padding-bottom: 100px;
 `;
 
-const RightPanel: React.FC = ({ children }) => {
+const RightPanel: FC = ({ children }) => {
   return (
     <StyledRightPanel
       onScroll={(e) => {

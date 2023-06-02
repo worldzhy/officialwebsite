@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styled from "@emotion/styled";
 import { CaseProps } from "../../../types";
 import CaseTags from "./CaseTags";
@@ -23,7 +23,7 @@ const StyledCaseWrapper = styled.div`
     object-fit: cover;
   }
 `;
-const TinyCasePreview: React.FC<TinyCasePreviewProps> = ({
+const TinyCasePreview: FC<TinyCasePreviewProps> = ({
   thumbImage,
   title,
   tags,

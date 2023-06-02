@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { FC, useContext } from "react";
 import styled from "@emotion/styled";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import DataContext from "../../contexts/DataContext";
@@ -55,7 +55,7 @@ const StyledHeader = styled.header`
   }
 `;
 
-const Header = () => {
+const Header: FC = () => {
   const {
     headers: { name, items },
   } = useContext(DataContext);

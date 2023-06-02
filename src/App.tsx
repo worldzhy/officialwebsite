@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { AppLayout } from "./types";
@@ -13,6 +13,7 @@ import GlobalContext, {
   GlobalContextDispatcherType,
   GlobalContextStateType,
 } from "./contexts/GlobalContext";
+import { initLoadingProgress } from "./constants/animation";
 
 const defaultGlobalContext: GlobalContextStateType = {
   footerIconName: FooterIconEnum.Default,
@@ -36,7 +37,7 @@ function RouteWithSubRoutes(route: RouteType) {
   );
 }
 
-function App() {
+const App: FC = () => {
   const [globalState, setGlobalState] =
     useState<GlobalContextStateType>(defaultGlobalContext);
 
@@ -52,7 +53,6 @@ function App() {
   );
   const resizeHandler = () => {
     const designWidth = 1440;
-
     const size = document.documentElement.clientWidth / designWidth;
     const html = document.querySelector("html");
     if (html) {
@@ -81,7 +81,7 @@ function App() {
   };
 
   useEffect(() => {
-    dispatchProgress(50);
+    dispatchProgress(initLoadingProgress);
     return () => {
       if (!timer.current) return;
       clearTimeout(timer.current);
@@ -116,6 +116,6 @@ function App() {
       </GlobalContext.Provider>
     </LoadingContext.Provider>
   );
-}
+};
 
 export default App;

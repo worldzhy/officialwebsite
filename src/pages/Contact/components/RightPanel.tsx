@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { FormEventHandler, useContext, useState } from "react";
+import { FC, FormEventHandler, useContext, useState } from "react";
 import DataContext from "../../../contexts/DataContext";
 import FormField from "./FormField";
 import { FormSubmitResult } from "../../../types";
@@ -65,7 +65,7 @@ const StyledResultView = styled.div`
   align-items: flex-start;
   justify-content: center;
 `;
-const RightPanel = () => {
+const RightPanel: FC = () => {
   const {
     contents: {
       contact: { form, resultTips },

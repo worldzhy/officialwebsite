@@ -1,5 +1,5 @@
-import { useContext } from "react";
 import styled from "@emotion/styled";
+import { FC, useContext } from "react";
 import DataContext from "../../../contexts/DataContext";
 import LocationList from "./LocationList";
 
@@ -25,7 +25,7 @@ const StyledLeftPanel = styled.div`
     margin-bottom: 97rem;
   }
 `;
-const LeftPanel = () => {
+const LeftPanel: FC = () => {
   const {
     contents: {
       contact: { title, subTitle, companyInfo },
