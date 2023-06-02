@@ -1,5 +1,5 @@
+import { FC } from "react";
 import styled from "@emotion/styled";
-import React from "react";
 import Mouse from "../Icons/Mouse";
 
 const StyledFooterWrapper = styled.footer`
@@ -13,12 +13,10 @@ const StyledFooterWrapper = styled.footer`
   align-items: center;
   justify-content: center;
 `;
-const Footer = () => {
-  return (
-    <StyledFooterWrapper>
-      <Mouse />
-    </StyledFooterWrapper>
-  );
-};
+const Footer: FC = () => (
+  <StyledFooterWrapper>
+    <Mouse />
+  </StyledFooterWrapper>
+);
 
 export default Footer;

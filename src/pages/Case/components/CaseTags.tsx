@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import styled from "@emotion/styled";
 import { TagType } from "../../../types";
 
@@ -26,7 +26,7 @@ const StyledTagsWrapper = styled.p`
     font-size: 14rem;
   }
 `;
-const CaseTags: React.FC<CaseTagsProps> = ({ tags }) => {
+const CaseTags: FC<CaseTagsProps> = ({ tags }) => {
   if (!tags) return null;
   return (
     <StyledTagsWrapper className={"tags-wrapper"}>

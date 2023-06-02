@@ -8,3 +8,5 @@ export const leaveAnimation = {
   animate: { transform: "translateY(50%)", opacity: 0 },
   transition: { duration: 0.5 },
 };
+
+export const initLoadingProgress = 20;

@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import styled from "@emotion/styled";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ISlideConfig, PageSlides, SlideParallaxType } from "react-page-slides";
-import styled from "@emotion/styled";
 import DataContext from "../../contexts/DataContext";
 import LeftPanel from "./components/CaseModal/LeftPanel";
 import RightPanel from "./components/CaseModal/RightPanel";
@@ -76,7 +76,7 @@ const StyledContainer = styled(motion.div)`
   }
 `;
 
-const Case = () => {
+const Case: FC = () => {
   const {
     contents: { cases },
   } = useContext(DataContext);
@@ -125,7 +125,7 @@ const Case = () => {
     }
   }, [dispatchProgress, dispatchVisible, visible]);
   const slides: ISlideConfig[] = cases.map(
-    ({ title, image, tags, description, id, primaryColor }, i) => {
+    ({ title, image, tags, description, id, primaryColor }) => {
       return {
         content: (
           <StyledContainer

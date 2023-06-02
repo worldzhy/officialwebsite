@@ -1,17 +1,10 @@
 import styled from "@emotion/styled";
-import React, {
-  ReactEventHandler,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { FC, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { useGesture } from "@use-gesture/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
 import DataContext from "../../contexts/DataContext";
-import { enterAnimation } from "../../constants/animation";
+import { enterAnimation, initLoadingProgress } from "../../constants/animation";
 import LoadingContext from "../../contexts/LoadingContext";
 import Carousel from "./components/Carousel";
 import GlobalContext from "../../contexts/GlobalContext";
@@ -137,8 +130,10 @@ const StyledContainer = styled(motion.div)`
     line-height: 24rem;
   }
 `;
-const Home = () => {
+
+const Home: FC = () => {
   const textWrapperRef = useRef<HTMLDivElement>(null);
+  const currentRef = useRef<HTMLVideoElement>(null);
   const transitionRef = useRef<HTMLVideoElement>(null);
   const reverseRef = useRef<HTMLVideoElement>(null);
   const {
@@ -156,6 +151,7 @@ const Home = () => {
   const { dispatchVisible, dispatchProgress, visible } =
     useContext(LoadingContext);
   const [current, setCurrent] = useState(0);
+  const [canPreload, setCanPreload] = useState(false);
 
   useEffect(() => {
     if (!carouselVisible && shouldResetHomePage) {
@@ -199,7 +195,7 @@ const Home = () => {
     {
       onWheel: handler,
       onWheelStart: handler,
-      onWheelEnd: ({ delta: [, y] }) => {
+      onWheelEnd: ({ delta: [, y] }: any) => {
         if (y < 0 && carouselVisible) {
           dispatch({ carouselVisible: false });
         }
@@ -224,11 +220,23 @@ const Home = () => {
     });
   };
 
-  const handleCanPlay: ReactEventHandler = () => {
-    if (visible) {
+  const handleCanPlay = (isCurrent: boolean) => {
+    if (visible && isCurrent) {
       dispatchProgress(100);
       dispatchVisible(false, 500);
+      setCanPreload(true);
     }
+  };
+
+  const handleCanPreload = (index: number) => {
+    const gap = Math.abs(index - current);
+    if (gap === 0) {
+      return "auto";
+    }
+    if (gap === 1) {
+      return "metadata";
+    }
+    return "none";
   };
 
   const textTransition = (index: number, length: number) => {
@@ -245,23 +253,37 @@ const Home = () => {
     };
   };
 
+  const onProgress = (isCurrent: boolean) => {
+    if (visible && isCurrent) {
+      const ele = currentRef.current;
+      if (!ele) return;
+      const percentage = (ele.currentTime / ele.duration) * 100;
+      if (percentage > initLoadingProgress) {
+        dispatchProgress(percentage);
+      }
+    }
+  };
+
   const textAnimation = useMemo(() => {
     if (canTransition) {
-      // return { transform: "translateY(-100rem)", opacity: 0 };
       return { y: -50, opacity: 0 };
     }
     if (shouldReverse) {
-      // return { transform: "translateY(100rem)", opacity: 0 };
       return { y: 50, opacity: 0 };
     }
     return { opacity: 1, y: 0 };
   }, [canTransition, shouldReverse]);
 
+  const displayVideos = useMemo(() => {
+    if (canPreload) return videos;
+    return [videos[0]];
+  }, [videos, canPreload]);
+
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <StyledContainer {...bind()} {...enterAnimation}>
-      {videos.map(
+      {displayVideos.map(
         (
           {
             video: { transition, current: currentVideo, reverse },
@@ -269,111 +291,109 @@ const Home = () => {
             position,
           },
           i
-        ) => {
-          return (
-            <div key={currentVideo}>
-              <video
-                muted
-                loop
-                key={"loop"}
-                preload={"auto"}
-                autoPlay={(current === i && !canTransition) || !shouldReverse}
-                className={"loop-video"}
-                disablePictureInPicture
-                onCanPlay={handleCanPlay}
-                style={{
-                  zIndex: current === i ? 1 : -1,
-                  visibility:
-                    canTransition || shouldReverse ? "hidden" : "visible",
-                }}
-                src={currentVideo}
-              />
-              <video
-                muted
-                key={"transition"}
-                ref={transitionRef}
-                autoPlay={current === i && canTransition}
-                preload={"auto"}
-                onEnded={handleEnded}
-                className={"transition-video"}
-                disablePictureInPicture
-                style={{
-                  zIndex: current === i ? 1 : -1,
-                  visibility: canTransition ? "visible" : "hidden",
-                }}
-                src={transition}
-              />
-              <video
-                muted
-                key={"reverse"}
-                ref={reverseRef}
-                autoPlay={current === i && shouldReverse}
-                preload={"auto"}
-                onEnded={handleEnded}
-                className={"reverse-video"}
-                disablePictureInPicture
-                style={{
-                  zIndex: current === i ? 1 : -1,
-                  visibility: shouldReverse ? "visible" : "hidden",
-                }}
-                src={reverse}
-              />
+        ) => (
+          <div key={currentVideo}>
+            <video
+              ref={currentRef}
+              muted
+              loop
+              key={"loop"}
+              preload={handleCanPreload(i)}
+              autoPlay={(current === i && !canTransition) || !shouldReverse}
+              className={"loop-video"}
+              disablePictureInPicture
+              style={{
+                zIndex: current === i ? 1 : -1,
+                visibility:
+                  canTransition || shouldReverse ? "hidden" : "visible",
+              }}
+              src={currentVideo}
+              onProgress={() => onProgress(current === i)}
+              onCanPlay={() => handleCanPlay(current === i)}
+            />
+            <video
+              muted
+              key={"transition"}
+              ref={transitionRef}
+              autoPlay={current === i && canTransition}
+              preload={handleCanPreload(i)}
+              onEnded={handleEnded}
+              className={"transition-video"}
+              disablePictureInPicture
+              style={{
+                zIndex: current === i ? 1 : -1,
+                visibility: canTransition ? "visible" : "hidden",
+              }}
+              src={transition}
+            />
+            <video
+              muted
+              key={"reverse"}
+              ref={reverseRef}
+              autoPlay={current === i && shouldReverse}
+              preload={handleCanPreload(i)}
+              onEnded={handleEnded}
+              className={"reverse-video"}
+              disablePictureInPicture
+              style={{
+                zIndex: current === i ? 1 : -1,
+                visibility: shouldReverse ? "visible" : "hidden",
+              }}
+              src={reverse}
+            />
 
-              <motion.div
-                ref={textWrapperRef}
-                className={`text-wrapper position-${position}`}
+            <motion.div
+              ref={textWrapperRef}
+              className={`text-wrapper position-${position}`}
+            >
+              <motion.ul
+                style={{
+                  zIndex: current === i ? 2 : -1,
+                  visibility: current === i ? "visible" : "hidden",
+                }}
               >
-                <motion.ul
-                  // animate={current === i ? textAnimation : { opacity: 0 }}
-                  // transition={{ ease: "easeIn", duration: 0.5 }}
-                  style={{
-                    zIndex: current === i ? 2 : -1,
-                    visibility: current === i ? "visible" : "hidden",
-                  }}
-                >
-                  {texts.heading.map((text, index) => {
-                    return (
-                      <motion.li
-                        key={`${currentVideo}-heading-${index}`}
-                        transition={textTransition(index, texts.heading.length)}
-                        animate={
-                          current === i
-                            ? {
-                                ...textAnimation,
-                              }
-                            : { opacity: 0, y: 50 }
-                        }
-                      >
-                        <span className={"heading"}>{text}</span>
-                      </motion.li>
-                    );
-                  })}
-                  {texts.subtitle?.map((text, index) => {
-                    return (
-                      <motion.li
-                        className={"text-center"}
-                        key={`${currentVideo}-sub-title-${index}`}
-                        transition={textTransition(
-                          texts.heading.length + index + 1,
-                          texts.heading.length + (texts.subtitle?.length || 0)
-                        )}
-                        animate={
-                          current === i
-                            ? {
-                                ...textAnimation,
-                              }
-                            : { opacity: 0, y: 50 }
-                        }
-                      >
-                        <span className={"subtitle"}>{text}</span>
-                      </motion.li>
-                    );
-                  })}
-                </motion.ul>
-              </motion.div>
-            </div>
-          );
-        }
+                {texts.heading.map((text, index) => {
+                  return (
+                    <motion.li
+                      key={`${currentVideo}-heading-${index}`}
+                      transition={textTransition(index, texts.heading.length)}
+                      animate={
+                        current === i
+                          ? {
+                              ...textAnimation,
+                            }
+                          : { opacity: 0, y: 50 }
+                      }
+                    >
+                      <span className={"heading"}>{text}</span>
+                    </motion.li>
+                  );
+                })}
+                {texts.subtitle?.map((text, index) => {
+                  return (
+                    <motion.li
+                      className={"text-center"}
+                      key={`${currentVideo}-sub-title-${index}`}
+                      transition={textTransition(
+                        texts.heading.length + index + 1,
+                        texts.heading.length + (texts.subtitle?.length || 0)
+                      )}
+                      animate={
+                        current === i
+                          ? {
+                              ...textAnimation,
+                            }
+                          : { opacity: 0, y: 50 }
+                      }
+                    >
+                      <span className={"subtitle"}>{text}</span>
+                    </motion.li>
+                  );
+                })}
+              </motion.ul>
+            </motion.div>
+          </div>
+        )
       )}
       <AnimatePresence initial={false}>
         {carouselVisible && (

@@ -1,5 +1,5 @@
-import { FunctionComponent } from "react";
 import styled from "@emotion/styled";
+import { FunctionComponent } from "react";
 import { CompanyInfoProps } from "../../../types";
 
 const LocationListWrapper = styled.div`

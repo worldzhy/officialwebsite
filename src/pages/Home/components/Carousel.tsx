@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, {
+import {
   FunctionComponent,
   CSSProperties,
   forwardRef,
@@ -9,6 +9,7 @@ import React, {
   ReactElement,
   useCallback,
   useContext,
+  useEffect,
 } from "react";
 import {
   animate,
@@ -241,7 +242,7 @@ const variants = {
 export const CarouselItem: FunctionComponent<CarouselItemProps> = (props) => {
   const { children, direction, active } = props;
   const x = useMotionValue(0);
-  React.useEffect(() => {
+  useEffect(() => {
     if (active) {
       animate(x, [direction > 0 ? 100 : -100, 0], {
         type: "spring",
@@ -333,8 +334,8 @@ const Carousel = forwardRef<
   const { dispatch } = useContext(GlobalContext);
   const [autoPlay, setAutoPlay] = useState(autoPlayProps);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const [[current, direction], setCurrent] = React.useState([0, 0]);
-  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
+  const [[current, direction], setCurrent] = useState([0, 0]);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
   const onPrev = useCallback(() => {
     if (infinite || current > 0) {
       setCurrent(([prev]) => [prev - 1, -1]);
@@ -350,14 +351,14 @@ const Carousel = forwardRef<
     }
   }, [children.length, current, infinite]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch({ footerIconName: FooterIconEnum.Triangle });
     return () => {
       dispatch({ footerIconName: FooterIconEnum.Default });
     };
   }, [dispatch]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (autoPlay) {
       timerRef.current = setTimeout(onNext, delay) as NodeJS.Timeout;
     }
@@ -370,7 +371,7 @@ const Carousel = forwardRef<
     setCurrent([target, 1]);
   };
 
-  const pause = React.useCallback(() => {
+  const pause = useCallback(() => {
     setAutoPlay(false);
   }, []);
 

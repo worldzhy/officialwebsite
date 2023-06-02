@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import { FC, useContext, useEffect, useRef } from "react";
 import lottie from "lottie-web";
 import styled from "@emotion/styled";
 import { useLocation } from "react-router-dom";
@@ -31,7 +31,7 @@ const StyledCircleIcon = styled.div`
   }
 `;
 
-const Mouse = () => {
+const Mouse: FC = () => {
   const {
     state: { footerIconName },
     dispatch,
