@@ -182,6 +182,7 @@ const Case: FC = () => {
     setCurrent(i);
     setModalVisible(false);
   };
+
   return (
     <div
       ref={ref}
@@ -201,7 +202,6 @@ const Case: FC = () => {
           }}
         />
       )}
-
       <CaseModal visible={modalVisible}>
         <LeftPanel
           onClose={() => {

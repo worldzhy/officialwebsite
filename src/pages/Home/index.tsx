@@ -352,23 +352,21 @@ const Home: FC = () => {
                   visibility: current === i ? "visible" : "hidden",
                 }}
               >
-                {texts.heading.map((text, index) => {
-                  return (
-                    <motion.li
-                      key={`${currentVideo}-heading-${index}`}
-                      transition={textTransition(index, texts.heading.length)}
-                      animate={
-                        current === i
-                          ? {
-                              ...textAnimation,
-                            }
-                          : { opacity: 0, y: 50 }
-                      }
-                    >
-                      <span className={"heading"}>{text}</span>
-                    </motion.li>
-                  );
-                })}
+                {texts.heading.map((text, index) => (
+                  <motion.li
+                    key={`${currentVideo}-heading-${index}`}
+                    transition={textTransition(index, texts.heading.length)}
+                    animate={
+                      current === i
+                        ? {
+                            ...textAnimation,
+                          }
+                        : { opacity: 0, y: 50 }
+                    }
+                  >
+                    <span className={"heading"}>{text}</span>
+                  </motion.li>
+                ))}
                 {texts.subtitle?.map((text, index) => {
                   return (
                     <motion.li
