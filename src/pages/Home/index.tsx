@@ -132,10 +132,7 @@ const StyledContainer = styled(motion.div)`
 `;
 
 const Home: FC = () => {
-  const textWrapperRef = useRef<HTMLDivElement>(null);
   const currentRef = useRef<HTMLVideoElement>(null);
-  const transitionRef = useRef<HTMLVideoElement>(null);
-  const reverseRef = useRef<HTMLVideoElement>(null);
   const {
     state: { carouselVisible, shouldResetHomePage },
     dispatch,
@@ -151,6 +148,7 @@ const Home: FC = () => {
   const { dispatchVisible, dispatchProgress, visible } =
     useContext(LoadingContext);
   const [current, setCurrent] = useState(0);
+  const [currentText, setCurrentText] = useState(0);
   const [canPreload, setCanPreload] = useState(false);
 
   useEffect(() => {
@@ -172,6 +170,9 @@ const Home: FC = () => {
         video.currentTime = 0;
         video.play().then(() => {
           setCanTransition(true);
+          setTimeout(() => {
+            setCurrentText(current + 1);
+          }, 800);
         });
       } else {
         dispatch({ carouselVisible: true });
@@ -186,6 +187,9 @@ const Home: FC = () => {
         video.currentTime = 0;
         video.play().then(() => {
           setShouldReverse(true);
+          setTimeout(() => {
+            setCurrentText(current - 1);
+          }, 800);
         });
       }
     }
@@ -265,6 +269,9 @@ const Home: FC = () => {
   };
 
   const textAnimation = useMemo(() => {
+    if (current !== currentText) {
+      return { opacity: 1, y: 0 };
+    }
     if (canTransition) {
       return { y: -50, opacity: 0 };
     }
@@ -272,7 +279,7 @@ const Home: FC = () => {
       return { y: 50, opacity: 0 };
     }
     return { opacity: 1, y: 0 };
-  }, [canTransition, shouldReverse]);
+  }, [canTransition, shouldReverse, current, currentText]);
 
   const displayVideos = useMemo(() => {
     if (canPreload) return videos;
@@ -314,7 +321,6 @@ const Home: FC = () => {
             <video
               muted
               key={"transition"}
-              ref={transitionRef}
               autoPlay={current === i && canTransition}
               preload={handleCanPreload(i)}
               onEnded={handleEnded}
@@ -329,7 +335,6 @@ const Home: FC = () => {
             <video
               muted
               key={"reverse"}
-              ref={reverseRef}
               autoPlay={current === i && shouldReverse}
               preload={handleCanPreload(i)}
               onEnded={handleEnded}
@@ -341,23 +346,20 @@ const Home: FC = () => {
               }}
               src={reverse}
             />
-
             <motion.div
-              ref={textWrapperRef}
               className={`text-wrapper position-${position}`}
+              style={{
+                zIndex: currentText === i ? 2 : -1,
+                visibility: currentText === i ? "visible" : "hidden",
+              }}
             >
-              <motion.ul
-                style={{
-                  zIndex: current === i ? 2 : -1,
-                  visibility: current === i ? "visible" : "hidden",
-                }}
-              >
+              <motion.ul>
                 {texts.heading.map((text, index) => (
                   <motion.li
                     key={`${currentVideo}-heading-${index}`}
                     transition={textTransition(index, texts.heading.length)}
                     animate={
-                      current === i
+                      currentText === i
                         ? {
                             ...textAnimation,
                           }
@@ -377,7 +379,7 @@ const Home: FC = () => {
                         texts.heading.length + (texts.subtitle?.length || 0)
                       )}
                       animate={
-                        current === i
+                        currentText === i
                           ? {
                               ...textAnimation,
                             }
