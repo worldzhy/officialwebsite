@@ -33,7 +33,7 @@ const CaseModal: FunctionComponent<CaseModalProps> = ({
         width: visible ? "100%" : "500px",
         height: visible ? "100%" : "500px",
         borderRadius: visible ? 0 : "50%",
-        transform: visible ? "translate(0,0)" : "translate(-100%, 100%)",
+        transform: visible ? "translate(0)" : "translate(50%, 100%)",
         visibility: visible ? "visible" : "hidden",
         opacity: visible ? 1 : 0,
         transition: "all ease-in-out .3s",
