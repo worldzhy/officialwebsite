@@ -1,19 +1,19 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { AppLayout } from "./types";
-import DataContext from "./contexts/DataContext";
-import Layout from "./containers/Layout/Layout";
 import routesConfig, { RouteType } from "./routes";
-import LoadingContext from "./contexts/LoadingContext";
-import Loading from "./components/Loading/Loading";
-import mockData from "./constants/mockData";
+import { initLoadingProgress } from "./constants/animation";
 import GlobalContext, {
   FooterIconEnum,
   GlobalContextDispatcherType,
   GlobalContextStateType,
 } from "./contexts/GlobalContext";
-import { initLoadingProgress } from "./constants/animation";
+import Loading from "./components/Loading";
+import mockData from "./constants/mockData";
+import Layout from "./containers/Layout/Layout";
+import DataContext from "./contexts/DataContext";
+import LoadingContext from "./contexts/LoadingContext";
 
 const defaultGlobalContext: GlobalContextStateType = {
   footerIconName: FooterIconEnum.Default,
