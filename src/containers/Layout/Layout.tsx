@@ -1,9 +1,9 @@
-import React, { FunctionComponent, useMemo } from "react";
-import { AnimatePresence } from "framer-motion";
+import { FunctionComponent, useMemo } from "react";
 import { useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import styled from "@emotion/styled";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 const StyledMainContainer = styled.main`
   display: flex;
