@@ -28,7 +28,7 @@ type TextType = {
   subtitle?: Array<string>;
 };
 
-interface HomeVideoProps {
+export interface HomeVideoProps {
   texts: TextType;
   position: string;
   video: VideoProps;

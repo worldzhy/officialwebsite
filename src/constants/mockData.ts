@@ -455,4 +455,5 @@ const mockData: AppLayout = {
     ],
   },
 };
+
 export default mockData;
