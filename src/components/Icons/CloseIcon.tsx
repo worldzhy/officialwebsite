@@ -9,8 +9,8 @@ const CloseIcon: FC<SVGProps<any>> = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <path d="M2 2L53 53" stroke="white" stroke-width="3" />
-    <path d="M53 2L2 53" stroke="white" stroke-width="3" />
+    <path d="M2 2L53 53" stroke="white" strokeWidth="3" />
+    <path d="M53 2L2 53" stroke="white" strokeWidth="3" />
   </svg>
 );
 
