@@ -13,6 +13,8 @@ type IProps = {
   shouldReverse: boolean;
   setShouldReverse: (value: boolean) => void;
   currentText: number;
+  textTransition: (index: number, lenght: number) => any;
+  textAnimation: any;
 };
 
 const WebAnimations: FC<IProps> = ({
@@ -24,6 +26,8 @@ const WebAnimations: FC<IProps> = ({
   shouldReverse,
   setShouldReverse,
   currentText,
+  textTransition,
+  textAnimation,
 }) => {
   const { dispatchVisible, dispatchProgress, visible } =
     useContext(LoadingContext);
@@ -63,20 +67,6 @@ const WebAnimations: FC<IProps> = ({
     return "none";
   };
 
-  const textTransition = (index: number, length: number) => {
-    if (!shouldReverse)
-      return {
-        ease: "easeIn",
-        duration: 0.3,
-        delay: index * 0.15,
-      };
-    return {
-      ease: "easeIn",
-      duration: 0.3,
-      delay: (length - index) * 0.2,
-    };
-  };
-
   const onProgress = (isCurrent: boolean) => {
     if (visible && isCurrent) {
       const ele = currentRef.current;
@@ -87,19 +77,6 @@ const WebAnimations: FC<IProps> = ({
       }
     }
   };
-
-  const textAnimation = useMemo(() => {
-    if (current !== currentText) {
-      return { opacity: 1, y: 0 };
-    }
-    if (canTransition) {
-      return { y: -50, opacity: 0 };
-    }
-    if (shouldReverse) {
-      return { y: 50, opacity: 0 };
-    }
-    return { opacity: 1, y: 0 };
-  }, [canTransition, shouldReverse, current, currentText]);
 
   const displayVideos = useMemo(() => {
     if (canPreload) return videos;

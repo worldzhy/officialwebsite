@@ -46,6 +46,7 @@ const Mouse: FC = () => {
       shouldResetCasePage: pathname === "/case",
     });
   };
+
   useEffect(() => {
     if (!ref.current) return;
     if (footerIconName === FooterIconEnum.Default) {
@@ -58,6 +59,7 @@ const Mouse: FC = () => {
       });
     }
   }, [ref, footerIconName]);
+
   if (footerIconName === FooterIconEnum.Triangle)
     return (
       <StyledCircleIcon onClick={handleTriangleClicked}>
@@ -98,6 +100,7 @@ const Mouse: FC = () => {
         </svg>
       </StyledCircleIcon>
     );
+
   return <div ref={ref} id={"lottie-footer-button"} />;
 };
 export default Mouse;
