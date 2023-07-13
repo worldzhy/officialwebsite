@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useMemo, useState } from "react";
+import { useMediaQuery } from "usehooks-ts";
 import { useGesture } from "@use-gesture/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
@@ -81,10 +82,16 @@ const StyledContainer = styled(motion.div)`
     }
   }
   .mobile-animation {
-    display: block;
+    display: none;
     @media screen and (min-width: 320px) and (max-width: 767px) {
-      display: flex;
+      display: block;
     }
+  }
+  .animation-canvas {
+    width: 100% !important;
+    height: 50% !important;
+    position: absolute;
+    bottom: 0;
   }
   video {
     transition: all ease 16ms;
@@ -148,6 +155,7 @@ const Home: FC = () => {
     state: { carouselVisible, shouldResetHomePage },
     dispatch,
   } = useContext(GlobalContext);
+  const isMobile = useMediaQuery("(max-width: 767px)");
   const history = useHistory();
   const [canTransition, setCanTransition] = useState(false);
   const [shouldReverse, setShouldReverse] = useState(false);
@@ -218,21 +226,64 @@ const Home: FC = () => {
     }
   );
 
+  const textTransition = (index: number, length: number) => {
+    if (!shouldReverse)
+      return {
+        ease: "easeIn",
+        duration: 0.3,
+        delay: index * 0.15,
+      };
+    return {
+      ease: "easeIn",
+      duration: 0.3,
+      delay: (length - index) * 0.2,
+    };
+  };
+
+  const textAnimation = useMemo(() => {
+    if (current !== currentText) {
+      return { opacity: 1, y: 0 };
+    }
+    if (canTransition) {
+      return { y: -50, opacity: 0 };
+    }
+    if (shouldReverse) {
+      return { y: 50, opacity: 0 };
+    }
+    return { opacity: 1, y: 0 };
+  }, [canTransition, shouldReverse, current, currentText]);
+
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     <StyledContainer {...bind()} {...enterAnimation}>
-      <WebAnimations
-        videos={videos}
-        current={current}
-        setCurrent={setCurrent}
-        canTransition={canTransition}
-        setCanTransition={setCanTransition}
-        shouldReverse={shouldReverse}
-        setShouldReverse={setShouldReverse}
-        currentText={currentText}
-      />
-      <MobileAnimation />
+      {isMobile ? (
+        <MobileAnimation
+          videos={videos}
+          current={current}
+          setCurrent={setCurrent}
+          canTransition={canTransition}
+          setCanTransition={setCanTransition}
+          shouldReverse={shouldReverse}
+          setShouldReverse={setShouldReverse}
+          currentText={currentText}
+          textTransition={textTransition}
+          textAnimation={textAnimation}
+        />
+      ) : (
+        <WebAnimations
+          videos={videos}
+          current={current}
+          setCurrent={setCurrent}
+          canTransition={canTransition}
+          setCanTransition={setCanTransition}
+          shouldReverse={shouldReverse}
+          setShouldReverse={setShouldReverse}
+          currentText={currentText}
+          textTransition={textTransition}
+          textAnimation={textAnimation}
+        />
+      )}
       <AnimatePresence initial={false}>
         {carouselVisible && (
           <Carousel

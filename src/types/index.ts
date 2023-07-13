@@ -55,6 +55,9 @@ interface VideoProps {
   current: string;
   transition?: string;
   reverse?: string;
+  mobileCurrent: string;
+  mobileTransition?: string;
+  mobileReverse?: string;
 }
 
 export type CaseContentType = Array<CaseProps>;
