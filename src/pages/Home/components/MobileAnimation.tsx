@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState, useEffect, useContext } from "react";
 import { PAGInit } from "libpag";
 import { motion } from "framer-motion";
 import { HomeVideoProps } from "../../../types";
@@ -42,8 +42,23 @@ const MobileAnimation: FC<IProps> = ({
   const [pagFiles, setPagFile] = useState<PagFile[]>([]);
   const [canPreload, setCanPreload] = useState(false);
   const [pagView, setPagView] = useState<any>();
+  const [startTransition, setStartTransition] = useState(false);
 
-  const handleRepeat = () => {};
+  const handleRepeat = () => {
+    if (!startTransition) return;
+    const next = canTransition ? current + 1 : current - 1;
+    const pagFile = pagFiles[next]?.current;
+    if (pagFile) {
+      pagView.pause();
+      pagView.setComposition(pagFile);
+      pagView.setProgress(0);
+      pagView.play();
+      setShouldReverse(false);
+      setCanTransition(false);
+      setStartTransition(false);
+      setCurrent(next);
+    }
+  };
   const fetchFile = (url: string) =>
     fetch(url)
       .then((response) => response.arrayBuffer())
@@ -79,6 +94,11 @@ const MobileAnimation: FC<IProps> = ({
     return null;
   };
 
+  // if (pagView) {
+  //   pagView.removeListener("onAnimationRepeat");
+  //   pagView.addListener("onAnimationRepeat", handleRepeat);
+  // }
+
   useEffect(() => {
     PAGInit().then(async (p) => {
       const { PAGView } = p;
@@ -90,7 +110,6 @@ const MobileAnimation: FC<IProps> = ({
         const pv = await PAGView.init(files.current, canvasRef.current);
         if (pv) {
           setPagView(pv);
-          pv.addListener("onAnimationRepeat", handleRepeat);
           pv.setRepeatCount(0);
           await pv.play();
           dispatchProgress(100);
@@ -99,15 +118,31 @@ const MobileAnimation: FC<IProps> = ({
         }
       }
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     const next = current + 1;
     if (canPreload && !pagFiles[next] && videos[next]) {
       handleLoadFile(next);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [current, canPreload]);
+  }, [current, canPreload, pagFiles, videos]);
+  useEffect(() => {
+    if (!canTransition && !shouldReverse) return;
+    const files = pagFiles[current];
+    const pagFile = canTransition ? files?.transition : files?.reverse;
+    if (pagFile) {
+      pagView.pause();
+      pagView.setComposition(pagFile);
+      pagView.setProgress(0);
+      pagView.play();
+      setStartTransition(true);
+    }
+  }, [pagFiles, current, canTransition, shouldReverse, pagView]);
+  useEffect(() => {
+    if (pagView) {
+      pagView.removeListener("onAnimationRepeat");
+      pagView.addListener("onAnimationRepeat", handleRepeat);
+    }
+  });
 
   return (
     <>
