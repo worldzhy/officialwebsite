@@ -11,6 +11,8 @@ import GlobalContext from "../../contexts/GlobalContext";
 import WebAnimations from "./components/WebAnimations";
 import MobileAnimation from "./components/MobileAnimation";
 
+const TextAnimationDuration = 800;
+
 const StyledItemWrapper = styled.div`
   flex: 1;
   display: flex;
@@ -179,34 +181,48 @@ const Home: FC = () => {
     if (canTransition || shouldReverse || carouselVisible) return;
     if (y > 0) {
       if (current < videos.length - 1) {
-        const video = document.querySelectorAll(".transition-video")[
-          current
-        ] as unknown as HTMLVideoElement;
-        if (!video) return;
-        video.currentTime = 0;
-        video.play().then(() => {
+        if (isMobile) {
           setCanTransition(true);
           setTimeout(() => {
             setCurrentText(current + 1);
-          }, 800);
-        });
+          }, TextAnimationDuration);
+        } else {
+          const video = document.querySelectorAll(".transition-video")[
+            current
+          ] as unknown as HTMLVideoElement;
+          if (!video) return;
+          video.currentTime = 0;
+          video.play().then(() => {
+            setCanTransition(true);
+            setTimeout(() => {
+              setCurrentText(current + 1);
+            }, TextAnimationDuration);
+          });
+        }
       } else {
         dispatch({ carouselVisible: true });
       }
     }
     if (y < 0) {
       if (current > 0) {
-        const video = document.querySelectorAll(".reverse-video")[
-          current
-        ] as unknown as HTMLVideoElement;
-        if (!video) return;
-        video.currentTime = 0;
-        video.play().then(() => {
+        if (isMobile) {
           setShouldReverse(true);
           setTimeout(() => {
             setCurrentText(current - 1);
-          }, 800);
-        });
+          }, TextAnimationDuration);
+        } else {
+          const video = document.querySelectorAll(".reverse-video")[
+            current
+          ] as unknown as HTMLVideoElement;
+          if (!video) return;
+          video.currentTime = 0;
+          video.play().then(() => {
+            setShouldReverse(true);
+            setTimeout(() => {
+              setCurrentText(current - 1);
+            }, TextAnimationDuration);
+          });
+        }
       }
     }
   };
