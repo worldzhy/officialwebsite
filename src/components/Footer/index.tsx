@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styled from "@emotion/styled";
 import Mouse from "../Icons/Mouse";
+import { mobileMedia } from "../../constants";
 
 const StyledFooterWrapper = styled.footer`
   position: absolute;
@@ -12,6 +13,9 @@ const StyledFooterWrapper = styled.footer`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${mobileMedia} {
+    bottom: 20px;
+  }
 `;
 const Footer: FC = () => (
   <StyledFooterWrapper>

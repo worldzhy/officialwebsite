@@ -94,11 +94,6 @@ const MobileAnimation: FC<IProps> = ({
     return null;
   };
 
-  // if (pagView) {
-  //   pagView.removeListener("onAnimationRepeat");
-  //   pagView.addListener("onAnimationRepeat", handleRepeat);
-  // }
-
   useEffect(() => {
     PAGInit().then(async (p) => {
       const { PAGView } = p;
@@ -107,7 +102,11 @@ const MobileAnimation: FC<IProps> = ({
       const files = await handleLoadFile(0);
       dispatchProgress(80);
       if (files && canvasRef.current) {
-        const pv = await PAGView.init(files.current, canvasRef.current);
+        const canvas = canvasRef.current;
+        const currentSrc = files.current;
+        canvas.width = currentSrc.width();
+        canvas.height = currentSrc.height();
+        const pv = await PAGView.init(currentSrc, canvas);
         if (pv) {
           setPagView(pv);
           pv.setRepeatCount(0);
