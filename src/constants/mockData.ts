@@ -77,8 +77,8 @@ const mockData: AppLayout = {
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-00.mp4",
             transition:
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-01.mp4",
-            mobileCurrent: "mockAnimation/like.pag",
-            mobileTransition: "mockAnimation/snowman.pag",
+            mobileCurrent: "mockAnimation/page-00-00_bmp.pag",
+            mobileTransition: "mockAnimation/page-00-01_bmp.pag",
           },
         },
         {
@@ -97,9 +97,9 @@ const mockData: AppLayout = {
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-02.mp4",
             reverse:
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-01_reverse.mp4",
-            mobileCurrent: "mockAnimation/like.pag",
-            mobileTransition: "mockAnimation/snowman.pag",
-            mobileReverse: "mockAnimation/snowman.pag",
+            mobileCurrent: "mockAnimation/page-01-01_bmp.pag",
+            mobileTransition: "mockAnimation/page-01-02_bmp.pag",
+            mobileReverse: "mockAnimation/page-00-01_back_bmp.pag",
           },
         },
         {
@@ -118,9 +118,9 @@ const mockData: AppLayout = {
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-03.mp4",
             reverse:
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-02_reverse.mp4",
-            mobileCurrent: "mockAnimation/like.pag",
-            mobileTransition: "mockAnimation/snowman.pag",
-            mobileReverse: "mockAnimation/snowman.pag",
+            mobileCurrent: "mockAnimation/page-02-02_bmp.pag",
+            mobileTransition: "mockAnimation/page-02-03_bmp.pag",
+            mobileReverse: "mockAnimation/page-01-02_back_bmp.pag",
           },
         },
         {
@@ -138,8 +138,8 @@ const mockData: AppLayout = {
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-03-03.mp4",
             reverse:
               "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-03_reverse.mp4",
-            mobileCurrent: "mockAnimation/like.pag",
-            mobileReverse: "mockAnimation/snowman.pag",
+            mobileCurrent: "mockAnimation/page-03-03_bmp.pag",
+            mobileReverse: "mockAnimation/page-02-03_back_bmp.pag",
           },
         },
       ],

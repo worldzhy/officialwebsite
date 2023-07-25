@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
 import DataContext from "../../contexts/DataContext";
 import { enterAnimation } from "../../constants/animation";
+import { mobileMedia } from "../../constants";
 import Carousel from "./components/Carousel";
 import GlobalContext from "../../contexts/GlobalContext";
 import WebAnimations from "./components/WebAnimations";
@@ -79,19 +80,18 @@ const StyledContainer = styled(motion.div)`
     overflow: hidden;
   }
   .web-animation {
-    @media screen and (min-width: 320px) and (max-width: 767px) {
+     {
       display: none;
     }
   }
   .mobile-animation {
     display: none;
-    @media screen and (min-width: 320px) and (max-width: 767px) {
+    ${mobileMedia} {
       display: block;
     }
   }
   .animation-canvas {
     width: 100% !important;
-    height: 50% !important;
     position: absolute;
     bottom: 0;
   }
@@ -132,6 +132,13 @@ const StyledContainer = styled(motion.div)`
     line-height: 64rem;
     font-weight: 500;
     text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.25);
+    ${mobileMedia} {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 32px;
+      letter-spacing: 0px;
+      text-align: center;
+    }
   }
   .subtitle {
     font-family: Prompt-Light;
@@ -173,13 +180,15 @@ const Home: FC = () => {
     if (!carouselVisible && shouldResetHomePage) {
       setCurrent(0);
       setCanTransition(false);
+      setShouldReverse(false);
       dispatch({ shouldResetHomePage: false });
     }
   }, [carouselVisible, dispatch, shouldResetHomePage]);
 
-  const handler = ({ delta: [, y] }: any) => {
+  const handler = ({ delta: [, y] }: any, type: "wheel" | "drag") => {
     if (canTransition || shouldReverse || carouselVisible) return;
-    if (y > 0) {
+    const currentY = type === "drag" ? -y : y;
+    if (currentY > 0) {
       if (current < videos.length - 1) {
         if (isMobile) {
           setCanTransition(true);
@@ -203,7 +212,7 @@ const Home: FC = () => {
         dispatch({ carouselVisible: true });
       }
     }
-    if (y < 0) {
+    if (currentY < 0) {
       if (current > 0) {
         if (isMobile) {
           setShouldReverse(true);
@@ -229,10 +238,17 @@ const Home: FC = () => {
 
   const bind = useGesture(
     {
-      onWheel: handler,
-      onWheelStart: handler,
+      onWheel: (props) => handler(props, "wheel"),
+      onWheelStart: (props) => handler(props, "wheel"),
       onWheelEnd: ({ delta: [, y] }: any) => {
         if (y < 0 && carouselVisible) {
+          dispatch({ carouselVisible: false });
+        }
+      },
+      onDrag: (props) => handler(props, "drag"),
+      onDragStart: (props) => handler(props, "drag"),
+      onDragEnd: ({ delta: [, y] }: any) => {
+        if (-y < 0 && carouselVisible) {
           dispatch({ carouselVisible: false });
         }
       },

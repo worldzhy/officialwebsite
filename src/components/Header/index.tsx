@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { FC, useContext, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
+import { mobileMedia } from "../../constants";
 import NavIcon from "../Icons/NavIcon";
 import CompanyLogo from "../Icons/CompanyLogo";
 import DataContext from "../../contexts/DataContext";
@@ -11,7 +12,7 @@ const StyledHeader = styled.header`
   font-size: 18px;
   padding: 20rem 72rem;
 
-  @media screen and (min-width: 320px) and (max-width: 767px) {
+  ${mobileMedia} {
     flex-direction: column;
   }
   & > nav {
@@ -37,7 +38,7 @@ const StyledHeader = styled.header`
     }
     .category {
       display: none;
-      @media screen and (min-width: 320px) and (max-width: 767px) {
+      ${mobileMedia} {
         display: block;
       }
     }
@@ -76,7 +77,7 @@ const StyleNavs = styled.div`
   display: flex;
   justify-content: center;
   font-size: 16px;
-  @media screen and (min-width: 320px) and (max-width: 767px) {
+  ${mobileMedia} {
     display: none;
   }
 `;
