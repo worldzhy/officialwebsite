@@ -150,7 +150,7 @@ const MobileAnimation: FC<IProps> = ({
           <motion.div
             className="text-wrapper position-top"
             style={{
-              height: "50%",
+              maxHeight: "50%",
               zIndex: currentText === i ? 2 : -1,
               visibility: currentText === i ? "visible" : "hidden",
             }}
