@@ -1,6 +1,7 @@
 import { FC, useContext, useEffect, useRef } from "react";
 import lottie from "lottie-web";
 import styled from "@emotion/styled";
+import { useMediaQuery } from "usehooks-ts";
 import { useLocation } from "react-router-dom";
 import animationData from "../../animations/footer_button.json";
 import GlobalContext, { FooterIconEnum } from "../../contexts/GlobalContext";
@@ -38,14 +39,14 @@ const Mouse: FC = () => {
   } = useContext(GlobalContext);
   const ref = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
+  const isMobile = useMediaQuery("(max-width: 767px)");
 
-  const handleTriangleClicked = () => {
+  const handleTriangleClicked = () =>
     dispatch({
       carouselVisible: false,
       shouldResetHomePage: pathname === "/home",
       shouldResetCasePage: pathname === "/case",
     });
-  };
 
   useEffect(() => {
     if (!ref.current) return;
@@ -101,6 +102,6 @@ const Mouse: FC = () => {
       </StyledCircleIcon>
     );
 
-  return <div ref={ref} id={"lottie-footer-button"} />;
+  return <div ref={ref} style={{ display: isMobile ? "none" : "block" }} />;
 };
 export default Mouse;

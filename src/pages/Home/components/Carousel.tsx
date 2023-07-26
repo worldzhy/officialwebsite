@@ -1,22 +1,23 @@
 import styled from "@emotion/styled";
 import {
-  FunctionComponent,
-  CSSProperties,
-  forwardRef,
   useRef,
-  useImperativeHandle,
   useState,
-  ReactElement,
-  useCallback,
-  useContext,
   useEffect,
+  useContext,
+  forwardRef,
+  useCallback,
+  ReactElement,
+  CSSProperties,
+  FunctionComponent,
+  useImperativeHandle,
 } from "react";
 import {
-  animate,
-  AnimatePresence,
   motion,
+  animate,
   useMotionValue,
+  AnimatePresence,
 } from "framer-motion";
+import { mobileMedia } from "../../../constants";
 import GlobalContext, { FooterIconEnum } from "../../../contexts/GlobalContext";
 
 const StyledNavigator = styled.div`
@@ -27,12 +28,20 @@ const StyledNavigator = styled.div`
   justify-content: space-between;
   padding: 0 72rem;
   z-index: 10;
+  ${mobileMedia} {
+    position: absolute;
+    bottom: 140px;
+  }
   & > div {
     width: 20rem;
     height: 20rem;
     cursor: pointer;
     opacity: 0.6;
     transition: all 1s ease;
+    ${mobileMedia} {
+      width: 16px;
+      height: 16px;
+    }
     &:hover {
       opacity: 1;
     }
@@ -110,27 +119,40 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     bottom: 160rem;
     align-items: center;
     justify-content: center;
+    ${mobileMedia} {
+      bottom: 140px;
+    }
   }
 
   .indicator-wrapper.top {
     top: 50rem;
     align-items: center;
     justify-content: center;
+    ${mobileMedia} {
+      top: 60px;
+    }
   }
 
   .indicator-item {
-    background-color: gray;
+    display: block;
     width: 8rem;
     height: 8rem;
-    z-index: 1;
-    display: block;
     margin-right: 24rem;
     border-radius: 50%;
     position: relative;
+    background-color: gray;
+    z-index: 1;
+    ${mobileMedia} {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   .indicator-item::after {
     transition: all 3s ease-in;
+    ${mobileMedia} {
+      transition: all 0.2s ease-in;
+    }
   }
 
   .indicator-item.inactive::after {
@@ -139,23 +161,31 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
 
   .indicator-item.inactive::before {
     position: absolute;
-    left: 0;
-    content: "";
     width: 100%;
     padding-top: 10rem;
     padding-bottom: 10rem;
+    left: 0;
+    content: "";
     cursor: pointer;
+    ${mobileMedia} {
+      width: 18px;
+      height: 18px;
+    }
   }
 
   .indicator-item.active::after {
-    z-index: 2;
-    content: "";
+    position: absolute;
     width: 8rem;
     height: 8rem;
-    border-radius: 100%;
-    background-color: azure;
-    position: absolute;
     left: 0;
+    content: "";
+    border-radius: 100%;
+    z-index: 2;
+    background-color: azure;
+    ${mobileMedia} {
+      width: 18px;
+      height: 18px;
+    }
   }
 `;
 

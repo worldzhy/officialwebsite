@@ -15,18 +15,21 @@ import MobileAnimation from "./components/MobileAnimation";
 const TextAnimationDuration = 800;
 
 const StyledItemWrapper = styled.div`
+  width: 100%;
+  height: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
-  color: white;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
-  height: 100%;
   padding-top: 156rem;
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
+  color: white;
+  ${mobileMedia} {
+    padding-top: 80px;
+  }
   & > * {
     z-index: 1;
   }
@@ -34,17 +37,31 @@ const StyledItemWrapper = styled.div`
     width: 97rem;
     height: 97rem;
     border-radius: 50%;
+    ${mobileMedia} {
+      width: 100px;
+      height: 100px;
+    }
   }
   .name {
-    margin-top: 4rem;
-    font-family: Prompt-Regular;
     font-size: 32rem;
+    margin-top: 4rem;
     line-height: 48rem;
+    font-family: Prompt-Regular;
+    ${mobileMedia} {
+      font-size: 24px;
+      margin-top: 6px;
+      line-height: 24px;
+    }
   }
   .info-wrapper {
-    margin-top: 7rem;
     font-size: 18rem;
+    margin-top: 7rem;
     line-height: 21rem;
+    ${mobileMedia} {
+      font-size: 18px;
+      margin-top: 20px;
+      line-height: 20px;
+    }
     .title {
       font-family: Arial;
       opacity: 0.5;
@@ -58,11 +75,18 @@ const StyledItemWrapper = styled.div`
   }
   .description {
     width: 788rem;
+    height: 196rem;
     margin-top: 25rem;
-    font-family: Prompt-Light;
     font-size: 18rem;
     line-height: 40rem;
-    height: 196rem;
+    font-family: Prompt-Light;
+    ${mobileMedia} {
+      width: 100%;
+      padding: 0 40px;
+      font-size: 18px;
+      margin-top: 20px;
+      line-height: 32px;
+    }
   }
 `;
 
@@ -146,16 +170,26 @@ const StyledContainer = styled(motion.div)`
   }
   .navigate-case-button {
     position: absolute;
+    font-family: Prompt-Regular;
+    width: 163px;
+    height: 40px;
     top: 557rem;
     left: 639rem;
-    z-index: 10;
-    color: white;
-    width: 163rem;
-    height: 40rem;
-    border: 2px solid #ffffff;
-    font-family: Prompt-Regular;
     font-size: 16rem;
+    color: white;
     line-height: 24rem;
+    border: 2px solid #ffffff;
+    z-index: 10;
+    ${mobileMedia} {
+      width: 163px;
+      height: 40px;
+      bottom: 60px;
+      top: auto;
+      left: auto;
+      margin: 0 auto;
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 `;
 
@@ -255,6 +289,7 @@ const Home: FC = () => {
     },
     {
       wheel: { axis: "y" },
+      drag: { axis: "y" },
     }
   );
 
@@ -323,7 +358,7 @@ const Home: FC = () => {
             styles={{ backgroundImage: carousels.backgroundImage }}
             extraComponent={
               <button
-                className={"navigate-case-button"}
+                className="navigate-case-button"
                 onClick={() => history.push("/case")}
               >
                 Read Case Study
