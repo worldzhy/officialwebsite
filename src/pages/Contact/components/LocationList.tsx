@@ -1,15 +1,24 @@
 import styled from "@emotion/styled";
 import { FunctionComponent } from "react";
+import { mobileMedia } from "../../../constants";
 import { CompanyInfoProps } from "../../../types";
 
 const LocationListWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  ${mobileMedia} {
+    padding: 20px;
+  }
   .summary {
     font-family: Prompt-Light;
     font-size: 14rem;
     line-height: 21rem;
     max-width: 100%;
+    ${mobileMedia} {
+      font-size: 14px;
+      line-height: 21px;
+      white-space: normal;
+    }
   }
   .list-wrapper {
     display: flex;
@@ -23,6 +32,10 @@ const LocationListWrapper = styled.div`
       font-family: Prompt-Light;
       font-size: 14rem;
       line-height: 21rem;
+      ${mobileMedia} {
+        font-size: 14px;
+        line-height: 21px;
+      }
     }
     img {
       min-height: 160rem;

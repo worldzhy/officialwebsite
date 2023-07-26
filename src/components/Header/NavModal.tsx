@@ -47,7 +47,7 @@ const StyledContainer = styled.div<{ open: boolean }>`
   }
   .close-icon {
     position: absolute;
-    bottom: 40px;
+    bottom: 160px;
     left: 50%;
     transform: translate(-50%, 0);
   }
