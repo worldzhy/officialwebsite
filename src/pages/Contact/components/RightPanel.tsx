@@ -1,8 +1,9 @@
-import styled from "@emotion/styled";
 import { FC, FormEventHandler, useContext, useState } from "react";
-import DataContext from "../../../contexts/DataContext";
-import FormField from "./FormField";
+import styled from "@emotion/styled";
+import { mobileMedia } from "../../../constants";
 import { FormSubmitResult } from "../../../types";
+import FormField from "./FormField";
+import DataContext from "../../../contexts/DataContext";
 
 const StyledFormWrapper = styled.div`
   margin-left: 190rem;
@@ -10,6 +11,12 @@ const StyledFormWrapper = styled.div`
   width: 400rem;
   overflow-y: auto;
   padding-top: 100rem;
+  ${mobileMedia} {
+    width: 100%;
+    padding: 20px;
+    margin: 0;
+    overflow-y: inherit;
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -18,10 +25,17 @@ const StyledFormWrapper = styled.div`
       flex-direction: column;
       margin-bottom: 50rem;
       font-family: Arial;
+      ${mobileMedia} {
+        margin-bottom: 20px;
+      }
       label {
         font-size: 14rem;
         line-height: 16rem;
         font-weight: 700;
+        ${mobileMedia} {
+          font-size: 14px;
+          line-height: 16px;
+        }
       }
       input {
         font-size: 18rem;
@@ -30,7 +44,12 @@ const StyledFormWrapper = styled.div`
         padding-top: 8rem;
         padding-bottom: 10rem;
         border-bottom: 1px solid white;
-
+        ${mobileMedia} {
+          font-size: 18px;
+          line-height: 20px;
+          padding-top: 8px;
+          padding-bottom: 10px;
+        }
         &:focus {
           outline: none;
           border-bottom: 1px solid white;
@@ -47,24 +66,34 @@ const StyledFormWrapper = styled.div`
     .submit-btn {
       width: 88rem;
       height: 40rem;
-      font-family: Prompt-Regular;
       font-size: 16rem;
       line-height: 24rem;
       background-color: white;
+      font-family: Prompt-Regular;
       color: #6b7280;
+      ${mobileMedia} {
+        width: 88px;
+        height: 40px;
+        font-size: 16px;
+        line-height: 24px;
+      }
     }
   }
 `;
-
 const StyledResultView = styled.div`
-  font-size: 30rem;
-  flex: 1;
-  margin: 200rem 20rem 0 20rem;
-  overflow: hidden;
   display: flex;
+  flex: 1;
   align-items: flex-start;
   justify-content: center;
+  font-size: 30rem;
+  margin: 200rem 20rem 0 20rem;
+  overflow: hidden;
+  ${mobileMedia} {
+    font-size: 18px;
+    margin-top: 60px;
+  }
 `;
+
 const RightPanel: FC = () => {
   const {
     contents: {

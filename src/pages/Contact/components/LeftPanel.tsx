@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { FC, useContext } from "react";
-import DataContext from "../../../contexts/DataContext";
 import LocationList from "./LocationList";
+import DataContext from "../../../contexts/DataContext";
 
 const StyledLeftPanel = styled.div`
   display: flex;
