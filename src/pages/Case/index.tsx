@@ -2,16 +2,17 @@ import styled from "@emotion/styled";
 import { FC, useContext, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ISlideConfig, PageSlides, SlideParallaxType } from "react-page-slides";
+import { mobileMedia } from "../../constants";
+import { enterAnimation } from "../../constants/animation";
+import GlobalContext, { FooterIconEnum } from "../../contexts/GlobalContext";
+import CaseTags from "./components/CaseTags";
 import DataContext from "../../contexts/DataContext";
+import Category from "../../components/Icons/Category";
 import LeftPanel from "./components/CaseModal/LeftPanel";
+import CaseModal from "./components/CaseModal/CaseModal";
 import RightPanel from "./components/CaseModal/RightPanel";
 import TinyCasePreview from "./components/TinyCasePreview";
-import CaseTags from "./components/CaseTags";
-import CaseModal from "./components/CaseModal/CaseModal";
-import { enterAnimation } from "../../constants/animation";
 import LoadingContext from "../../contexts/LoadingContext";
-import Category from "../../components/Icons/Category";
-import GlobalContext, { FooterIconEnum } from "../../contexts/GlobalContext";
 
 const StyledContainer = styled(motion.div)`
   display: flex;
@@ -20,14 +21,17 @@ const StyledContainer = styled(motion.div)`
   padding-bottom: 90rem;
   justify-content: space-between;
   align-items: flex-start;
+  ${mobileMedia} {
+    height: 100%;
+    flex-direction: column;
+  }
   .left-panel {
     font-family: Prompt;
     flex: 0 1 494rem;
     display: flex;
     flex-direction: column;
     position: relative;
-    left: 150rem;
-    top: 85rem;
+    padding: 85rem 0 0 150rem;
     height: auto;
     h2 {
       max-width: 500rem;
@@ -35,6 +39,13 @@ const StyledContainer = styled(motion.div)`
       line-height: 106rem;
       font-weight: 500;
       margin-bottom: 10rem;
+      ${mobileMedia} {
+        max-width: 100%;
+        font-size: 32px;
+        line-height: 48px;
+        font-weight: 500;
+        margin: 20px 0 10px 0;
+      }
     }
     .desc-wrapper {
       margin-bottom: 75rem;
@@ -46,12 +57,25 @@ const StyledContainer = styled(motion.div)`
       display: -webkit-box;
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
+      ${mobileMedia} {
+        flex: 1;
+        font-size: 18px;
+        line-height: 32px;
+        margin-bottom: 20px;
+        -webkit-line-clamp: 8;
+      }
     }
     .link-btn {
       width: 130rem;
       height: 33rem;
       line-height: 33rem;
       font-size: 14rem;
+      ${mobileMedia} {
+        width: 130px;
+        height: 33px;
+        line-height: 33px;
+        font-size: 14px;
+      }
     }
     .modal-trigger {
       position: fixed;
@@ -59,19 +83,33 @@ const StyledContainer = styled(motion.div)`
       bottom: 100rem;
       width: 20rem;
       color: white;
+      ${mobileMedia} {
+        position: relative;
+        width: 20px;
+        right: 20px;
+        margin-left: auto;
+        right: 20px;
+        left: auto;
+      }
     }
   }
   .right-panel {
-    justify-content: flex-end;
     display: flex;
     flex: 1;
     width: 100%;
     position: relative;
     top: -15rem;
+    justify-content: flex-end;
+    ${mobileMedia} {
+      top: -15px;
+    }
     img {
       flex: 1;
       width: 100%;
       object-fit: cover;
+      ${mobileMedia} {
+        max-height: 390px;
+      }
     }
   }
 `;
@@ -89,11 +127,16 @@ const Case: FC = () => {
   const [current, setCurrent] = useState(0);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
+
+  const [enableScroll, setEnableScroll] = useState<boolean>(true);
+
   const handleModalOpen = () => {
     setModalVisible(true);
   };
-
-  const [enableScroll, setEnableScroll] = useState<boolean>(true);
+  const handlePreviewOnclick = (i: number) => {
+    setCurrent(i);
+    setModalVisible(false);
+  };
 
   useEffect(() => {
     if (shouldResetCasePage) {
@@ -101,7 +144,6 @@ const Case: FC = () => {
       dispatch({ shouldResetCasePage: false });
     }
   }, [dispatch, shouldResetCasePage]);
-
   useEffect(() => {
     if (current === cases.length - 1) {
       dispatch({ footerIconName: FooterIconEnum.Triangle });
@@ -124,6 +166,16 @@ const Case: FC = () => {
       dispatchVisible(false, 1000);
     }
   }, [dispatchProgress, dispatchVisible, visible]);
+  useEffect(() => {
+    if (modalVisible) {
+      setTimeout(() => {
+        setEnableScroll(false);
+      }, 400);
+    } else {
+      setEnableScroll(true);
+    }
+  }, [modalVisible]);
+
   const slides: ISlideConfig[] = cases.map(
     ({ title, image, tags, description, id, primaryColor }) => {
       return {
@@ -157,7 +209,6 @@ const Case: FC = () => {
                 <Category />
               </button>
             </div>
-
             <div className={"right-panel select-none"}>
               <img src={image} alt="" />
             </div>
@@ -167,21 +218,6 @@ const Case: FC = () => {
       };
     }
   );
-
-  useEffect(() => {
-    if (modalVisible) {
-      setTimeout(() => {
-        setEnableScroll(false);
-      }, 400);
-    } else {
-      setEnableScroll(true);
-    }
-  }, [modalVisible]);
-
-  const handlePreviewOnclick = (i: number) => {
-    setCurrent(i);
-    setModalVisible(false);
-  };
 
   return (
     <div
