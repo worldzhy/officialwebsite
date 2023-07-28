@@ -1,8 +1,11 @@
 import { AppLayout } from "../types";
 
+const imagePath =  "https://officialwebsite-067174804713.s3.amazonaws.com/images/";
+const  animationPath = "https://officialwebsite-067174804713.s3.amazonaws.com/animation/";
+
 const mockData: AppLayout = {
   headers: {
-    logo: "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/logo-white.png",
+    logo: imagePath + "logo-white.png",
     name: "InceptionPad",
     items: [
       { label: "What We Do", path: "/home" },
@@ -52,14 +55,12 @@ const mockData: AppLayout = {
           {
             city: "Baltimore",
             country: "USA",
-            image:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/contact-1212.png",
+            image: imagePath + "contact-1212.png",
           },
           {
             city: "Chengdu",
             country: "China",
-            image:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/contact-1213.png",
+            image: imagePath + "contact-1213.png",
           },
         ],
       },
@@ -73,14 +74,10 @@ const mockData: AppLayout = {
           },
           position: "center",
           video: {
-            current:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-00.mp4",
-            transition:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-01.mp4",
-            mobileCurrent:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-00-00_bmp.pag",
-            mobileTransition:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-00-01_bmp.pag",
+            current: imagePath + "page-00-00.mp4",
+            transition: imagePath + "page-00-01.mp4",
+            mobileCurrent: animationPath + "page-00-00_bmp.pag",
+            mobileTransition: animationPath + "page-00-01_bmp.pag",
           },
         },
         {
@@ -93,18 +90,12 @@ const mockData: AppLayout = {
           },
           position: "left",
           video: {
-            current:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-01.mp4",
-            transition:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-02.mp4",
-            reverse:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-00-01_reverse.mp4",
-            mobileCurrent:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-01-01_bmp.pag",
-            mobileTransition:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-01-02_bmp.pag",
-            mobileReverse:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-00-01_back_bmp.pag",
+            current: imagePath + "page-01-01.mp4",
+            transition: imagePath + "page-01-02.mp4",
+            reverse: imagePath + "page-00-01_reverse.mp4",
+            mobileCurrent: animationPath + "page-01-01_bmp.pag",
+            mobileTransition: animationPath + "page-01-02_bmp.pag",
+            mobileReverse: animationPath + "page-00-01_back_bmp.pag",
           },
         },
         {
@@ -118,17 +109,14 @@ const mockData: AppLayout = {
           position: "left",
           video: {
             current:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-02.mp4",
+              imagePath + "page-02-02.mp4",
             transition:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-03.mp4",
+              imagePath + "page-02-03.mp4",
             reverse:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-01-02_reverse.mp4",
-            mobileCurrent:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-02-02_bmp.pag",
-            mobileTransition:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-02-03_bmp.pag",
-            mobileReverse:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-01-02_back_bmp.pag",
+              imagePath + "page-01-02_reverse.mp4",
+            mobileCurrent: animationPath + "page-02-02_bmp.pag",
+            mobileTransition: animationPath + "page-02-03_bmp.pag",
+            mobileReverse: animationPath + "page-01-02_back_bmp.pag",
           },
         },
         {
@@ -143,24 +131,20 @@ const mockData: AppLayout = {
           position: "left",
           video: {
             current:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-03-03.mp4",
+              imagePath + "page-03-03.mp4",
             reverse:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/page-02-03_reverse.mp4",
-            mobileCurrent:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-03-03_bmp.pag",
-            mobileReverse:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/public/animation/page-02-03_back_bmp.pag",
+              imagePath + "page-02-03_reverse.mp4",
+            mobileCurrent: animationPath + "page-03-03_bmp.pag",
+            mobileReverse: animationPath + "page-02-03_back_bmp.pag",
           },
         },
       ],
       carousels: {
-        backgroundImage:
-          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-bg.png",
+        backgroundImage: imagePath + "testimonials/bill-kapner-bg.png",
         contents: [
           {
             name: "Bill Kapner",
-            avatar:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/bill-kapner-avatar.png",
+            avatar: imagePath + "testimonials/bill-kapner-avatar.png",
             title: "Founder and Chairman",
             companyName: "TitanHouse Inc",
             brandingColor: "#FFD700",
@@ -169,8 +153,7 @@ const mockData: AppLayout = {
           },
           {
             name: "Chris Nickerson",
-            avatar:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/chris-nickerson-avatar.jpeg",
+            avatar: imagePath + "testimonials/chris-nickerson-avatar.jpeg",
             title: "CEO, Managing Partner",
             companyName: "Pinpoint LLC",
             brandingColor: "#A2CD5A",
@@ -179,8 +162,7 @@ const mockData: AppLayout = {
           },
           {
             name: "Thomas Wear",
-            avatar:
-              "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/testimonials/thomas-wear-avatar.jpeg",
+            avatar: imagePath + "testimonials/thomas-wear-avatar.jpeg",
             title: "Partner and Strategy Officer",
             companyName: "Atmosphere Inc",
             brandingColor: "#20B2AA",
@@ -198,11 +180,8 @@ const mockData: AppLayout = {
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
         primaryColor: "#0559AF",
-        image:
-          // "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
-          "images/case-template.png",
-        thumbImage:
-          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-171346.png",
+        image: "images/case-template.png",
+        thumbImage: imagePath + "case-171346.png",
         id: "1",
         tags: ["Big Data", "AI"],
       },
@@ -213,11 +192,8 @@ const mockData: AppLayout = {
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
         primaryColor: "#DDA71B",
-        image:
-          // "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
-          "images/case-template.png",
-        thumbImage:
-          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181212.png",
+        image: "images/case-template.png",
+        thumbImage: imagePath + "case-181212.png",
         id: "2",
         tags: ["Big Data"],
       },
@@ -228,11 +204,8 @@ const mockData: AppLayout = {
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
         primaryColor: "grey",
-        image:
-          // "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
-          "images/case-template.png",
-        thumbImage:
-          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181213.png",
+        image: "images/case-template.png",
+        thumbImage: imagePath + "case-181213.png",
         id: "3",
         tags: ["Big Data"],
       },
@@ -243,11 +216,8 @@ const mockData: AppLayout = {
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
         primaryColor: "#56F58D",
-        image:
-          // "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
-          "images/case-template.png",
-        thumbImage:
-          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181214.png",
+        image: "images/case-template.png",
+        thumbImage: imagePath + "case-181214.png",
         id: "4",
         tags: ["Big Data"],
       },
@@ -258,11 +228,8 @@ const mockData: AppLayout = {
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
         primaryColor: "#FF6C62",
-        image:
-          // "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-template.png",
-          "images/case-template.png",
-        thumbImage:
-          "https://officialwebsite-067174804713.s3.amazonaws.com/deletable_tmp_images/case-181215.png",
+        image: "images/case-template.png",
+        thumbImage: imagePath + "case-181215.png",
         id: "5",
         tags: ["Big Data"],
       },
