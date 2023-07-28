@@ -1,7 +1,9 @@
 import { AppLayout } from "../types";
 
-const imagePath = "https://officialwebsite-067174804713.s3.amazonaws.com/images/";
-const animationPath = "https://officialwebsite-067174804713.s3.amazonaws.com/animation/";
+const imagePath =
+ "https://officialwebsite-067174804713.s3.amazonaws.com/images/";
+const animationPath =
+ "https://officialwebsite-067174804713.s3.amazonaws.com/animation/";
 
 const mockData: AppLayout = {
   headers: {
@@ -108,12 +110,9 @@ const mockData: AppLayout = {
           },
           position: "left",
           video: {
-            current:
-              `${imagePath}page-02-02.mp4`,
-            transition:
-              `${imagePath}page-02-03.mp4`,
-            reverse:
-              `${imagePath}page-01-02_reverse.mp4`,
+            current: `${imagePath}page-02-02.mp4`,
+            transition: `${imagePath}page-02-03.mp4`,
+            reverse: `${imagePath}page-01-02_reverse.mp4`,
             mobileCurrent: `${animationPath}page-02-02_bmp.pag`,
             mobileTransition: `${animationPath}page-02-03_bmp.pag`,
             mobileReverse: `${animationPath}page-01-02_back_bmp.pag`,
@@ -130,10 +129,8 @@ const mockData: AppLayout = {
           // text: "Get peace of mind with a partner that has a proven track record of RELIABILTY and SECURITY.",
           position: "left",
           video: {
-            current:
-              `${imagePath}page-03-03.mp4`,
-            reverse:
-              `${imagePath}page-02-03_reverse.mp4`,
+            current: `${imagePath}page-03-03.mp4`,
+            reverse: `${imagePath}page-02-03_reverse.mp4`,
             mobileCurrent: `${animationPath}page-03-03_bmp.pag`,
             mobileReverse: `${animationPath}page-02-03_back_bmp.pag`,
           },
