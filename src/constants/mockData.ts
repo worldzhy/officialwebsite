@@ -1,9 +1,9 @@
 import { AppLayout } from "../types";
 
 const imagePath =
- "https://officialwebsite-067174804713.s3.amazonaws.com/images/";
+  "https://officialwebsite-067174804713.s3.amazonaws.com/images/";
 const animationPath =
- "https://officialwebsite-067174804713.s3.amazonaws.com/animation/";
+  "https://officialwebsite-067174804713.s3.amazonaws.com/animation/";
 
 const mockData: AppLayout = {
   headers: {
