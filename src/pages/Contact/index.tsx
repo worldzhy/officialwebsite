@@ -12,15 +12,16 @@ import LoadingContext from "../../contexts/LoadingContext";
 const StyledContainer = styled(motion.div)`
   position: absolute;
   display: flex;
-  ${mobileMedia} {
-    flex-direction: column;
-  }
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   color: white;
   background-color: #000;
+  ${mobileMedia} {
+    flex-direction: column;
+    overflow-y: auto;
+  }
 `;
 
 const Contact: FunctionComponent = () => {
