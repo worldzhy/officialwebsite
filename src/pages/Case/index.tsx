@@ -6,6 +6,7 @@ import { mobileMedia } from "../../constants";
 import { enterAnimation } from "../../constants/animation";
 import GlobalContext, { FooterIconEnum } from "../../contexts/GlobalContext";
 import CaseTags from "./components/CaseTags";
+import Close from "../../components/Icons/Close";
 import DataContext from "../../contexts/DataContext";
 import Category from "../../components/Icons/Category";
 import LeftPanel from "./components/CaseModal/LeftPanel";
@@ -101,15 +102,31 @@ const StyledContainer = styled(motion.div)`
     top: -15rem;
     justify-content: flex-end;
     ${mobileMedia} {
-      top: -15px;
+      top: -25px;
     }
     img {
       flex: 1;
       width: 100%;
       object-fit: cover;
       ${mobileMedia} {
-        max-height: 390px;
+        max-height: 100vw;
       }
+    }
+  }
+`;
+const StyleCloseBtn = styled.div`
+  display: none;
+  ${mobileMedia} {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  svg {
+    ${mobileMedia} {
+      width: 34px;
+      height: 34px;
     }
   }
 `;
@@ -252,6 +269,15 @@ const Case: FC = () => {
               {...c}
             />
           ))}
+          <StyleCloseBtn>
+            <button
+              onClick={() => {
+                setModalVisible(false);
+              }}
+            >
+              <Close />
+            </button>
+          </StyleCloseBtn>
           <i className={"lg:w-1/4 md:w-1/3 m-2"} />
           <i className={"lg:w-1/4 md:w-1/3 m-2"} />
         </RightPanel>
