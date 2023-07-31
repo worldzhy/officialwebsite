@@ -51,6 +51,7 @@ const MobileAnimation: FC<IProps> = ({
       pagView.pause();
       pagView.setComposition(pagFile);
       pagView.setProgress(0);
+      pagView.setRepeatCount(0);
       pagView.play();
       setShouldReverse(false);
       setCanTransition(false);
