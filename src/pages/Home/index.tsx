@@ -212,7 +212,6 @@ const Home: FC = () => {
 
   useEffect(() => {
     if (!carouselVisible && shouldResetHomePage) {
-      setCurrent(0);
       setCanTransition(false);
       setShouldReverse(false);
       dispatch({ shouldResetHomePage: false });
