@@ -35,18 +35,17 @@ const MobileAnimation: FC<IProps> = ({
   textTransition,
   textAnimation,
 }) => {
-  const { dispatchVisible, dispatchProgress, visible } =
-    useContext(LoadingContext);
+  const { dispatchVisible, dispatchProgress } = useContext(LoadingContext);
   const pagRef = useRef<any>();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [pagFiles, setPagFile] = useState<PagFile[]>([]);
+  const startTransitionRef = useRef<boolean>(false);
   const [canPreload, setCanPreload] = useState(false);
   const [pagView, setPagView] = useState<any>();
-  const [startTransition, setStartTransition] = useState(false);
 
-  const handleRepeat = () => {
-    if (!startTransition) return;
-    const next = canTransition ? current + 1 : current - 1;
+  const handleEnd = (ct = canTransition) => {
+    if (!startTransitionRef.current) return;
+    const next = ct ? current + 1 : current - 1;
     const pagFile = pagFiles[next]?.current;
     if (pagFile) {
       pagView.pause();
@@ -55,7 +54,7 @@ const MobileAnimation: FC<IProps> = ({
       pagView.play();
       setShouldReverse(false);
       setCanTransition(false);
-      setStartTransition(false);
+      startTransitionRef.current = false;
       setCurrent(next);
     }
   };
@@ -89,6 +88,9 @@ const MobileAnimation: FC<IProps> = ({
       };
       pagFiles[index] = files;
       setPagFile(pagFiles);
+      if (startTransitionRef.current) {
+        handleEnd(true);
+      }
       return files;
     }
     return null;
@@ -131,15 +133,16 @@ const MobileAnimation: FC<IProps> = ({
     if (pagFile) {
       pagView.pause();
       pagView.setComposition(pagFile);
+      pagView.setRepeatCount(1);
       pagView.setProgress(0);
       pagView.play();
-      setStartTransition(true);
+      startTransitionRef.current = true;
     }
   }, [pagFiles, current, canTransition, shouldReverse, pagView]);
   useEffect(() => {
     if (pagView) {
-      pagView.removeListener("onAnimationRepeat");
-      pagView.addListener("onAnimationRepeat", handleRepeat);
+      pagView.removeListener("onAnimationEnd");
+      pagView.addListener("onAnimationEnd", () => handleEnd());
     }
   });
 
