@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { FunctionComponent, useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "usehooks-ts";
-import { mobileMedia } from "../../constants";
 import { enterAnimation } from "../../constants/animation";
+import { MobileMediaQuery, mobileMedia } from "../../constants";
 import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
 import MobileForm from "./components/MobileForm";
@@ -27,7 +27,7 @@ const StyledContainer = styled(motion.div)`
 const Contact: FunctionComponent = () => {
   const { visible, dispatchProgress, dispatchVisible } =
     useContext(LoadingContext);
-  const isMobile = useMediaQuery("(max-width: 767px)");
+  const isMobile = useMediaQuery(MobileMediaQuery);
 
   useEffect(() => {
     if (visible) {

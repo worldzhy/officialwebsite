@@ -11,7 +11,6 @@ const StyledHeader = styled.header`
   display: flex;
   font-size: 18px;
   padding: 20rem 72rem;
-
   ${mobileMedia} {
     flex-direction: column;
   }
@@ -28,6 +27,9 @@ const StyledHeader = styled.header`
     z-index: 10;
   }
   .header-left {
+    .title-container {
+      align-items: center;
+    }
     .company-name {
       margin-top: 4px;
       margin-left: 10px;
@@ -98,10 +100,12 @@ const Header: FC = () => {
       <StyledHeader className={" flex text-white space-between w-full text-lg"}>
         <div className={"flex-1 flex header-left space-between"}>
           <div
-            className={"flex flex-initial aligns-center cursor-pointer"}
+            className={
+              "flex flex-initial aligns-center cursor-pointer title-container"
+            }
             onClick={handleLogoClicked}
           >
-            <CompanyLogo width={"18px"} height={"18px"} />
+            <CompanyLogo width={"20px"} height={"20px"} />
             <span className="company-name">{name}</span>
           </div>
           <NavIcon

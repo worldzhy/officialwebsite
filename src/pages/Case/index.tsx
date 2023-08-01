@@ -11,6 +11,7 @@ import DataContext from "../../contexts/DataContext";
 import Category from "../../components/Icons/Category";
 import LeftPanel from "./components/CaseModal/LeftPanel";
 import CaseModal from "./components/CaseModal/CaseModal";
+import DownArrow from "../../components/Icons/DownArrow";
 import RightPanel from "./components/CaseModal/RightPanel";
 import TinyCasePreview from "./components/TinyCasePreview";
 import LoadingContext from "../../contexts/LoadingContext";
@@ -113,13 +114,26 @@ const StyledContainer = styled(motion.div)`
       }
     }
   }
+  .down-arrow {
+    display: none;
+    ${mobileMedia} {
+      position: absolute;
+      display: block;
+      top: 84vh;
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 9;
+    }
+  }
 `;
 const StyleCloseBtn = styled.div`
   display: none;
   ${mobileMedia} {
+    position: fixed;
+    display: flex;
     width: 100%;
     height: 40px;
-    display: flex;
+    bottom: 40px;
     align-items: center;
     justify-content: center;
   }
@@ -194,46 +208,47 @@ const Case: FC = () => {
   }, [modalVisible]);
 
   const slides: ISlideConfig[] = cases.map(
-    ({ title, image, tags, description, id, primaryColor }) => {
-      return {
-        content: (
-          <StyledContainer
-            className={"case-content-wrapper"}
-            key={id}
-            style={{
-              backgroundColor: primaryColor,
-              color: "white",
-            }}
-            {...enterAnimation}
-          >
-            <div className={"left-panel"}>
-              <h2 className={"truncate"}>{title}</h2>
-              <CaseTags tags={tags} />
-              <p className={"desc-wrapper overflow-ellipsis break-word"}>
-                {description}
-              </p>
-              <button
-                style={{
-                  color: primaryColor,
-                }}
-                className={
-                  "bg-white text-black link-btn hover:shadow-lg hover:bg-gray-100"
-                }
-              >
-                View Case Study
-              </button>
-              <button onClick={handleModalOpen} className={"modal-trigger"}>
-                <Category />
-              </button>
-            </div>
-            <div className={"right-panel select-none"}>
-              <img src={image} alt="" />
-            </div>
-          </StyledContainer>
-        ),
-        style: { backgroundColor: primaryColor },
-      };
-    }
+    ({ title, image, tags, description, id, primaryColor }, index) => ({
+      content: (
+        <StyledContainer
+          className={"case-content-wrapper"}
+          key={id}
+          style={{
+            backgroundColor: primaryColor,
+            color: "white",
+          }}
+          {...enterAnimation}
+        >
+          <div className={"left-panel"}>
+            <h2 className={"truncate"}>{title}</h2>
+            <CaseTags tags={tags} />
+            <p className={"desc-wrapper overflow-ellipsis break-word"}>
+              {description}
+            </p>
+            <button
+              style={{
+                color: primaryColor,
+              }}
+              className={
+                "bg-white text-black link-btn hover:shadow-lg hover:bg-gray-100"
+              }
+            >
+              View Case Study
+            </button>
+            <button onClick={handleModalOpen} className={"modal-trigger"}>
+              <Category />
+            </button>
+          </div>
+          <div className={"right-panel select-none"}>
+            <img src={image} alt="" />
+          </div>
+          {index !== cases.length - 1 && (
+            <DownArrow width="27px" height="13px" className="down-arrow" />
+          )}
+        </StyledContainer>
+      ),
+      style: { backgroundColor: primaryColor },
+    })
   );
 
   return (

@@ -2,6 +2,8 @@ import { FC, useRef, useState, useEffect, useContext } from "react";
 import { PAGInit } from "libpag";
 import { motion } from "framer-motion";
 import { HomeVideoProps } from "../../../types";
+import { usePagContext } from "../../../contexts/PagContext";
+import DownArrow from "../../../components/Icons/DownArrow";
 import LoadingContext from "../../../contexts/LoadingContext";
 
 type IProps = {
@@ -36,11 +38,9 @@ const MobileAnimation: FC<IProps> = ({
   textAnimation,
 }) => {
   const { dispatchVisible, dispatchProgress } = useContext(LoadingContext);
-  const pagRef = useRef<any>();
+  const { PAG, pagFiles } = usePagContext();
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [pagFiles, setPagFile] = useState<PagFile[]>([]);
   const startTransitionRef = useRef<boolean>(false);
-  const [canPreload, setCanPreload] = useState(false);
   const [pagView, setPagView] = useState<any>();
 
   const handleEnd = (ct = canTransition) => {
@@ -59,53 +59,13 @@ const MobileAnimation: FC<IProps> = ({
       setCurrent(next);
     }
   };
-  const fetchFile = (url: string) =>
-    fetch(url)
-      .then((response) => response.arrayBuffer())
-      .then(async (buffer) => {
-        const { PAGFile } = pagRef.current;
-        const pagFile = await PAGFile.load(buffer);
-        return pagFile;
-      });
-  const handleLoadFile = async (index: number) => {
-    if (!pagFiles[index]) {
-      const {
-        video: { mobileCurrent, mobileTransition, mobileReverse },
-      } = videos[index];
-      const currentFile = await fetchFile(mobileCurrent);
-      let transitionFile = "";
-      let reverseFile = "";
-
-      if (mobileTransition) {
-        transitionFile = await fetchFile(mobileTransition);
-      }
-      if (mobileReverse) {
-        reverseFile = await fetchFile(mobileReverse);
-      }
-      const files = {
-        current: currentFile,
-        transition: transitionFile || undefined,
-        reverse: reverseFile || undefined,
-      };
-      pagFiles[index] = files;
-      setPagFile(pagFiles);
-      if (startTransitionRef.current) {
-        handleEnd(true);
-      }
-      return files;
-    }
-    return null;
-  };
 
   useEffect(() => {
-    PAGInit().then(async (p) => {
-      const { PAGView } = p;
-      pagRef.current = p;
-      dispatchProgress(60);
-      const files = await handleLoadFile(0);
-      dispatchProgress(80);
-      if (files && canvasRef.current) {
-        const canvas = canvasRef.current;
+    const initPag = async () => {
+      const files = pagFiles[0];
+      const canvas = canvasRef.current;
+      if (PAG && files && canvas) {
+        const { PAGView } = PAG;
         const currentSrc = files.current;
         canvas.width = currentSrc.width();
         canvas.height = currentSrc.height();
@@ -116,28 +76,28 @@ const MobileAnimation: FC<IProps> = ({
           await pv.play();
           dispatchProgress(100);
           dispatchVisible(false, 500);
-          setCanPreload(true);
         }
       }
-    });
-  }, []);
-  useEffect(() => {
-    const next = current + 1;
-    if (canPreload && !pagFiles[next] && videos[next]) {
-      handleLoadFile(next);
+    };
+    if (!pagView) {
+      initPag();
     }
-  }, [current, canPreload, pagFiles, videos]);
+  }, [PAG, pagFiles, canvasRef.current]);
   useEffect(() => {
     if (!canTransition && !shouldReverse) return;
-    const files = pagFiles[current];
-    const pagFile = canTransition ? files?.transition : files?.reverse;
-    if (pagFile) {
-      pagView.pause();
-      pagView.setComposition(pagFile);
-      pagView.setRepeatCount(1);
-      pagView.setProgress(0);
-      pagView.play();
-      startTransitionRef.current = true;
+    if (startTransitionRef.current) {
+      handleEnd();
+    } else {
+      const files = pagFiles[current];
+      const pagFile = canTransition ? files?.transition : files?.reverse;
+      if (pagFile) {
+        pagView.pause();
+        pagView.setComposition(pagFile);
+        pagView.setRepeatCount(1);
+        pagView.setProgress(0);
+        pagView.play();
+        startTransitionRef.current = true;
+      }
     }
   }, [pagFiles, current, canTransition, shouldReverse, pagView]);
   useEffect(() => {
@@ -164,6 +124,7 @@ const MobileAnimation: FC<IProps> = ({
                 <motion.li
                   key={`${i}-heading-${index}`}
                   transition={textTransition(index, texts.heading.length)}
+                  style={{ textAlign: "center" }}
                   animate={
                     currentText === i
                       ? {
@@ -201,6 +162,7 @@ const MobileAnimation: FC<IProps> = ({
         </div>
       ))}
       <canvas className="animation-canvas" ref={canvasRef}></canvas>
+      <DownArrow width="27px" height="13px" className="down-arrow" />
     </>
   );
 };

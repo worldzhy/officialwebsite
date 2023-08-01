@@ -3,6 +3,7 @@ import lottie from "lottie-web";
 import styled from "@emotion/styled";
 import { useMediaQuery } from "usehooks-ts";
 import { useLocation } from "react-router-dom";
+import { MobileMediaQuery } from "../../constants";
 import animationData from "../../animations/footer_button.json";
 import GlobalContext, { FooterIconEnum } from "../../contexts/GlobalContext";
 
@@ -39,7 +40,7 @@ const Mouse: FC = () => {
   } = useContext(GlobalContext);
   const ref = useRef<HTMLDivElement>(null);
   const { pathname } = useLocation();
-  const isMobile = useMediaQuery("(max-width: 767px)");
+  const isMobile = useMediaQuery(MobileMediaQuery);
 
   const handleTriangleClicked = () =>
     dispatch({
