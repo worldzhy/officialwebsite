@@ -5,14 +5,14 @@ import { mobileMedia } from "../../constants";
 
 const StyledFooterWrapper = styled.footer`
   position: absolute;
-  bottom: 0;
   width: 200rem;
   height: 90rem;
-  color: white;
-  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
+  bottom: 0;
+  z-index: 10;
+  color: white;
   ${mobileMedia} {
     bottom: 20px;
   }

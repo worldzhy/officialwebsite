@@ -11,6 +11,7 @@ import GlobalContext, {
 } from "./contexts/GlobalContext";
 import Loading from "./components/Loading";
 import mockData from "./constants/mockData";
+import PagContext from "./contexts/PagContext";
 import Layout from "./containers/Layout/Layout";
 import DataContext from "./contexts/DataContext";
 import LoadingContext from "./contexts/LoadingContext";
@@ -97,20 +98,25 @@ const App: FC = () => {
       >
         <BrowserRouter>
           <DataContext.Provider value={mockData as AppLayout}>
-            <Loading progress={progress} visible={visible}>
-              <Layout>
-                <AnimatePresence exitBeforeEnter initial={false}>
-                  <Switch
-                    location={window.location as any}
-                    key={window.location.pathname}
-                  >
-                    {routesConfig.map(({ ...rest }) => (
-                      <RouteWithSubRoutes key={rest.path as string} {...rest} />
-                    ))}
-                  </Switch>
-                </AnimatePresence>
-              </Layout>
-            </Loading>
+            <PagContext>
+              <Loading progress={progress} visible={visible}>
+                <Layout>
+                  <AnimatePresence exitBeforeEnter initial={false}>
+                    <Switch
+                      location={window.location as any}
+                      key={window.location.pathname}
+                    >
+                      {routesConfig.map(({ ...rest }) => (
+                        <RouteWithSubRoutes
+                          key={rest.path as string}
+                          {...rest}
+                        />
+                      ))}
+                    </Switch>
+                  </AnimatePresence>
+                </Layout>
+              </Loading>
+            </PagContext>
           </DataContext.Provider>
         </BrowserRouter>
       </GlobalContext.Provider>

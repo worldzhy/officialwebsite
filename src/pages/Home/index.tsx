@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
 import DataContext from "../../contexts/DataContext";
 import { enterAnimation } from "../../constants/animation";
-import { mobileMedia } from "../../constants";
+import { MobileMediaQuery, mobileMedia } from "../../constants";
 import Carousel from "./components/Carousel";
 import GlobalContext from "../../contexts/GlobalContext";
 import WebAnimations from "./components/WebAnimations";
@@ -119,6 +119,14 @@ const StyledContainer = styled(motion.div)`
     position: absolute;
     bottom: 0;
   }
+  .down-arrow {
+    position: absolute;
+    display: block;
+    top: 84vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 9;
+  }
   video {
     transition: all ease 16ms;
     width: 100%;
@@ -167,6 +175,9 @@ const StyledContainer = styled(motion.div)`
   .subtitle {
     font-family: Prompt-Light;
     font-size: 24rem;
+    ${mobileMedia} {
+      font-size: 14px;
+    }
   }
   .navigate-case-button {
     position: absolute;
@@ -198,7 +209,7 @@ const Home: FC = () => {
     state: { carouselVisible, shouldResetHomePage },
     dispatch,
   } = useContext(GlobalContext);
-  const isMobile = useMediaQuery("(max-width: 767px)");
+  const isMobile = useMediaQuery(MobileMediaQuery);
   const history = useHistory();
   const [canTransition, setCanTransition] = useState(false);
   const [shouldReverse, setShouldReverse] = useState(false);
