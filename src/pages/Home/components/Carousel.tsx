@@ -121,7 +121,7 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     align-items: center;
     justify-content: center;
     ${mobileMedia} {
-      bottom: 80px;
+      bottom: 100px;
     }
   }
 

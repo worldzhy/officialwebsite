@@ -1,5 +1,4 @@
 import { FC, useRef, useState, useEffect, useContext } from "react";
-import { PAGInit } from "libpag";
 import { motion } from "framer-motion";
 import { HomeVideoProps } from "../../../types";
 import { usePagContext } from "../../../contexts/PagContext";
@@ -17,6 +16,7 @@ type IProps = {
   currentText: number;
   textTransition: (index: number, lenght: number) => any;
   textAnimation: any;
+  setCurrentText: (value: number) => void;
 };
 
 type PagFile = {
@@ -36,6 +36,7 @@ const MobileAnimation: FC<IProps> = ({
   currentText,
   textTransition,
   textAnimation,
+  setCurrentText,
 }) => {
   const { dispatchVisible, dispatchProgress } = useContext(LoadingContext);
   const { PAG, pagFiles } = usePagContext();
@@ -57,6 +58,20 @@ const MobileAnimation: FC<IProps> = ({
       setCanTransition(false);
       startTransitionRef.current = false;
       setCurrent(next);
+    }
+  };
+  const handleRestart = () => {
+    const pagFile = pagFiles[current]?.current;
+    if (pagView && pagFile) {
+      pagView.pause();
+      pagView.setComposition(pagFile);
+      pagView.setProgress(0);
+      pagView.setRepeatCount(0);
+      pagView.play();
+      setShouldReverse(false);
+      setCanTransition(false);
+      startTransitionRef.current = false;
+      setCurrentText(0);
     }
   };
 
@@ -106,6 +121,11 @@ const MobileAnimation: FC<IProps> = ({
       pagView.addListener("onAnimationEnd", () => handleEnd());
     }
   });
+  useEffect(() => {
+    if (Math.abs(current - currentText) >= 2) {
+      handleRestart();
+    }
+  }, [current, currentText]);
 
   return (
     <>
@@ -114,7 +134,7 @@ const MobileAnimation: FC<IProps> = ({
           <motion.div
             className="text-wrapper position-top"
             style={{
-              maxHeight: "50%",
+              maxHeight: "50vh",
               zIndex: currentText === i ? 2 : -1,
               visibility: currentText === i ? "visible" : "hidden",
             }}
