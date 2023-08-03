@@ -15,20 +15,20 @@ import MobileAnimation from "./components/MobileAnimation";
 const TextAnimationDuration = 800;
 
 const StyledItemWrapper = styled.div`
+  display: flex;
+  flex: 1;
   width: 100%;
   height: 100%;
-  flex: 1;
-  display: flex;
+  padding-top: 156rem;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 156rem;
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
   color: white;
   ${mobileMedia} {
-    padding-top: 80px;
+    padding: 80px 0 220px 0;
   }
   & > * {
     z-index: 1;
@@ -104,7 +104,7 @@ const StyledContainer = styled(motion.div)`
     overflow: hidden;
   }
   .web-animation {
-     {
+    ${mobileMedia} {
       display: none;
     }
   }
@@ -192,12 +192,12 @@ const StyledContainer = styled(motion.div)`
     border: 2px solid #ffffff;
     z-index: 10;
     ${mobileMedia} {
-      position: relative;
       width: 163px;
       height: 40px;
+      bottom: 140px;
+      top: auto;
       left: auto;
       margin: 0 auto;
-      margin-top: 40px;
       font-size: 16px;
       line-height: 24px;
     }
@@ -225,6 +225,7 @@ const Home: FC = () => {
     if (!carouselVisible && shouldResetHomePage) {
       setCanTransition(false);
       setShouldReverse(false);
+      setCurrent(0);
       dispatch({ shouldResetHomePage: false });
     }
   }, [carouselVisible, dispatch, shouldResetHomePage]);
@@ -346,6 +347,7 @@ const Home: FC = () => {
           currentText={currentText}
           textTransition={textTransition}
           textAnimation={textAnimation}
+          setCurrentText={setCurrentText}
         />
       ) : (
         <WebAnimations

@@ -37,6 +37,9 @@ const StyledHeader = styled.header`
       line-height: 21rem;
       font-size: 18px;
       font-family: Arial;
+      ${mobileMedia} {
+        font-size: 24px;
+      }
     }
     .category {
       display: none;
@@ -105,7 +108,7 @@ const Header: FC = () => {
             }
             onClick={handleLogoClicked}
           >
-            <CompanyLogo width={"20px"} height={"20px"} />
+            <CompanyLogo width="36px" height="36px" />
             <span className="company-name">{name}</span>
           </div>
           <NavIcon
