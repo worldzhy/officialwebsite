@@ -29,6 +29,7 @@ const StyledNavigator = styled.div`
   padding: 0 72rem;
   z-index: 10;
   ${mobileMedia} {
+    display: none;
     position: absolute;
     bottom: 140px;
   }
@@ -120,7 +121,7 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     align-items: center;
     justify-content: center;
     ${mobileMedia} {
-      bottom: 140px;
+      bottom: 80px;
     }
   }
 
