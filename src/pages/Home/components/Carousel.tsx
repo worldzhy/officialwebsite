@@ -121,7 +121,11 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     align-items: center;
     justify-content: center;
     ${mobileMedia} {
+      display: flex;
+      width: 90px;
       bottom: 100px;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 
@@ -144,8 +148,8 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     background-color: gray;
     z-index: 1;
     ${mobileMedia} {
-      width: 18px;
-      height: 18px;
+      width: 12px;
+      height: 12px;
     }
   }
 
@@ -169,8 +173,8 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     content: "";
     cursor: pointer;
     ${mobileMedia} {
-      width: 18px;
-      height: 18px;
+      width: 12px;
+      height: 12px;
     }
   }
 
@@ -184,8 +188,8 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     z-index: 2;
     background-color: azure;
     ${mobileMedia} {
-      width: 18px;
-      height: 18px;
+      width: 12px;
+      height: 12px;
     }
   }
 `;
