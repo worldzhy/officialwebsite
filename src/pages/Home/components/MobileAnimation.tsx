@@ -36,10 +36,11 @@ const MobileAnimation: FC<IProps> = ({
   const { PAG, pagFiles } = usePagContext();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const startTransitionRef = useRef<boolean>(false);
-  const [pagView, setPagView] = useState<any>();
+  const pagViewRef = useRef<any>();
 
   const handleEnd = (ct = canTransition) => {
     if (!startTransitionRef.current) return;
+    const pagView = pagViewRef.current;
     const next = ct ? current + 1 : current - 1;
     const pagFile = pagFiles[next]?.current;
     if (pagFile) {
@@ -55,6 +56,7 @@ const MobileAnimation: FC<IProps> = ({
     }
   };
   const handleRestart = () => {
+    const pagView = pagViewRef.current;
     const pagFile = pagFiles[current]?.current;
     if (pagView && pagFile) {
       pagView.pause();
@@ -68,27 +70,28 @@ const MobileAnimation: FC<IProps> = ({
       setCurrentText(0);
     }
   };
+  const initPag = async () => {
+    const files = pagFiles[0];
+    const canvas = canvasRef.current;
+    if (PAG && files && canvas) {
+      const { PAGView } = PAG;
+      const currentSrc = files.current;
+      canvas.width = currentSrc.width();
+      canvas.height = currentSrc.height();
+      const pv = await PAGView.init(currentSrc, canvas);
+      if (pv) {
+        dispatchProgress(100);
+        dispatchVisible(false, 500);
+        pagViewRef.current = pv;
+        pv.setProgress(0);
+        pv.setRepeatCount(0);
+        await pv.play();
+      }
+    }
+  };
 
   useEffect(() => {
-    const initPag = async () => {
-      const files = pagFiles[0];
-      const canvas = canvasRef.current;
-      if (PAG && files && canvas) {
-        const { PAGView } = PAG;
-        const currentSrc = files.current;
-        canvas.width = currentSrc.width();
-        canvas.height = currentSrc.height();
-        const pv = await PAGView.init(currentSrc, canvas);
-        if (pv) {
-          setPagView(pv);
-          pv.setRepeatCount(0);
-          await pv.play();
-          dispatchProgress(100);
-          dispatchVisible(false, 500);
-        }
-      }
-    };
-    if (!pagView) {
+    if (!pagViewRef.current) {
       initPag();
     }
   }, [PAG, pagFiles, canvasRef.current]);
@@ -97,6 +100,7 @@ const MobileAnimation: FC<IProps> = ({
     if (startTransitionRef.current) {
       handleEnd();
     } else {
+      const pagView = pagViewRef.current;
       const files = pagFiles[current];
       const pagFile = canTransition ? files?.transition : files?.reverse;
       if (pagFile) {
@@ -108,8 +112,9 @@ const MobileAnimation: FC<IProps> = ({
         startTransitionRef.current = true;
       }
     }
-  }, [pagFiles, current, canTransition, shouldReverse, pagView]);
+  }, [pagFiles, current, canTransition, shouldReverse, pagViewRef.current]);
   useEffect(() => {
+    const pagView = pagViewRef.current;
     if (pagView) {
       pagView.removeListener("onAnimationEnd");
       pagView.addListener("onAnimationEnd", () => handleEnd());
