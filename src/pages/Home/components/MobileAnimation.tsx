@@ -19,12 +19,6 @@ type IProps = {
   setCurrentText: (value: number) => void;
 };
 
-type PagFile = {
-  current: any;
-  transition?: any;
-  reverse?: any;
-};
-
 const MobileAnimation: FC<IProps> = ({
   videos,
   current,

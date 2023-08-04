@@ -119,7 +119,7 @@ const StyledContainer = styled(motion.div)`
     ${mobileMedia} {
       position: absolute;
       display: block;
-      top: 84vh;
+      bottom: 16vh;
       left: 50%;
       transform: translate(-50%, 0);
       z-index: 9;

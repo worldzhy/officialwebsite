@@ -96,6 +96,7 @@ const StyledContainer = styled(motion.div)`
   video,
   .scroll-wrapper {
     position: absolute;
+    min-height: 56vw;
     top: 0;
     bottom: 0;
     left: 0;
@@ -185,21 +186,17 @@ const StyledContainer = styled(motion.div)`
     width: 163px;
     height: 40px;
     top: 557rem;
-    left: 639rem;
-    font-size: 16rem;
+    left: 50%;
+    line-height: 24px;
+    transform: translate(-50%, 0);
+    font-size: 16px;
     color: white;
-    line-height: 24rem;
     border: 2px solid #ffffff;
     z-index: 10;
     ${mobileMedia} {
-      width: 163px;
-      height: 40px;
       bottom: 140px;
       top: auto;
-      left: auto;
       margin: 0 auto;
-      font-size: 16px;
-      line-height: 24px;
     }
   }
 `;
