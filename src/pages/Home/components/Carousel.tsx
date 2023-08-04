@@ -17,6 +17,7 @@ import {
   useMotionValue,
   AnimatePresence,
 } from "framer-motion";
+import { useGesture } from "@use-gesture/react";
 import { mobileMedia } from "../../../constants";
 import GlobalContext, { FooterIconEnum } from "../../../contexts/GlobalContext";
 
@@ -148,8 +149,8 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     background-color: gray;
     z-index: 1;
     ${mobileMedia} {
-      width: 12px;
-      height: 12px;
+      width: 6px;
+      height: 6px;
     }
   }
 
@@ -173,8 +174,8 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     content: "";
     cursor: pointer;
     ${mobileMedia} {
-      width: 12px;
-      height: 12px;
+      width: 6px;
+      height: 6px;
     }
   }
 
@@ -188,8 +189,8 @@ const StyledCarouselWrapper = styled(motion.div)<{ bg?: string }>`
     z-index: 2;
     background-color: azure;
     ${mobileMedia} {
-      width: 12px;
-      height: 12px;
+      width: 6px;
+      height: 6px;
     }
   }
 `;
@@ -253,9 +254,13 @@ const MotionBox = styled(motion.div)`
     img {
       position: relative;
       top: 331rem;
-      left: 291rem;
+      left: 248rem;
       width: 66rem;
       height: 65rem;
+      ${mobileMedia} {
+        top: 270px;
+        left: 16px;
+      }
     }
   }
 `;
@@ -414,6 +419,21 @@ const Carousel = forwardRef<
     setAutoPlay(true);
   };
 
+  const bind = useGesture(
+    {
+      onDragEnd: ({ delta: [x] }: any) => {
+        if (x > 0) {
+          onPrev();
+        } else {
+          onNext();
+        }
+      },
+    },
+    {
+      drag: { axis: "x", threshold: 20, delay: 1000 },
+    }
+  );
+
   useImperativeHandle<unknown, RefProps>(ref, () => ({
     onPrev,
     onNext,
@@ -425,9 +445,9 @@ const Carousel = forwardRef<
 
   return (
     <StyledCarouselWrapper
-      initial={{ y: "100%", opacity: 0, scale: 0 }}
-      exit={{ y: "100%", opacity: 0, scale: 0 }}
-      animate={{ y: 0, opacity: 1, scale: 1 }}
+      initial={{ y: "100%", opacity: 0 }}
+      exit={{ y: "100%", opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{ type: "tween", duration: 0.5 }}
       bg={styles?.backgroundImage}
       className={`${prefixCls}item-wrapper`}
@@ -435,14 +455,15 @@ const Carousel = forwardRef<
     >
       <AnimatePresence exitBeforeEnter initial={false}>
         {[...children].map((child, index) => (
-          <CarouselItem
-            key={index}
-            prefixCls={prefixCls}
-            active={current % children.length === index}
-            direction={direction}
-          >
-            {child}
-          </CarouselItem>
+          <div key={index} {...bind()}>
+            <CarouselItem
+              prefixCls={prefixCls}
+              active={current % children.length === index}
+              direction={direction}
+            >
+              {child}
+            </CarouselItem>
+          </div>
         ))}
       </AnimatePresence>
       {showNavigator && <CarouselNavigator onPrev={onPrev} onNext={onNext} />}

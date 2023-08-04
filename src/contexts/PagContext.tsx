@@ -52,22 +52,20 @@ const PagProvider = ({
         return pagFile;
       });
   const handleLoadFile = async (index: number) => {
-    if (pagFiles[index] || !videos[index]) {
-      return null;
+    if (!pagFiles[index] && videos[index]) {
+      const {
+        video: { mobileCurrent, mobileTransition, mobileReverse },
+      } = videos[index];
+      pagFiles[index] = {
+        current: await fetchFile(mobileCurrent),
+        transition: mobileTransition
+          ? await fetchFile(mobileTransition)
+          : undefined,
+        reverse: mobileReverse ? await fetchFile(mobileReverse) : undefined,
+      };
+      setPagFiles([...pagFiles]);
+      handleLoadFile(index + 1);
     }
-    const {
-      video: { mobileCurrent, mobileTransition, mobileReverse },
-    } = videos[index];
-    pagFiles[index] = {
-      current: await fetchFile(mobileCurrent),
-      transition: mobileTransition
-        ? await fetchFile(mobileTransition)
-        : undefined,
-      reverse: mobileReverse ? await fetchFile(mobileReverse) : undefined,
-    };
-    setPagFiles([...pagFiles]);
-    handleLoadFile(index + 1);
-    return pagFiles;
   };
   const updateProgress = (progress: number) => {
     if (HomePagePath === pathname) {
