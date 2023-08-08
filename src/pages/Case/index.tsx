@@ -26,6 +26,7 @@ const StyledContainer = styled(motion.div)`
   ${mobileMedia} {
     height: 100%;
     flex-direction: column;
+    justify-content: normal;
   }
   .left-panel {
     font-family: Prompt;
@@ -35,6 +36,9 @@ const StyledContainer = styled(motion.div)`
     position: relative;
     padding: 85rem 0 0 150rem;
     height: auto;
+    ${mobileMedia} {
+      padding-left: 20px;
+    }
     h2 {
       max-width: 500rem;
       font-size: 70rem;
@@ -113,16 +117,16 @@ const StyledContainer = styled(motion.div)`
         max-height: 100vw;
       }
     }
-  }
-  .down-arrow {
-    display: none;
-    ${mobileMedia} {
-      position: absolute;
-      display: block;
-      bottom: 16vh;
-      left: 50%;
-      transform: translate(-50%, 0);
-      z-index: 9;
+    .down-arrow {
+      display: none;
+      ${mobileMedia} {
+        position: absolute;
+        display: block;
+        bottom: 6vh;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 9;
+      }
     }
   }
 `;
@@ -241,10 +245,10 @@ const Case: FC = () => {
           </div>
           <div className={"right-panel select-none"}>
             <img src={image} alt="" />
+            {index !== cases.length - 1 && (
+              <DownArrow width="27px" height="13px" className="down-arrow" />
+            )}
           </div>
-          {index !== cases.length - 1 && (
-            <DownArrow width="27px" height="13px" className="down-arrow" />
-          )}
         </StyledContainer>
       ),
       style: { backgroundColor: primaryColor },
