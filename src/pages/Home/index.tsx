@@ -123,7 +123,7 @@ const StyledContainer = styled(motion.div)`
   .down-arrow {
     position: absolute;
     display: block;
-    top: 84vh;
+    bottom: 10vh;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 9;
@@ -223,6 +223,9 @@ const Home: FC = () => {
       setCanTransition(false);
       setShouldReverse(false);
       setCurrent(0);
+      if (!isMobile) {
+        setCurrentText(0);
+      }
       dispatch({ shouldResetHomePage: false });
     }
   }, [carouselVisible, dispatch, shouldResetHomePage]);
