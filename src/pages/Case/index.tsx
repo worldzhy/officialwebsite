@@ -18,7 +18,7 @@ import LoadingContext from "../../contexts/LoadingContext";
 
 const StyledContainer = styled(motion.div)`
   display: flex;
-  min-height: 100%;
+  height: 100vh;
   padding-top: 100rem;
   padding-bottom: 90rem;
   justify-content: space-between;
@@ -107,7 +107,7 @@ const StyledContainer = styled(motion.div)`
     top: -15rem;
     justify-content: flex-end;
     ${mobileMedia} {
-      top: -25px;
+      max-height: 50vh;
     }
     img {
       flex: 1;
@@ -122,7 +122,7 @@ const StyledContainer = styled(motion.div)`
       ${mobileMedia} {
         position: absolute;
         display: block;
-        bottom: 6vh;
+        bottom: 0;
         left: 50%;
         transform: translate(-50%, 0);
         z-index: 9;
@@ -246,7 +246,7 @@ const Case: FC = () => {
           <div className={"right-panel select-none"}>
             <img src={image} alt="" />
             {index !== cases.length - 1 && (
-              <DownArrow width="27px" height="13px" className="down-arrow" />
+              <DownArrow width="22px" height="10px" className="down-arrow" />
             )}
           </div>
         </StyledContainer>
