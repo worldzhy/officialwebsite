@@ -7,25 +7,24 @@ interface CaseTagsProps {
   tags: TagType[] | undefined;
 }
 
-const StyledTagsWrapper = styled.p`
-  height: 26rem;
+const StyledTagsWrapper = styled.div`
+  display: flex;
+  align-items: center;
   margin-bottom: 16rem;
+  padding: 2rem 4rem;
   ${mobileMedia} {
-    height: 26px;
     margin-bottom: 16px;
   }
-  & > span {
+  & > div {
     &:not(:last-of-type) {
-      margin-right: 10rem;
+      margin-right: 20rem;
       ${mobileMedia} {
-        margin-right: 10px;
+        margin-right: 20px;
       }
     }
     display: inline-block;
-    height: 26rem;
     line-height: 26rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
+    padding: 6rem 12rem;
     border-radius: 1rem;
     font-size: 14rem;
     text-align: center;
@@ -33,10 +32,8 @@ const StyledTagsWrapper = styled.p`
     font-family: Prompt-Regular;
     background: rgba(245, 245, 245, 0.2);
     ${mobileMedia} {
-      height: 26px;
       line-height: 26px;
-      padding-left: 10px;
-      padding-right: 10px;
+      padding: 6px 12px;
       border-radius: 1px;
       font-size: 14px;
     }
@@ -47,7 +44,7 @@ const CaseTags: FC<CaseTagsProps> = ({ tags }) => {
   return (
     <StyledTagsWrapper className="tags-wrapper">
       {tags.map((tag) => (
-        <span key={tag}>{tag}</span>
+        <div key={tag}>{tag}</div>
       ))}
     </StyledTagsWrapper>
   );

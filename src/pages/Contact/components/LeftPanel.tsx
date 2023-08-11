@@ -19,7 +19,6 @@ const StyledLeftPanel = styled.div`
     margin-bottom: 8rem;
   }
   .sub-title {
-    font-family: Prompt-Light;
     font-size: 18rem;
     line-height: 27rem;
     margin-bottom: 97rem;

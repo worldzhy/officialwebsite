@@ -10,7 +10,7 @@ import NavModal from "./NavModal";
 const StyledHeader = styled.header`
   display: flex;
   font-size: 18px;
-  padding: 20rem 72rem;
+  padding: 32rem 72rem;
   ${mobileMedia} {
     flex-direction: column;
   }
@@ -53,6 +53,7 @@ const StyledHeader = styled.header`
     position: relative;
     margin-top: -1rem;
     line-height: 37rem;
+    font-size: 18px;
     &:not(last-of-type) {
       margin-right: 70px;
     }

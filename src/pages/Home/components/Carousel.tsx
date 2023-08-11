@@ -35,8 +35,8 @@ const StyledNavigator = styled.div`
     bottom: 140px;
   }
   & > div {
-    width: 20rem;
-    height: 20rem;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
     opacity: 0.6;
     transition: all 1s ease;

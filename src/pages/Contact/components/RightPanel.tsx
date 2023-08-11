@@ -24,7 +24,6 @@ const StyledFormWrapper = styled.div`
       display: flex;
       flex-direction: column;
       margin-bottom: 50rem;
-      font-family: Arial;
       ${mobileMedia} {
         margin-bottom: 20px;
       }
@@ -37,13 +36,19 @@ const StyledFormWrapper = styled.div`
           line-height: 16px;
         }
       }
+      input:-internal-autofill-previewed,
+      input:-internal-autofill-selected {
+        -webkit-text-fill-color: white;
+        transition: background-color 5000s ease-in-out 0s;
+      }
       input {
         font-size: 18rem;
         line-height: 20rem;
-        background-color: transparent;
         padding-top: 8rem;
         padding-bottom: 10rem;
         border-bottom: 1px solid white;
+        background-color: transparent;
+        font-family: Prompt;
         ${mobileMedia} {
           font-size: 18px;
           line-height: 20px;
@@ -70,7 +75,7 @@ const StyledFormWrapper = styled.div`
       line-height: 24rem;
       background-color: white;
       font-family: Prompt-Regular;
-      color: #6b7280;
+      color: black;
       ${mobileMedia} {
         width: 88px;
         height: 40px;
@@ -130,8 +135,7 @@ const RightPanel: FC = () => {
           {Object.entries(form).map(([key, props]) => (
             <FormField key={key} {...props} name={key} />
           ))}
-
-          <button className={"submit-btn"} type={"submit"}>
+          <button className="submit-btn" type="submit">
             Send
           </button>
         </form>

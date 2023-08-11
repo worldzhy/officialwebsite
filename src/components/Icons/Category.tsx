@@ -1,13 +1,7 @@
 import { FC, SVGProps } from "react";
 
 const Category: FC<SVGProps<any>> = (props) => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 17 17"
-    fill="currentColor"
-    {...props}
-  >
+  <svg viewBox="0 0 17 17" fill="currentColor" {...props}>
     <rect width="3" height="3" fill="currentColor" />
     <rect y="7" width="3" height="3" fill="currentColor" />
     <rect y="14" width="3" height="3" fill="currentColor" />

@@ -10,10 +10,11 @@ const LocationListWrapper = styled.div`
     padding: 20px;
   }
   .summary {
-    font-family: Prompt-Light;
+    font-family: Prompt;
     font-size: 14rem;
     line-height: 21rem;
     max-width: 100%;
+    margin-bottom: 20rem;
     ${mobileMedia} {
       font-size: 14px;
       line-height: 21px;
@@ -29,7 +30,7 @@ const LocationListWrapper = styled.div`
       max-width: 50%;
     }
     p {
-      font-family: Prompt-Light;
+      font-family: Prompt;
       font-size: 14rem;
       line-height: 21rem;
       ${mobileMedia} {
@@ -39,12 +40,14 @@ const LocationListWrapper = styled.div`
     }
     img {
       min-height: 160rem;
+      margin-bottom: 20rem;
     }
     .divider {
       margin: 0 2rem;
     }
     .country {
-      font-family: Prompt-Regular;
+      font-weight: bold;
+      font-family: Prompt;
     }
   }
 `;

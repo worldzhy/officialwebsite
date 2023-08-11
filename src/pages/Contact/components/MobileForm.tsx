@@ -17,7 +17,6 @@ const StyledTitle = styled.div`
     margin-bottom: 8px;
   }
   .sub-title {
-    font-family: Prompt-Light;
     font-size: 18px;
     line-height: 20px;
   }
@@ -26,7 +25,7 @@ const StyledTitle = styled.div`
 const MobileForm: FC = () => {
   const {
     contents: {
-      contact: { title, subTitle, companyInfo },
+      contact: { title, subTitleMobile, companyInfo },
     },
   } = useContext(DataContext);
 
@@ -34,7 +33,7 @@ const MobileForm: FC = () => {
     <>
       <StyledTitle>
         <h2>{title}</h2>
-        <p className={"sub-title"}>{subTitle}</p>
+        <p className={"sub-title"}>{subTitleMobile}</p>
       </StyledTitle>
       <RightPanel />
       <LocationList {...companyInfo} />

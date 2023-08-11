@@ -181,7 +181,7 @@ const MobileAnimation: FC<IProps> = ({
         </div>
       ))}
       <canvas className="animation-canvas" ref={canvasRef}></canvas>
-      <DownArrow width="27px" height="13px" className="down-arrow" />
+      <DownArrow width="22px" height="10px" className="down-arrow" />
     </>
   );
 };

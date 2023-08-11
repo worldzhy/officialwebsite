@@ -83,6 +83,7 @@ export enum FormSubmitResult {
 interface ContactContentProps {
   title: string;
   subTitle: string;
+  subTitleMobile: string;
   companyInfo: CompanyInfoProps;
   form: Record<string, FormFieldProps>;
   resultTips: Omit<Record<FormSubmitResult, string>, "Default">;

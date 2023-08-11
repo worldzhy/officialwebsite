@@ -56,12 +56,12 @@ const StyledContainer = styled(motion.div)`
     .desc-wrapper {
       margin-bottom: 75rem;
       flex: 0 0 160rem;
-      font-family: Prompt-Light;
-      font-size: 18rem;
-      line-height: 32rem;
+      font-family: Prompt;
+      font-size: 18px;
+      line-height: 32px;
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 5;
+      -webkit-line-clamp: 6;
       -webkit-box-orient: vertical;
       ${mobileMedia} {
         flex: 1;
@@ -72,26 +72,20 @@ const StyledContainer = styled(motion.div)`
       }
     }
     .link-btn {
-      width: 130rem;
-      height: 33rem;
-      line-height: 33rem;
-      font-size: 14rem;
-      ${mobileMedia} {
-        width: 130px;
-        height: 33px;
-        line-height: 33px;
-        font-size: 14px;
-      }
+      width: 130px;
+      height: 33px;
+      line-height: 33px;
+      font-size: 14px;
     }
     .modal-trigger {
       position: fixed;
       left: 150rem;
       bottom: 100rem;
-      width: 20rem;
+      width: 24rem;
       color: white;
       ${mobileMedia} {
         position: relative;
-        width: 20px;
+        width: 26px;
         right: 20px;
         margin-left: auto;
         right: 20px;
@@ -117,16 +111,16 @@ const StyledContainer = styled(motion.div)`
         max-height: 100vw;
       }
     }
-    .down-arrow {
-      display: none;
-      ${mobileMedia} {
-        position: absolute;
-        display: block;
-        bottom: 0;
-        left: 50%;
-        transform: translate(-50%, 0);
-        z-index: 9;
-      }
+  }
+  .down-arrow {
+    display: none;
+    ${mobileMedia} {
+      position: absolute;
+      display: block;
+      top: 82vh;
+      left: 50%;
+      transform: translate(-50%, 0);
+      z-index: 9;
     }
   }
 `;
@@ -230,9 +224,6 @@ const Case: FC = () => {
               {description}
             </p>
             <button
-              style={{
-                color: primaryColor,
-              }}
               className={
                 "bg-white text-black link-btn hover:shadow-lg hover:bg-gray-100"
               }
@@ -245,10 +236,10 @@ const Case: FC = () => {
           </div>
           <div className={"right-panel select-none"}>
             <img src={image} alt="" />
-            {index !== cases.length - 1 && (
-              <DownArrow width="22px" height="10px" className="down-arrow" />
-            )}
           </div>
+          {index !== cases.length - 1 && (
+            <DownArrow width="22px" height="10px" className="down-arrow" />
+          )}
         </StyledContainer>
       ),
       style: { backgroundColor: primaryColor },
