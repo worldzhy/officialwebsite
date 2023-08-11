@@ -63,12 +63,12 @@ const StyledItemWrapper = styled.div`
       line-height: 20px;
     }
     .title {
-      font-family: Arial;
+      font-family: Propmt;
       opacity: 0.5;
     }
     .company-name {
       margin-left: 26rem;
-      font-family: Lora;
+      font-family: Propmt-Regular;
       font-weight: bold;
       opacity: 0.5;
     }
@@ -123,7 +123,7 @@ const StyledContainer = styled(motion.div)`
   .down-arrow {
     position: absolute;
     display: block;
-    bottom: 10vh;
+    bottom: 6vh;
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 9;
@@ -161,7 +161,7 @@ const StyledContainer = styled(motion.div)`
     width: 720rem;
     color: white;
     font-family: Prompt;
-    font-size: 48rem;
+    font-size: 56rem;
     line-height: 64rem;
     font-weight: 500;
     text-shadow: 0 4rem 4rem rgba(0, 0, 0, 0.25);
@@ -174,7 +174,7 @@ const StyledContainer = styled(motion.div)`
     }
   }
   .subtitle {
-    font-family: Prompt-Light;
+    font-family: Prompt;
     font-size: 24rem;
     ${mobileMedia} {
       font-size: 14px;

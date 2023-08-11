@@ -37,7 +37,7 @@ const mockData: AppLayout = {
         phone: {
           label: "Mobile Phone",
           inputProps: {
-            placeholder: "Your preferred mobile phone number",
+            placeholder: "Your preferred phone number",
             type: "tel",
           },
         },
@@ -51,8 +51,10 @@ const mockData: AppLayout = {
       title: "Send Inquiry",
       subTitle:
         "Please fill out the form on the right so that we can be prepared before contacting you",
+      subTitleMobile:
+        "Please fill out the form below so that we can be prepared before contacting you",
       companyInfo: {
-        summary: "We are located in Baltimore, USA and Chengdu, China",
+        summary: "We are located at Baltimore, USA and Chengdu, China",
         list: [
           {
             city: "Baltimore",

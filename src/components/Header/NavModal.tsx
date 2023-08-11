@@ -25,6 +25,7 @@ const StyledContainer = styled.div<{ open: boolean }>`
     margin: 20px 0 20px 10px;
     line-height: 40px;
     font-size: 36px;
+    font-family: Prompt;
     &::before {
       content: "";
       position: absolute;
