@@ -1,4 +1,4 @@
-import { FC, useContext, useMemo, useRef, useState } from "react";
+import { FC, useContext, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { HomeVideoProps } from "../../../types";
 import { initLoadingProgress } from "../../../constants/animation";
@@ -78,14 +78,9 @@ const WebAnimations: FC<IProps> = ({
     }
   };
 
-  const displayVideos = useMemo(() => {
-    if (canPreload) return videos;
-    return [videos[0]];
-  }, [videos, canPreload]);
-
   return (
     <>
-      {displayVideos.map(
+      {videos.map(
         (
           {
             video: { transition, current: currentVideo, reverse },
