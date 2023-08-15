@@ -19,6 +19,7 @@ const StyledTitle = styled.div`
   .sub-title {
     font-size: 18px;
     line-height: 20px;
+    font-family: Prompt;
   }
 `;
 

@@ -31,6 +31,7 @@ const StyledFormWrapper = styled.div`
         font-size: 14rem;
         line-height: 16rem;
         font-weight: 700;
+        font-family: Prompt;
         ${mobileMedia} {
           font-size: 14px;
           line-height: 16px;
@@ -74,7 +75,7 @@ const StyledFormWrapper = styled.div`
       font-size: 16rem;
       line-height: 24rem;
       background-color: white;
-      font-family: Prompt-Regular;
+      font-family: Prompt;
       color: black;
       ${mobileMedia} {
         width: 88px;

@@ -35,20 +35,15 @@ const StyledNavigator = styled.div`
     bottom: 140px;
   }
   & > div {
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     cursor: pointer;
     opacity: 0.6;
     transition: all 1s ease;
-    ${mobileMedia} {
-      width: 16px;
-      height: 16px;
-    }
     &:hover {
       opacity: 1;
     }
   }
-
   .navigator-arrow-left {
     transform: rotate(-45deg);
     border-top: 1rem solid white;
