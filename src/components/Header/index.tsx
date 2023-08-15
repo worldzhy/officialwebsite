@@ -54,6 +54,7 @@ const StyledHeader = styled.header`
     margin-top: -1rem;
     line-height: 37rem;
     font-size: 18px;
+    font-family: Prompt;
     &:not(last-of-type) {
       margin-right: 70px;
     }

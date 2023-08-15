@@ -178,7 +178,7 @@ const mockData: AppLayout = {
           "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
-        primaryColor: "#0559AF",
+        primaryColor: "#000",
         image: "images/case-template.png",
         thumbImage: `${imagePath}case-171346.png`,
         id: "1",
@@ -190,7 +190,7 @@ const mockData: AppLayout = {
           "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
-        primaryColor: "#DDA71B",
+        primaryColor: "#0559AF",
         image: "images/case-template.png",
         thumbImage: `${imagePath}case-181212.png`,
         id: "2",
@@ -202,7 +202,7 @@ const mockData: AppLayout = {
           "Three-time successful exit team choosing InceptionPad as the core developer of their platform" +
           "Rapid implementation of functions" +
           "Start from the business value proposition, not requirement sheets",
-        primaryColor: "grey",
+        primaryColor: "#DDA71B",
         image: "images/case-template.png",
         thumbImage: `${imagePath}case-181213.png`,
         id: "3",

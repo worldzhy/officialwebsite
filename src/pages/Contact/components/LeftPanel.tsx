@@ -22,6 +22,7 @@ const StyledLeftPanel = styled.div`
     font-size: 18rem;
     line-height: 27rem;
     margin-bottom: 97rem;
+    font-family: Prompt;
   }
 `;
 const LeftPanel: FC = () => {
