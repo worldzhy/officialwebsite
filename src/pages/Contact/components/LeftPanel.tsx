@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { FC, useContext } from "react";
 import LocationList from "./LocationList";
-import DataContext from "../../../contexts/DataContext";
+import { useDataContext } from "../../../contexts/DataContext";
 
 const StyledLeftPanel = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const LeftPanel: FC = () => {
     contents: {
       contact: { title, subTitle, companyInfo },
     },
-  } = useContext(DataContext);
+  } = useDataContext();
 
   return (
     <StyledLeftPanel>

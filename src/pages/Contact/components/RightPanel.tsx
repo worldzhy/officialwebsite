@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { mobileMedia } from "../../../constants";
 import { FormSubmitResult } from "../../../types";
 import FormField from "./FormField";
-import DataContext from "../../../contexts/DataContext";
+import { useDataContext } from "../../../contexts/DataContext";
 
 const StyledFormWrapper = styled.div`
   margin-left: 190rem;
@@ -105,7 +105,7 @@ const RightPanel: FC = () => {
     contents: {
       contact: { form, resultTips },
     },
-  } = useContext(DataContext);
+  } = useDataContext();
   const [result, setResult] = useState<FormSubmitResult>(
     FormSubmitResult.Default
   );

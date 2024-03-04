@@ -4,7 +4,7 @@ import { useMediaQuery } from "usehooks-ts";
 import { useGesture } from "@use-gesture/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useHistory } from "react-router-dom";
-import DataContext from "../../contexts/DataContext";
+import { useDataContext } from "../../contexts/DataContext";
 import { enterAnimation } from "../../constants/animation";
 import { MobileMediaQuery, mobileMedia } from "../../constants";
 import Carousel from "./components/Carousel";
@@ -214,7 +214,7 @@ const Home: FC = () => {
     contents: {
       home: { videos, carousels },
     },
-  } = useContext(DataContext);
+  } = useDataContext();
   const [current, setCurrent] = useState(0);
   const [currentText, setCurrentText] = useState(0);
 

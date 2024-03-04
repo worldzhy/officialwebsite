@@ -29,7 +29,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "PORT=8010 craco start FAST_REFRESH=true",
+    "start": "PORT=8010 craco --openssl-legacy-provider start FAST_REFRESH=true",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",

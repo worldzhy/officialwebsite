@@ -1,8 +1,8 @@
 import { FC, useRef, useState, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 import { HomeVideoProps } from "../../../types";
-import { usePagContext } from "../../../contexts/PagContext";
 import DownArrow from "../../../components/Icons/DownArrow";
+import { usePagContext } from "../../../contexts/PagContext";
 import LoadingContext from "../../../contexts/LoadingContext";
 
 type IProps = {
