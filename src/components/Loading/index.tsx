@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { FC, useContext, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useHistory, useLocation } from "react-router-dom";
-import DataContext from "../../contexts/DataContext";
+import { useDataContext } from "../../contexts/DataContext";
 
 export interface LoadingProps {
   progress: number;
@@ -64,7 +64,7 @@ const Progress: FC<LoadingProps> = ({ progress }) => {
 const Loading: FC<LoadingProps> = ({ children, progress, visible }) => {
   const {
     headers: { logo },
-  } = useContext(DataContext);
+  } = useDataContext();
   const { pathname } = useLocation();
   const history = useHistory();
 

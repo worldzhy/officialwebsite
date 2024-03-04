@@ -1,7 +1,6 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { AppLayout } from "./types";
 import routesConfig, { RouteType } from "./routes";
 import { initLoadingProgress } from "./constants/animation";
 import GlobalContext, {
@@ -10,7 +9,6 @@ import GlobalContext, {
   GlobalContextStateType,
 } from "./contexts/GlobalContext";
 import Loading from "./components/Loading";
-import mockData from "./constants/mockData";
 import PagContext from "./contexts/PagContext";
 import Layout from "./containers/Layout/Layout";
 import DataContext from "./contexts/DataContext";
@@ -97,7 +95,7 @@ const App: FC = () => {
         value={{ state: globalState, dispatch: globalStateDispatcher }}
       >
         <BrowserRouter>
-          <DataContext.Provider value={mockData as AppLayout}>
+          <DataContext>
             <PagContext>
               <Loading progress={progress} visible={visible}>
                 <Layout>
@@ -117,7 +115,7 @@ const App: FC = () => {
                 </Layout>
               </Loading>
             </PagContext>
-          </DataContext.Provider>
+          </DataContext>
         </BrowserRouter>
       </GlobalContext.Provider>
     </LoadingContext.Provider>

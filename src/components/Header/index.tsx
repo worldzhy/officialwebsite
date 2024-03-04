@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import { FC, useContext, useState } from "react";
+import { FC, useState } from "react";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { mobileMedia } from "../../constants";
-import NavIcon from "../Icons/NavIcon";
-import CompanyLogo from "../Icons/CompanyLogo";
-import DataContext from "../../contexts/DataContext";
 import NavModal from "./NavModal";
+import NavIcon from "../Icons/NavIcon";
+import { mobileMedia } from "../../constants";
+import CompanyLogo from "../Icons/CompanyLogo";
+import { useDataContext } from "../../contexts/DataContext";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -92,7 +92,7 @@ const StyleNavs = styled.div`
 const Header: FC = () => {
   const {
     headers: { name, items },
-  } = useContext(DataContext);
+  } = useDataContext();
   const { pathname } = useLocation();
   const history = useHistory();
   const [showNav, setShowNav] = useState(false);

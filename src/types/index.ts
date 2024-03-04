@@ -1,9 +1,9 @@
 import { DetailedHTMLProps, InputHTMLAttributes, ReactHTML } from "react";
 
-export type AppLayout = {
+export interface AppLayout {
   headers: HeaderType;
   contents: ContentsType;
-};
+}
 
 export type HeaderType = {
   items: Array<HeaderItemProps>;
@@ -17,7 +17,7 @@ interface HeaderItemProps {
   children?: Array<HeaderItemProps>;
 }
 
-type ContentsType = {
+export type ContentsType = {
   home: HomeContentType;
   cases: CaseContentType;
   contact: ContactContentProps;

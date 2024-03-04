@@ -7,7 +7,6 @@ import { enterAnimation } from "../../constants/animation";
 import GlobalContext, { FooterIconEnum } from "../../contexts/GlobalContext";
 import CaseTags from "./components/CaseTags";
 import Close from "../../components/Icons/Close";
-import DataContext from "../../contexts/DataContext";
 import Category from "../../components/Icons/Category";
 import LeftPanel from "./components/CaseModal/LeftPanel";
 import CaseModal from "./components/CaseModal/CaseModal";
@@ -15,6 +14,7 @@ import DownArrow from "../../components/Icons/DownArrow";
 import RightPanel from "./components/CaseModal/RightPanel";
 import TinyCasePreview from "./components/TinyCasePreview";
 import LoadingContext from "../../contexts/LoadingContext";
+import { useDataContext } from "../../contexts/DataContext";
 
 const StyledContainer = styled(motion.div)`
   display: flex;
@@ -146,7 +146,7 @@ const StyleCloseBtn = styled.div`
 const Case: FC = () => {
   const {
     contents: { cases },
-  } = useContext(DataContext);
+  } = useDataContext();
   const {
     state: { shouldResetCasePage },
     dispatch,

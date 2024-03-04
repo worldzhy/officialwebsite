@@ -9,9 +9,9 @@ import {
 import { PAGInit } from "libpag";
 import { useMediaQuery } from "usehooks-ts";
 import { useLocation } from "react-router-dom";
-import { MobileMediaQuery } from "../constants";
-import DataContext from "./DataContext";
+import { useDataContext } from "./DataContext";
 import LoadingContext from "./LoadingContext";
+import { MobileMediaQuery } from "../constants";
 
 type PagFile = {
   current: any;
@@ -41,7 +41,7 @@ const PagProvider = ({
     contents: {
       home: { videos },
     },
-  } = useContext(DataContext);
+  } = useDataContext();
 
   const fetchFile = (url: string) =>
     fetch(url)

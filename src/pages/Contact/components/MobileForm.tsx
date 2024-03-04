@@ -2,7 +2,7 @@ import { FC, useContext } from "react";
 import styled from "@emotion/styled";
 import RightPanel from "./RightPanel";
 import LocationList from "./LocationList";
-import DataContext from "../../../contexts/DataContext";
+import { useDataContext } from "../../../contexts/DataContext";
 
 const StyledTitle = styled.div`
   width: 100%;
@@ -28,7 +28,7 @@ const MobileForm: FC = () => {
     contents: {
       contact: { title, subTitleMobile, companyInfo },
     },
-  } = useContext(DataContext);
+  } = useDataContext();
 
   return (
     <>
