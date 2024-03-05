@@ -1,4 +1,11 @@
-export const EN = {
+export enum LanguageEnum {
+  en = "English",
+  spn = "España",
+}
+
+export type LangType = keyof typeof LanguageEnum;
+
+const EN = {
   headers: {
     name: "InceptionPad",
     labelItme1: "What We Do",
@@ -92,7 +99,7 @@ export const EN = {
   },
 };
 
-export const SPN = {
+const SPN = {
   headers: {
     name: "InceptionPad",
     labelItme1: "Qué hacemos",
@@ -184,4 +191,19 @@ export const SPN = {
         "El equipo de salida tres veces exitoso eligió a InceptionPad como desarrollador principal de su plataforma. Rápida implementación de funciones. Empiece por la propuesta de valor empresarial, no por las hojas de requisitos.",
     },
   },
+};
+
+export const langMap = {
+  [LanguageEnum.en]: EN,
+  [LanguageEnum.spn]: SPN,
+};
+
+export const getInitLang = () => {
+  let localLang = LanguageEnum.en;
+  const language = window?.navigator?.language;
+
+  if (language.endsWith("-ES")) {
+    localLang = LanguageEnum.spn;
+  }
+  return localLang;
 };

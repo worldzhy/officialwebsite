@@ -59,7 +59,7 @@ const StyledContainer = styled(motion.div)`
       font-family: Prompt;
       font-size: 18px;
       line-height: 32px;
-      min-height: 188px;
+      min-height: 166px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 6;
@@ -74,7 +74,7 @@ const StyledContainer = styled(motion.div)`
       }
     }
     .link-btn {
-      width: 140px;
+      width: 160px;
       height: 33px;
       line-height: 33px;
       font-size: 14px;

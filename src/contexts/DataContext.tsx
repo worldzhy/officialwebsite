@@ -6,14 +6,9 @@ import {
   createContext,
   PropsWithChildren,
 } from "react";
-import {
-  imagePath,
-  LangLocalKey,
-  LanguageEnum,
-  animationPath,
-} from "../constants/Data";
-import { EN, SPN } from "../constants/language";
+import { LanguageEnum, getInitLang, langMap } from "../constants/language";
 import { AppLayout, ContentsType, HeaderType } from "../types";
+import { imagePath, LangLocalKey, animationPath } from "../constants/Data";
 
 type IProps = AppLayout & { setLanguage: (lang: LanguageEnum) => void };
 
@@ -24,10 +19,7 @@ const DataProvider = ({
 }: PropsWithChildren<Record<string, unknown>>) => {
   const [lang, setLang] = useState<LanguageEnum>(LanguageEnum.en);
 
-  const languageTerms = useMemo(
-    () => (lang === LanguageEnum.en ? EN : SPN),
-    [lang]
-  );
+  const languageTerms = useMemo(() => langMap[lang], [lang]);
   const {
     form,
     cases,
@@ -263,17 +255,12 @@ const DataProvider = ({
 
   useEffect(() => {
     let localLang = localStorage.getItem(LangLocalKey) as LanguageEnum;
-    const language = window?.navigator?.language;
 
     if (localLang && Object.values(LanguageEnum).includes(localLang)) {
       setLang(localLang);
       return;
     }
-    if (language.endsWith("-ES")) {
-      localLang = LanguageEnum.spn;
-    } else {
-      localLang = LanguageEnum.en;
-    }
+    localLang = getInitLang();
     setLang(localLang);
     localStorage.setItem(LangLocalKey, localLang);
   }, []);

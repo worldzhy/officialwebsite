@@ -1,8 +1,8 @@
 import { FC, useRef } from "react";
 import styled from "@emotion/styled";
 import { useOnClickOutside } from "usehooks-ts";
-import { LangType, LanguageEnum } from "../../constants/Data";
 import { useDataContext } from "../../contexts/DataContext";
+import { LangType, LanguageEnum } from "../../constants/language";
 
 type IProps = {
   open: boolean;

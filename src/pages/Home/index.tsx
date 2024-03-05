@@ -183,7 +183,7 @@ const StyledContainer = styled(motion.div)`
   .navigate-case-button {
     position: absolute;
     font-family: Prompt-Regular;
-    width: 163px;
+    width: 183px;
     height: 40px;
     top: 557rem;
     left: 50%;
