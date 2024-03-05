@@ -98,7 +98,7 @@ const StyleLang = styled.div`
   height: 32px;
   top: 0;
   right: 0;
-  margin: 22px 20px 0 0;
+  margin: 32rem 20px 0 0;
   cursor: pointer;
   ${mobileMedia} {
     margin-top: 16px;
