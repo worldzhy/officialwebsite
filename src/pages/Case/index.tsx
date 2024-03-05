@@ -59,6 +59,7 @@ const StyledContainer = styled(motion.div)`
       font-family: Prompt;
       font-size: 18px;
       line-height: 32px;
+      min-height: 188px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 6;
@@ -68,11 +69,12 @@ const StyledContainer = styled(motion.div)`
         font-size: 18px;
         line-height: 32px;
         margin-bottom: 20px;
+        min-height: auto;
         -webkit-line-clamp: 8;
       }
     }
     .link-btn {
-      width: 130px;
+      width: 140px;
       height: 33px;
       line-height: 33px;
       font-size: 14px;
@@ -145,7 +147,7 @@ const StyleCloseBtn = styled.div`
 
 const Case: FC = () => {
   const {
-    contents: { cases },
+    contents: { cases, caseStudyBtn },
   } = useDataContext();
   const {
     state: { shouldResetCasePage },
@@ -228,7 +230,7 @@ const Case: FC = () => {
                 "bg-white text-black link-btn hover:shadow-lg hover:bg-gray-100"
               }
             >
-              View Case Study
+              {caseStudyBtn}
             </button>
             <button onClick={handleModalOpen} className={"modal-trigger"}>
               <Category />

@@ -373,7 +373,7 @@ const Home: FC = () => {
                 className="navigate-case-button"
                 onClick={() => history.push("/case")}
               >
-                Read Case Study
+                {carousels.carouselStudyBtn}
               </button>
             }
           >

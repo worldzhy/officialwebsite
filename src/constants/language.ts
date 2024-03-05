@@ -59,6 +59,7 @@ export const EN = {
     },
   },
   carousels: {
+    carouselStudyBtn: "Read Case Study",
     carousel1: {
       name: "Bill Kapner",
       title: "Founder and Chairman",
@@ -82,6 +83,7 @@ export const EN = {
     },
   },
   cases: {
+    studyBtn: "View Case Study",
     case1: {
       title: "TitanHouse",
       description:
@@ -151,6 +153,7 @@ export const SPN = {
     },
   },
   carousels: {
+    carouselStudyBtn: "Leer estudio de caso",
     carousel1: {
       name: "Bill Kapner",
       title: "Fundador y Presidente",
@@ -174,6 +177,7 @@ export const SPN = {
     },
   },
   cases: {
+    studyBtn: "Ver estudio de caso",
     case1: {
       title: "TitanHouse",
       description:
