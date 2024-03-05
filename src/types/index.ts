@@ -19,6 +19,7 @@ interface HeaderItemProps {
 
 export type ContentsType = {
   home: HomeContentType;
+  caseStudyBtn: string;
   cases: CaseContentType;
   contact: ContactContentProps;
 };
@@ -46,6 +47,7 @@ export interface CarouselItemProps {
 type HomeContentType = {
   videos: Array<HomeVideoProps>;
   carousels: {
+    carouselStudyBtn: string;
     backgroundImage: string;
     contents: Array<CarouselItemProps>;
   };

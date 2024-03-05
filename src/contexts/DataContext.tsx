@@ -6,19 +6,28 @@ import {
   createContext,
   PropsWithChildren,
 } from "react";
+import {
+  imagePath,
+  LangLocalKey,
+  LanguageEnum,
+  animationPath,
+} from "../constants/Data";
 import { EN, SPN } from "../constants/language";
-import { LangLocalKey, animationPath, imagePath } from "../constants/Data";
 import { AppLayout, ContentsType, HeaderType } from "../types";
 
-type LanguageType = "en" | "spn";
-const DataContext = createContext<AppLayout>({} as AppLayout);
+type IProps = AppLayout & { setLanguage: (lang: LanguageEnum) => void };
+
+const DataContext = createContext<IProps>({} as IProps);
 
 const DataProvider = ({
   children,
 }: PropsWithChildren<Record<string, unknown>>) => {
-  const [lang, setLang] = useState<LanguageType>("en");
+  const [lang, setLang] = useState<LanguageEnum>(LanguageEnum.en);
 
-  const languageTerms = useMemo(() => (lang === "en" ? EN : SPN), [lang]);
+  const languageTerms = useMemo(
+    () => (lang === LanguageEnum.en ? EN : SPN),
+    [lang]
+  );
   const {
     form,
     cases,
@@ -114,7 +123,7 @@ const DataProvider = ({
               heading: [
                 videos.video2.heading.heading1,
                 videos.video2.heading.heading2,
-                videos.video2.heading.heading2,
+                videos.video3.heading.heading2,
               ],
             },
             position: "left",
@@ -163,6 +172,7 @@ const DataProvider = ({
           },
         ],
         carousels: {
+          carouselStudyBtn: carousels.carouselStudyBtn,
           backgroundImage: `${imagePath}testimonials/bill-kapner-bg.png`,
           contents: [
             {
@@ -192,6 +202,7 @@ const DataProvider = ({
           ],
         },
       },
+      caseStudyBtn: cases.studyBtn,
       cases: [
         {
           title: cases.case1.title,
@@ -243,25 +254,32 @@ const DataProvider = ({
     [languageTerms]
   );
 
+  const setLanguage = (language: LanguageEnum) => {
+    if (language && Object.values(LanguageEnum).includes(language)) {
+      setLang(language);
+      localStorage.setItem(LangLocalKey, language);
+    }
+  };
+
   useEffect(() => {
-    let localLang = localStorage.getItem(LangLocalKey) as LanguageType;
+    let localLang = localStorage.getItem(LangLocalKey) as LanguageEnum;
     const language = window?.navigator?.language;
 
-    if (localLang && ["en", "spn"].includes(localLang)) {
+    if (localLang && Object.values(LanguageEnum).includes(localLang)) {
       setLang(localLang);
       return;
     }
     if (language.endsWith("-ES")) {
-      localLang = "spn";
+      localLang = LanguageEnum.spn;
     } else {
-      localLang = "en";
+      localLang = LanguageEnum.en;
     }
     setLang(localLang);
     localStorage.setItem(LangLocalKey, localLang);
   }, []);
 
   return (
-    <DataContext.Provider value={{ headers, contents }}>
+    <DataContext.Provider value={{ headers, contents, setLanguage }}>
       {children}
     </DataContext.Provider>
   );

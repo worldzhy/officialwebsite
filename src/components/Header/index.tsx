@@ -6,6 +6,8 @@ import NavIcon from "../Icons/NavIcon";
 import { mobileMedia } from "../../constants";
 import CompanyLogo from "../Icons/CompanyLogo";
 import { useDataContext } from "../../contexts/DataContext";
+import Language from "../Icons/Language";
+import LangModal from "./LangModal";
 
 const StyledHeader = styled.header`
   display: flex;
@@ -45,6 +47,8 @@ const StyledHeader = styled.header`
       display: none;
       ${mobileMedia} {
         display: block;
+        margin-right: 36px;
+        cursor: pointer;
       }
     }
   }
@@ -88,6 +92,18 @@ const StyleNavs = styled.div`
     display: none;
   }
 `;
+const StyleLang = styled.div`
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 0;
+  right: 0;
+  margin: 22px 20px 0 0;
+  cursor: pointer;
+  ${mobileMedia} {
+    margin-top: 16px;
+  }
+`;
 
 const Header: FC = () => {
   const {
@@ -96,6 +112,7 @@ const Header: FC = () => {
   const { pathname } = useLocation();
   const history = useHistory();
   const [showNav, setShowNav] = useState(false);
+  const [showLang, setShowLang] = useState(false);
 
   const handleLogoClicked = () => history.push("/home");
   const triggerCategory = () => setShowNav(!showNav);
@@ -135,8 +152,16 @@ const Header: FC = () => {
             ))}
           </nav>
         </StyleNavs>
+        <StyleLang>
+          <Language
+            width="100%"
+            height="auto"
+            onClick={() => setShowLang(true)}
+          />
+        </StyleLang>
       </StyledHeader>
       <NavModal open={showNav} setOpen={setShowNav} items={items} />
+      <LangModal open={showLang} setOpen={setShowLang} />
     </>
   );
 };
