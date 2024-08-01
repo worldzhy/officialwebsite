@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect, useContext } from "react";
+import { FC, useRef, useEffect, useContext } from "react";
 import { motion } from "framer-motion";
 import { HomeVideoProps } from "../../../types";
 import DownArrow from "../../../components/Icons/DownArrow";
@@ -6,31 +6,31 @@ import { usePagContext } from "../../../contexts/PagContext";
 import LoadingContext from "../../../contexts/LoadingContext";
 
 type IProps = {
-  videos: HomeVideoProps[];
   current: number;
-  setCurrent: (value: number) => void;
-  canTransition: boolean;
-  setCanTransition: (value: boolean) => void;
-  shouldReverse: boolean;
-  setShouldReverse: (value: boolean) => void;
-  currentText: number;
-  textTransition: (index: number, lenght: number) => any;
   textAnimation: any;
+  currentText: number;
+  canTransition: boolean;
+  videos: HomeVideoProps[];
+  shouldReverse: boolean;
+  setCurrent: (value: number) => void;
   setCurrentText: (value: number) => void;
+  setShouldReverse: (value: boolean) => void;
+  setCanTransition: (value: boolean) => void;
+  textTransition: (index: number, lenght: number) => any;
 };
 
 const MobileAnimation: FC<IProps> = ({
   videos,
   current,
-  setCurrent,
-  canTransition,
-  setCanTransition,
-  shouldReverse,
-  setShouldReverse,
   currentText,
-  textTransition,
+  canTransition,
+  shouldReverse,
   textAnimation,
+  setCurrent,
   setCurrentText,
+  textTransition,
+  setCanTransition,
+  setShouldReverse,
 }) => {
   const { dispatchVisible, dispatchProgress } = useContext(LoadingContext);
   const { PAG, pagFiles } = usePagContext();
@@ -43,6 +43,7 @@ const MobileAnimation: FC<IProps> = ({
     const pagView = pagViewRef.current;
     const next = ct ? current + 1 : current - 1;
     const pagFile = pagFiles[next]?.current;
+
     if (pagFile) {
       pagView.pause();
       pagView.setComposition(pagFile);
@@ -58,6 +59,7 @@ const MobileAnimation: FC<IProps> = ({
   const handleRestart = () => {
     const pagView = pagViewRef.current;
     const pagFile = pagFiles[current]?.current;
+
     if (pagView && pagFile) {
       pagView.pause();
       pagView.setComposition(pagFile);
