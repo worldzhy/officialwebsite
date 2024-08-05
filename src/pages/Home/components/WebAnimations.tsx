@@ -30,7 +30,11 @@ const WebAnimations: FC<IProps> = ({
   setShouldReverse,
 }) => {
   const currentRef = useRef<HTMLVideoElement>(null);
-  const [canPlayIndex, setCanPlayIndex] = useState<number[]>([]);
+  const [canPlayIndex, setCanPlayIndex] = useState<any>({
+    currentVideo: [],
+    transition: [],
+    reverse: [],
+  });
   const { dispatchVisible, dispatchProgress, visible } =
     useContext(LoadingContext);
 
@@ -48,23 +52,26 @@ const WebAnimations: FC<IProps> = ({
     });
   };
 
-  const handleCanPlay = (index: number, isFirst: boolean) => {
+  const handleCanPlay = (index: number, type: string) => {
+    const indexs = canPlayIndex[type];
     const isCurrent = index === current;
 
-    if (visible && isCurrent && isFirst) {
+    if (visible && isCurrent && type === "currentVideo") {
       dispatchProgress(100);
       dispatchVisible(false, 500);
     }
-    canPlayIndex.push(index);
-    setCanPlayIndex(Array.from(new Set(canPlayIndex)));
+    indexs.push(index);
+    canPlayIndex[type] = Array.from(new Set(indexs));
+    setCanPlayIndex(canPlayIndex);
   };
 
-  const handleCanPreload = (index: number) => {
+  const handleCanPreload = (index: number, type: string) => {
+    const indexs = canPlayIndex[type];
     const isCurrent = index === current;
-    const loadIndex = Math.max(...canPlayIndex);
+    const loadIndex = indexs.length ? Math.max(...indexs) : 0;
     const nextIndex = loadIndex + 1 > videos.length - 1 ? 0 : loadIndex + 1;
 
-    if (isCurrent || canPlayIndex.includes(index) || index === nextIndex) {
+    if (isCurrent || indexs.includes(index) || index === nextIndex) {
       return "auto";
     }
     return "none";
@@ -100,46 +107,46 @@ const WebAnimations: FC<IProps> = ({
               ref={currentRef}
               src={currentVideo}
               disablePictureInPicture
-              className={"loop-video"}
+              className="loop-video"
               autoPlay={(current === i && !canTransition) || !shouldReverse}
               style={{
                 zIndex: current === i ? 1 : -1,
                 visibility:
                   canTransition || shouldReverse ? "hidden" : "visible",
               }}
-              preload={handleCanPreload(i)}
-              onCanPlay={() => handleCanPlay(i, true)}
+              preload={handleCanPreload(i, "currentVideo")}
+              onCanPlay={() => handleCanPlay(i, "currentVideo")}
               onProgress={() => onProgress(current === i)}
             />
             <video
               muted
               src={transition}
-              key={"transition"}
+              key="transition"
               disablePictureInPicture
-              className={"transition-video"}
+              className="transition-video"
               autoPlay={current === i && canTransition}
               style={{
                 zIndex: current === i ? 1 : -1,
                 visibility: canTransition ? "visible" : "hidden",
               }}
               onEnded={handleEnded}
-              preload={handleCanPreload(i)}
-              onCanPlay={() => handleCanPlay(i, false)}
+              preload={handleCanPreload(i, "transition")}
+              onCanPlay={() => handleCanPlay(i, "transition")}
             />
             <video
               muted
               src={reverse}
-              key={"reverse"}
+              key="reverse"
               disablePictureInPicture
-              className={"reverse-video"}
+              className="reverse-video"
               autoPlay={current === i && shouldReverse}
               style={{
                 zIndex: current === i ? 1 : -1,
                 visibility: shouldReverse ? "visible" : "hidden",
               }}
               onEnded={handleEnded}
-              preload={handleCanPreload(i)}
-              onCanPlay={() => handleCanPlay(i, false)}
+              preload={handleCanPreload(i, "reverse")}
+              onCanPlay={() => handleCanPlay(i, "reverse")}
             />
             <motion.div
               className={`text-wrapper position-${position}`}
