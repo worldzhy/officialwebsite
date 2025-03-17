@@ -194,8 +194,8 @@ const StyledContainer = styled(motion.div)`
     border: 2px solid #ffffff;
     z-index: 10;
     ${mobileMedia} {
-      bottom: 140px;
       top: auto;
+      bottom: 85px;
       margin: 0 auto;
     }
   }

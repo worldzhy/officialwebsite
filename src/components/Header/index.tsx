@@ -103,7 +103,7 @@ const StyleLang = styled.div`
   ${mobileMedia} {
     width: 26px;
     height: 26px;
-    margin-top: 10px;
+    margin-top: 14px;
     margin-right: 8px;
   }
 `;
